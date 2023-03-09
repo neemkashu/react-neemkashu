@@ -8,8 +8,9 @@
       "ESNext"
     ],
     "allowJs": false,
+    "baseUrl": "./src",
     "skipLibCheck": true,
-    "esModuleInterop": false,
+    "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "strict": true,
     "forceConsistentCasingInFileNames": true,
@@ -18,13 +19,16 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react-jsx",
+    "noImplicitAny": true,
+    "noFallthroughCasesInSwitch": true,
+    "jsx": "react",
     "types": [
       "vite/client"
     ]
   },
   "include": [
-    "src"
+    "./src/**/*",
+    "styled.d.ts"
   ],
   "references": [
     {
