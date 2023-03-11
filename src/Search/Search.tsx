@@ -23,7 +23,6 @@ export class Search extends React.Component<unknown, SearchState> {
   };
   componentDidMount(): void {
     const previousSearch = getFromStorage(SEARCH_KEY);
-    console.log('previousSearch', previousSearch);
     this.setState({
       searchValue: previousSearch,
     });

@@ -10,7 +10,7 @@ export class MainContent extends React.Component {
   render() {
     return (
       <div style={wrapperStyle}>
-        <TwoColumn>
+        <TwoColumn oneColumnBreakPoint={450}>
           <Search />
           <p>This is main page</p>
         </TwoColumn>
