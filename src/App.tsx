@@ -1,32 +1,39 @@
-import React from 'react';
-import { useState } from 'react';
-import reactLogo from './assets/react.svg';
+import React, { CSSProperties } from 'react';
+import { Link, Outlet } from 'react-router-dom';
 import './App.css';
-import { adder } from './utils/helpers';
 
-function App() {
-  const [count, setCount] = useState(0);
+const ulStyle: CSSProperties = {
+  listStyleType: 'none',
+  display: 'flex',
+  flexDirection: 'row',
+  gap: 10,
+  margin: 0,
+  padding: 5,
+};
 
-  return (
-    <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank" rel="noreferrer">
-          <img src="/vite.svg" className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank" rel="noreferrer">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => adder(count, 1))}>count is {count}</button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">Click on the Vite and React logos to learn more</p>
-    </div>
-  );
+const navStyle: CSSProperties = {
+  width: '100%',
+  backgroundColor: 'orange',
+};
+
+class App extends React.Component {
+  render() {
+    return (
+      <>
+        <nav style={navStyle}>
+          <ul style={ulStyle}>
+            <li>
+              <Link to={`/`}>Main page</Link>
+            </li>
+            <li>
+              <Link to={`/about`}>About</Link>
+            </li>
+          </ul>
+        </nav>
+        <Outlet />
+      </>
+    );
+  }
 }
 
 export default App;
