@@ -1,6 +1,5 @@
 import React, { ChangeEventHandler } from 'react';
 import { SEARCH_KEY } from '../utils/constants';
-import { getFromStorage, setToStorage } from '../utils/helpers';
 import './styles/Search.css';
 
 type SearchState = {
@@ -11,30 +10,30 @@ export class Search extends React.Component<unknown, SearchState> {
   constructor(props = {}) {
     super(props);
     this.state = {
-      searchValue: getFromStorage(SEARCH_KEY),
+      searchValue: localStorage.getItem(SEARCH_KEY) ?? '',
     };
     this.handleInput = this.handleInput.bind(this);
   }
   handleInput: ChangeEventHandler<HTMLInputElement> = (event) => {
-    setToStorage(SEARCH_KEY, event.target.value);
+    localStorage.setItem(SEARCH_KEY, event.target.value ?? '');
     this.setState({
       searchValue: event.target.value,
     });
   };
   componentDidMount(): void {
-    const previousSearch = getFromStorage(SEARCH_KEY);
+    const previousSearch = localStorage.getItem(SEARCH_KEY) ?? '';
     this.setState({
       searchValue: previousSearch,
     });
   }
   componentWillUnmount(): void {
-    setToStorage(SEARCH_KEY, this.state.searchValue);
+    localStorage.setItem(SEARCH_KEY, this.state.searchValue ?? '');
   }
   render() {
     return (
       <input
         onChange={this.handleInput}
-        value={this.state.searchValue}
+        value={this.state.searchValue ?? ''}
         className="input"
         placeholder="Search"
         type="search"

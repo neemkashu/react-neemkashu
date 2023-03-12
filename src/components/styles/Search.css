@@ -2,7 +2,7 @@
     position: relative;
 
     margin: 0;
-    border: 2px solid #646cff;
+    border: 2px solid #8a6128;
     border-radius: 1rem;
     max-width: 320px;
     height: 2.5rem;
@@ -22,5 +22,7 @@
   box-shadow: 0 0px 1px #3d4190, 0 1px 2px #3d4190;
 }
 .input:focus-visible {
-    background-color: #c6c9ff7c;
+    background-color: #fff1c67c;
+    outline-color: transparent;
+    outline-width: 0;
 }
