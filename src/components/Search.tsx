@@ -15,7 +15,6 @@ export class Search extends React.Component<unknown, SearchState> {
     this.handleInput = this.handleInput.bind(this);
   }
   handleInput: ChangeEventHandler<HTMLInputElement> = (event) => {
-    localStorage.setItem(SEARCH_KEY, event.target.value ?? '');
     this.setState({
       searchValue: event.target.value,
     });
@@ -33,7 +32,7 @@ export class Search extends React.Component<unknown, SearchState> {
     return (
       <input
         onChange={this.handleInput}
-        value={this.state.searchValue ?? ''}
+        defaultValue={this.state.searchValue ?? ''}
         className="input"
         placeholder="Search"
         type="search"
