@@ -1,4 +1,5 @@
 import React, { CSSProperties, PropsWithChildren } from 'react';
+import { CARD_WIDTH } from '../utils/constants';
 
 interface CardGridProps {
   cardWidth?: string;
@@ -9,7 +10,7 @@ type CardGridComponent = PropsWithChildren<CardGridProps>;
 const gridStyle: CSSProperties = {
   display: 'grid',
   gap: '0.8rem',
-  gridTemplateColumns: 'repeat(auto-fill, 320px)',
+  gridTemplateColumns: `repeat(auto-fill, ${CARD_WIDTH}px)`,
   justifyContent: 'center',
   width: '100%',
 };

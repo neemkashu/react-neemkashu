@@ -1,7 +1,7 @@
 import React, { ChangeEventHandler } from 'react';
 import { SEARCH_KEY } from '../utils/constants';
 import { getFromStorage, setToStorage } from '../utils/helpers';
-import './Search.css';
+import './styles/Search.css';
 
 type SearchState = {
   searchValue: string;

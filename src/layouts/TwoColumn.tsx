@@ -5,6 +5,11 @@ interface TwoColumnProps {
   rightWidth?: string;
   oneColumnBreakPoint: number;
 }
+const defaultTwoColumnProps = {
+  leftWidth: '1fr',
+  rightWidth: '2fr',
+  oneColumnBreakPoint: 700,
+};
 type TwoColumnComponent = PropsWithChildren<TwoColumnProps>;
 
 type TwoColumnState = {
@@ -23,6 +28,9 @@ export class TwoColumn extends React.Component<TwoColumnComponent, TwoColumnStat
     this.state = { isWideScreen: document.body.offsetWidth > this.props.oneColumnBreakPoint };
     this.handleWideScreen = this.handleWideScreen.bind(this);
   }
+  static defaultProps = {
+    ...defaultTwoColumnProps,
+  };
   handleWideScreen() {
     this.setState({
       isWideScreen: document.body.offsetWidth > this.props.oneColumnBreakPoint,
@@ -37,7 +45,7 @@ export class TwoColumn extends React.Component<TwoColumnComponent, TwoColumnStat
   render() {
     const gridStyle: CSSProperties = this.state.isWideScreen
       ? {
-          gridTemplateColumns: '1fr 2fr',
+          gridTemplateColumns: `${this.props.leftWidth} ${this.props.rightWidth}`,
         }
       : {
           gridTemplateColumns: '1fr',

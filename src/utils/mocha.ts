@@ -1,4 +1,4 @@
-export type Card = {
+export type CardInfo = {
   name: string;
   img: string;
   type: string;
@@ -10,10 +10,10 @@ export type Card = {
   parasites: string[];
 };
 
-export const cards: Card[] = [
+export const cards: CardInfo[] = [
   {
     name: 'Jennifer',
-    img: '../../assets/images/jennifer.png',
+    img: '../../src/assets/images/jennifer.png',
     type: 'Dog',
     breed: 'Labrador',
     description:
@@ -25,7 +25,7 @@ export const cards: Card[] = [
   },
   {
     name: 'Sophia',
-    img: '../../assets/images/sophia.png',
+    img: '../../src/assets/images/sophia.png',
     type: 'Dog',
     breed: 'Shih tzu',
     description:
@@ -37,7 +37,7 @@ export const cards: Card[] = [
   },
   {
     name: 'Woody',
-    img: '../../assets/images/woody.png',
+    img: '../../src/assets/images/woody.png',
     type: 'Dog',
     breed: 'Golden Retriever',
     description:
@@ -49,7 +49,7 @@ export const cards: Card[] = [
   },
   {
     name: 'Scarlett',
-    img: '../../assets/images/scarlett.png',
+    img: '../../src/assets/images/scarlett.png',
     type: 'Dog',
     breed: 'Jack Russell Terrier',
     description:
@@ -61,7 +61,7 @@ export const cards: Card[] = [
   },
   {
     name: 'Katrine',
-    img: '../../assets/images/katrine.png',
+    img: '../../src/assets/images/katrine.png',
     type: 'Cat',
     breed: 'British Shorthair',
     description:
@@ -73,7 +73,7 @@ export const cards: Card[] = [
   },
   {
     name: 'Timmy',
-    img: '../../assets/images/timmy.png',
+    img: '../../src/assets/images/timmy.png',
     type: 'Cat',
     breed: 'British Shorthair',
     description:
@@ -85,7 +85,7 @@ export const cards: Card[] = [
   },
   {
     name: 'Freddie',
-    img: '../../assets/images/freddie.png',
+    img: '../../src/assets/images/freddie.png',
     type: 'Cat',
     breed: 'British Shorthair',
     description:
@@ -97,7 +97,7 @@ export const cards: Card[] = [
   },
   {
     name: 'Charly',
-    img: '../../assets/images/charly.png',
+    img: '../../src/assets/images/charly.png',
     type: 'Dog',
     breed: 'Jack Russell Terrier',
     description:
