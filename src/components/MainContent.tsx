@@ -1,7 +1,8 @@
-import { TwoColumn } from './layouts/TwoColumn';
+import { TwoColumn } from '../layouts/TwoColumn';
 import React, { CSSProperties } from 'react';
-import { Search } from './Search/Search';
-import { cards } from './utils/mocha';
+import { Search } from '../Search/Search';
+import { cards } from '../utils/mocha';
+import { CardGrid } from '../layouts/CardGrid';
 
 const wrapperStyle: CSSProperties = {
   padding: '1rem',
@@ -13,11 +14,11 @@ export class MainContent extends React.Component {
       <div style={wrapperStyle}>
         <TwoColumn oneColumnBreakPoint={450}>
           <Search />
-          <ul>
+          <CardGrid>
             {cards.map((card) => {
               return <li key={Math.random() * 1000}>{card.name}</li>;
             })}
-          </ul>
+          </CardGrid>
         </TwoColumn>
       </div>
     );

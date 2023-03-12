@@ -1,11 +1,11 @@
-import { About } from './About';
+import { About } from './components/About';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import App from './App';
 import './index.css';
-import { ErrorPage } from './ErrorPage';
-import { MainContent } from './MainContent';
+import { ErrorPage } from './components/ErrorPage';
+import { MainContent } from './components/MainContent';
 
 const router = createBrowserRouter([
   {
