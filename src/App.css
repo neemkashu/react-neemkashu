@@ -3,3 +3,11 @@
   width: 100%;
 }
 
+.wrapper {
+  padding: 1rem;
+}
+
+.active {
+  background-color: bisque;
+  border-radius: 0.5rem;
+}

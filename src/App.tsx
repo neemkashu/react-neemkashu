@@ -1,5 +1,5 @@
 import React, { CSSProperties } from 'react';
-import { Link, Outlet } from 'react-router-dom';
+import { NavLink, Outlet } from 'react-router-dom';
 import './App.css';
 
 const ulStyle: CSSProperties = {
@@ -9,6 +9,9 @@ const ulStyle: CSSProperties = {
   gap: 10,
   margin: 0,
   padding: 5,
+};
+const linkStyle: CSSProperties = {
+  padding: '0.2rem',
 };
 
 const navStyle: CSSProperties = {
@@ -23,10 +26,14 @@ class App extends React.Component {
         <nav style={navStyle}>
           <ul style={ulStyle}>
             <li>
-              <Link to={`/`}>Main page</Link>
+              <NavLink style={linkStyle} to={`/`}>
+                Main page
+              </NavLink>
             </li>
             <li>
-              <Link to={`/about`}>About</Link>
+              <NavLink style={linkStyle} to={`/about`}>
+                About
+              </NavLink>
             </li>
           </ul>
         </nav>
