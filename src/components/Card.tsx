@@ -39,13 +39,13 @@ export class Card extends React.Component<CardProps> {
                 <strong>Age:</strong> {this.props.age}
               </li>
               <li>
-                <strong>Inoculations:</strong> {...this.props.inoculations}
+                <strong>Inoculations:</strong> {this.props.inoculations.join(', ')}
               </li>
               <li>
-                <strong>Diseases:</strong> {...this.props.diseases}
+                <strong>Diseases:</strong> {this.props.diseases.join(', ')}
               </li>
               <li>
-                <strong>Parasites:</strong> {...this.props.parasites}
+                <strong>Parasites:</strong> {this.props.parasites.join(', ')}
               </li>
             </ul>
           </div>
