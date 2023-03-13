@@ -1,6 +1,6 @@
 import React, { CSSProperties } from 'react';
-import { NavLink, Outlet } from 'react-router-dom';
-import './App.css';
+import { NavLink } from 'react-router-dom';
+import './styles//Header.css';
 
 const ulStyle: CSSProperties = {
   listStyleType: 'none',
@@ -19,7 +19,7 @@ const navStyle: CSSProperties = {
   backgroundColor: 'orange',
 };
 
-class App extends React.Component {
+class Header extends React.Component {
   render() {
     return (
       <>
@@ -37,10 +37,9 @@ class App extends React.Component {
             </li>
           </ul>
         </nav>
-        <Outlet />
       </>
     );
   }
 }
 
-export default App;
+export default Header;

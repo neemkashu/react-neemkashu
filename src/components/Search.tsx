@@ -12,19 +12,12 @@ export class Search extends React.Component<unknown, SearchState> {
     this.state = {
       searchValue: localStorage.getItem(SEARCH_KEY) ?? '',
     };
-    this.handleInput = this.handleInput.bind(this);
   }
   handleInput: ChangeEventHandler<HTMLInputElement> = (event) => {
     this.setState({
       searchValue: event.target.value,
     });
   };
-  componentDidMount(): void {
-    const previousSearch = localStorage.getItem(SEARCH_KEY) ?? '';
-    this.setState({
-      searchValue: previousSearch,
-    });
-  }
   componentWillUnmount(): void {
     localStorage.setItem(SEARCH_KEY, this.state.searchValue ?? '');
   }
