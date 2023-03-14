@@ -4,16 +4,6 @@ import { routesConfig } from '../routesConfig';
 import React from 'react';
 import userEvent from '@testing-library/user-event';
 
-test('click post goes to /post/:postId', async () => {
-  const router = createMemoryRouter(routesConfig, {
-    initialEntries: ['/posts'],
-  });
-
-  render(<RouterProvider router={router} />);
-
-  // make assertions, await changes, etc...
-});
-
 describe('Router', () => {
   it('Renders about page', () => {
     const router = createMemoryRouter(routesConfig, {

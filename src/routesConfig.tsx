@@ -23,7 +23,10 @@ export const routesConfig = [
         path: '/about',
         element: <About />,
       },
+      {
+        path: '*',
+        element: <ErrorPage />,
+      },
     ],
-    errorElement: <ErrorPage />,
   },
 ];

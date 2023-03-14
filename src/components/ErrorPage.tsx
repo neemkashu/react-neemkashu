@@ -5,12 +5,16 @@ const errorStyle: CSSProperties = {
   width: 200,
 };
 
+const textStyle: CSSProperties = {
+  textAlign: 'center',
+};
+
 export class ErrorPage extends React.Component {
   render() {
     return (
       <div style={errorStyle}>
-        <h1>Oops!</h1>
-        <p>Page not found</p>
+        <h1 style={textStyle}>Oops!</h1>
+        <p style={textStyle}>Page not found</p>
       </div>
     );
   }
