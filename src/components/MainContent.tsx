@@ -12,13 +12,12 @@ export class MainContent extends React.Component {
   render() {
     return (
       <div className="wrapper">
-        <h1>Main Page</h1>
         <TwoColumn oneColumnBreakPoint={LAYOUT_BREAK_POINT} leftWidth="320px" rightWidth="1fr">
           <Search />
           <CardGrid>
-            {cards.map((card) => {
+            {cards.map((card, index) => {
               const cardProps: CardProps = { width: CARD_WIDTH, ...card };
-              return <Card key={Math.random() * 1000} {...cardProps} />;
+              return <Card key={index} {...cardProps} />;
             })}
           </CardGrid>
         </TwoColumn>

@@ -2,7 +2,6 @@ import { About } from './components/About';
 import { ErrorPage } from './components/ErrorPage';
 import Header from './components/Header';
 import { MainContent } from './components/MainContent';
-import { Outlet } from 'react-router-dom';
 import React from 'react';
 
 export const routesConfig = [
@@ -10,23 +9,27 @@ export const routesConfig = [
     path: '/',
     element: (
       <>
-        <Header />
-        <Outlet />
+        <Header title={'Main Page'} />
+        <MainContent />
       </>
     ),
-    children: [
-      {
-        path: '/',
-        element: <MainContent />,
-      },
-      {
-        path: '/about',
-        element: <About />,
-      },
-      {
-        path: '*',
-        element: <ErrorPage />,
-      },
-    ],
+  },
+  {
+    path: '/about',
+    element: (
+      <>
+        <Header title={'About Us'} />
+        <About />
+      </>
+    ),
+  },
+  {
+    path: '*',
+    element: (
+      <>
+        <Header title={'Not Found'} />
+        <ErrorPage />
+      </>
+    ),
   },
 ];

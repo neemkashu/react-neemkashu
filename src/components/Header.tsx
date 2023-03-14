@@ -15,14 +15,23 @@ const linkStyle: CSSProperties = {
 };
 
 const navStyle: CSSProperties = {
-  width: '100%',
+  display: 'flex',
+  justifyContent: 'space-between',
+  padding: '0 0.8rem',
   backgroundColor: 'orange',
 };
 
-class Header extends React.Component {
+type HeaderProps = {
+  title: string;
+};
+
+class Header extends React.Component<HeaderProps> {
+  constructor(props: HeaderProps) {
+    super(props);
+  }
   render() {
     return (
-      <>
+      <header>
         <nav style={navStyle}>
           <ul style={ulStyle}>
             <li>
@@ -36,8 +45,9 @@ class Header extends React.Component {
               </NavLink>
             </li>
           </ul>
+          <h1>{this.props.title}</h1>
         </nav>
-      </>
+      </header>
     );
   }
 }

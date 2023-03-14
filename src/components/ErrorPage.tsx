@@ -13,7 +13,7 @@ export class ErrorPage extends React.Component {
   render() {
     return (
       <div style={errorStyle}>
-        <h1 style={textStyle}>Oops!</h1>
+        <p style={textStyle}>Oops!</p>
         <p style={textStyle}>Page not found</p>
       </div>
     );
