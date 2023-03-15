@@ -13,7 +13,7 @@ export type CardInfo = {
 export const cards: CardInfo[] = [
   {
     name: 'Jennifer',
-    img: '../../src/assets/images/jennifer.png',
+    img: '../../assets/images/jennifer.png',
     type: 'Dog',
     breed: 'Labrador',
     description:
@@ -25,7 +25,7 @@ export const cards: CardInfo[] = [
   },
   {
     name: 'Sophia',
-    img: '../../src/assets/images/sophia.png',
+    img: '../../assets/images/sophia.png',
     type: 'Dog',
     breed: 'Shih tzu',
     description:
@@ -37,7 +37,7 @@ export const cards: CardInfo[] = [
   },
   {
     name: 'Woody',
-    img: '../../src/assets/images/woody.png',
+    img: '../../assets/images/woody.png',
     type: 'Dog',
     breed: 'Golden Retriever',
     description:
@@ -49,7 +49,7 @@ export const cards: CardInfo[] = [
   },
   {
     name: 'Scarlett',
-    img: '../../src/assets/images/scarlett.png',
+    img: '../../assets/images/scarlett.png',
     type: 'Dog',
     breed: 'Jack Russell Terrier',
     description:
@@ -61,7 +61,7 @@ export const cards: CardInfo[] = [
   },
   {
     name: 'Katrine',
-    img: '../../src/assets/images/katrine.png',
+    img: '../../assets/images/katrine.png',
     type: 'Cat',
     breed: 'British Shorthair',
     description:
@@ -73,7 +73,7 @@ export const cards: CardInfo[] = [
   },
   {
     name: 'Timmy',
-    img: '../../src/assets/images/timmy.png',
+    img: '../../assets/images/timmy.png',
     type: 'Cat',
     breed: 'British Shorthair',
     description:
@@ -85,7 +85,7 @@ export const cards: CardInfo[] = [
   },
   {
     name: 'Freddie',
-    img: '../../src/assets/images/freddie.png',
+    img: '../../assets/images/freddie.png',
     type: 'Cat',
     breed: 'British Shorthair',
     description:
@@ -97,7 +97,7 @@ export const cards: CardInfo[] = [
   },
   {
     name: 'Charly',
-    img: '../../src/assets/images/charly.png',
+    img: '../../assets/images/charly.png',
     type: 'Dog',
     breed: 'Jack Russell Terrier',
     description:
