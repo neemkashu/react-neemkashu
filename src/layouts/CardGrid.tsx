@@ -9,8 +9,6 @@ type CardGridComponent = PropsWithChildren<CardGridProps>;
 
 const gridStyle: CSSProperties = {
   display: 'grid',
-  gap: '0.8rem',
-  gridTemplateColumns: `repeat(auto-fill, ${CARD_WIDTH}px)`,
   justifyContent: 'center',
   width: '100%',
 };
@@ -21,6 +19,11 @@ export class CardGrid extends React.Component<CardGridComponent, CardGridProps> 
   }
 
   render() {
-    return <div style={gridStyle}>{this.props.children}</div>;
+    const style = {
+      ...gridStyle,
+      gap: this.props.cardGap ?? '0.8rem',
+      gridTemplateColumns: `repeat(auto-fill, ${this.props.cardWidth ?? `${CARD_WIDTH}px`})`,
+    };
+    return <div style={style}>{this.props.children}</div>;
   }
 }
