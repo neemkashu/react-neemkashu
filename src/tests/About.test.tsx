@@ -6,6 +6,6 @@ import { About } from '../components/About';
 describe('About', () => {
   it('Renders about content', () => {
     render(<About />);
-    expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent('About Us');
+    expect(screen.getByRole('heading', { level: 2 })).toHaveTextContent(/react app/i);
   });
 });

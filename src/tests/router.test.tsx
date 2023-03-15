@@ -28,7 +28,7 @@ describe('Router', () => {
     });
     render(<RouterProvider router={router} />);
 
-    expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent('Oops');
+    expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent(/not found/i);
   });
   it('Implement navigation', async () => {
     const router = createMemoryRouter(routesConfig, {

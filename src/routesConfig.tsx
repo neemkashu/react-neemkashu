@@ -3,13 +3,14 @@ import { ErrorPage } from './components/ErrorPage';
 import Header from './components/Header';
 import { MainContent } from './components/MainContent';
 import React from 'react';
+import { Headers } from './utils/constants';
 
 export const routesConfig = [
   {
     path: '/',
     element: (
       <>
-        <Header title={'Main Page'} />
+        <Header title={Headers.MAIN} />
         <MainContent />
       </>
     ),
@@ -18,7 +19,7 @@ export const routesConfig = [
     path: '/about',
     element: (
       <>
-        <Header title={'About Us'} />
+        <Header title={Headers.ABOUT} />
         <About />
       </>
     ),
@@ -27,7 +28,7 @@ export const routesConfig = [
     path: '*',
     element: (
       <>
-        <Header title={'Not Found'} />
+        <Header title={Headers.NOT_FOUND} />
         <ErrorPage />
       </>
     ),

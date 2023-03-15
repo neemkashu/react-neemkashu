@@ -4,7 +4,7 @@ export class About extends React.Component {
   render() {
     return (
       <div className="wrapper">
-        <p>React app created with Vite</p>
+        <h2>React app created with Vite</h2>
       </div>
     );
   }
