@@ -1,4 +1,4 @@
-import React, { ChangeEventHandler } from 'react';
+import { ChangeEventHandler, Component } from 'react';
 import { SEARCH_KEY } from '../utils/constants';
 import './styles/Search.css';
 
@@ -6,7 +6,7 @@ type SearchState = {
   searchValue: string;
 };
 
-export class Search extends React.Component<unknown, SearchState> {
+export class Search extends Component<Record<string, never>, SearchState> {
   constructor(props = {}) {
     super(props);
     this.state = {

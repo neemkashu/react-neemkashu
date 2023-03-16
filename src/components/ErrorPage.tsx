@@ -1,4 +1,4 @@
-import React, { CSSProperties } from 'react';
+import { Component, CSSProperties } from 'react';
 
 const errorStyle: CSSProperties = {
   margin: '0 auto',
@@ -9,7 +9,7 @@ const textStyle: CSSProperties = {
   textAlign: 'center',
 };
 
-export class ErrorPage extends React.Component {
+export class ErrorPage extends Component {
   render() {
     return (
       <div style={errorStyle}>

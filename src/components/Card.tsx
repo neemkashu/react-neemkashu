@@ -1,6 +1,5 @@
 import { TwoColumn } from '../layouts/TwoColumn';
-import React from 'react';
-import { CSSProperties } from 'react';
+import { Component, CSSProperties } from 'react';
 import { CardInfo } from '../utils/mocha';
 import { CARD_WIDTH } from '../utils/constants';
 
@@ -20,7 +19,7 @@ const cardInfoStyle: CSSProperties = {
   gap: 5,
 };
 
-export class Card extends React.Component<CardProps> {
+export class Card extends Component<CardProps> {
   constructor(props: CardProps) {
     super(props);
   }

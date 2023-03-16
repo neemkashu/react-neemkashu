@@ -1,4 +1,4 @@
-import React, { CSSProperties } from 'react';
+import { Component, CSSProperties } from 'react';
 import { NavLink } from 'react-router-dom';
 import './styles//Header.css';
 
@@ -25,7 +25,7 @@ type HeaderProps = {
   title: string;
 };
 
-class Header extends React.Component<HeaderProps> {
+class Header extends Component<HeaderProps> {
   constructor(props: HeaderProps) {
     super(props);
   }

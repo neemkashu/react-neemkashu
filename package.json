@@ -9,7 +9,8 @@
     "preview": "vite preview",
     "lint": "eslint . --ext .tsx --ext .ts",
     "test": "vitest",
-    "coverage": "vitest run --coverage"
+    "coverage": "vitest run --coverage",
+    "deploy": "tsc && vite build && git stash && git checkout deploy && xcopy dist components\\ /E/Y && git add -A && git commit -m \"update deploy\" && git push && git checkout - && git stash pop"
   },
   "dependencies": {
     "react": "^18.2.0",

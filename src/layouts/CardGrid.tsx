@@ -1,4 +1,4 @@
-import React, { CSSProperties, PropsWithChildren } from 'react';
+import { Component, CSSProperties, PropsWithChildren } from 'react';
 import { CARD_WIDTH } from '../utils/constants';
 
 interface CardGridProps {
@@ -13,7 +13,7 @@ const gridStyle: CSSProperties = {
   width: '100%',
 };
 
-export class CardGrid extends React.Component<CardGridComponent, CardGridProps> {
+export class CardGrid extends Component<CardGridComponent, CardGridProps> {
   constructor(props: CardGridProps) {
     super(props);
   }

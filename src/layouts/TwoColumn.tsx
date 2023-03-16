@@ -1,4 +1,4 @@
-import React, { CSSProperties, PropsWithChildren } from 'react';
+import { Component, CSSProperties, PropsWithChildren } from 'react';
 
 interface TwoColumnProps {
   leftWidth?: string;
@@ -22,7 +22,7 @@ const wideStyle: CSSProperties = {
   width: '100%',
 };
 
-export class TwoColumn extends React.Component<TwoColumnComponent, TwoColumnState> {
+export class TwoColumn extends Component<TwoColumnComponent, TwoColumnState> {
   constructor(props: TwoColumnComponent) {
     super(props);
     this.state = { isWideScreen: document.body.offsetWidth > this.props.oneColumnBreakPoint };
