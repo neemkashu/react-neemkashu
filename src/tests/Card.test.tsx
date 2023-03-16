@@ -1,5 +1,4 @@
 import { render, screen } from '@testing-library/react';
-import React from 'react';
 import { CardInfo, cards } from '../utils/mocha';
 import { describe, expect, it } from 'vitest';
 import { Card } from '../components/Card';
@@ -19,7 +18,6 @@ describe('Card', () => {
   it('Renders non array properties of card parameters', () => {
     cards.forEach((cardProps) => {
       const { unmount } = render(<Card {...cardProps} />);
-
       const parametersListItems = screen.getAllByRole('listitem');
 
       expect(parametersListItems).toHaveLength(4);

@@ -1,3 +1,5 @@
+/* c8 ignore start */
+
 export const SEARCH_KEY = 'search';
 
 export const CARD_WIDTH = 600;

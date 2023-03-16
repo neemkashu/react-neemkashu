@@ -1,3 +1,5 @@
+/* c8 ignore start */
+
 export type CardInfo = {
   name: string;
   img: string;

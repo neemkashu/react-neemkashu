@@ -1,7 +1,6 @@
 import { RouterProvider, createMemoryRouter } from 'react-router-dom';
 import { render, screen } from '@testing-library/react';
 import { routesConfig } from '../routesConfig';
-import React from 'react';
 import userEvent from '@testing-library/user-event';
 
 describe('Router', () => {
