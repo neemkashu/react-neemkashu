@@ -1,4 +1,5 @@
 import { About } from './components/About';
+import { ErrorPage } from './components/ErrorPage';
 import Header from './components/Header';
 import { Headers } from './utils/constants';
 
@@ -25,6 +26,7 @@ export const routesConfig = [
     element: (
       <>
         <Header title={Headers.NOT_FOUND} />
+        <ErrorPage />
       </>
     ),
   },
