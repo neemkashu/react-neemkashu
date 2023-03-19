@@ -1,6 +1,7 @@
 import { About } from './components/About';
 import { ErrorPage } from './components/ErrorPage';
 import Header from './components/Header';
+import { MainContent } from './components/MainContents';
 import { Headers } from './utils/constants';
 
 export const routesConfig = [
@@ -9,6 +10,7 @@ export const routesConfig = [
     element: (
       <>
         <Header title={Headers.MAIN} />
+        <MainContent />
       </>
     ),
   },

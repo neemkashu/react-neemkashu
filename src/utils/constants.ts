@@ -3,3 +3,5 @@ export const Headers = {
   ABOUT: 'About Us',
   NOT_FOUND: 'Not Found',
 } as const;
+
+export const CARD_WIDTH = 600;
