@@ -1,6 +1,5 @@
 import { Component, CSSProperties } from 'react';
 import { NavLink } from 'react-router-dom';
-import './styles//Header.css';
 
 const ulStyle: CSSProperties = {
   listStyleType: 'none',
