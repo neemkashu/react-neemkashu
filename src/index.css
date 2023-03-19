@@ -34,3 +34,17 @@ p {
   line-height: 1.1;
   margin: 0;
 }
+
+#root {
+  max-width: 1920px;
+  width: 100%;
+}
+
+.wrapper {
+  padding: 1rem;
+}
+
+.active {
+  background-color: bisque;
+  border-radius: 0.5rem;
+}
