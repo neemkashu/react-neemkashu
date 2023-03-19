@@ -5,3 +5,5 @@ export const Headers = {
 } as const;
 
 export const CARD_WIDTH = 600;
+
+export const SEARCH_KEY = 'search';

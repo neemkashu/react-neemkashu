@@ -1,6 +1,6 @@
 import { TwoColumn } from '../layouts/TwoColumn';
 import { Component } from 'react';
-// import { Search } from './Search';
+import { Search } from './Search';
 // import { cards } from '../utils/mocha';
 // import { CardGrid } from '../layouts/CardGrid';
 // import { Card, CardProps } from './Card';
@@ -13,8 +13,8 @@ export class MainContent extends Component {
     return (
       <div className="wrapper">
         <TwoColumn oneColumnBreakPoint={LAYOUT_BREAK_POINT} leftWidth="320px" rightWidth="1fr">
-          {/* <Search />
-          <CardGrid>
+          <Search />
+          {/* <CardGrid>
             {cards.map((card, index) => {
               const cardProps: CardProps = { width: CARD_WIDTH, ...card };
               return <Card key={index} {...cardProps} />;
