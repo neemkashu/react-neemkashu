@@ -5,11 +5,6 @@ interface TwoColumnProps {
   rightWidth?: string;
   oneColumnBreakPoint: number;
 }
-const defaultTwoColumnProps = {
-  leftWidth: '1fr',
-  rightWidth: '2fr',
-  oneColumnBreakPoint: 700,
-};
 type TwoColumnComponent = PropsWithChildren<TwoColumnProps>;
 
 const wideStyle: CSSProperties = {
