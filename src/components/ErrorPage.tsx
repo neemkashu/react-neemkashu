@@ -1,20 +1,11 @@
-import { Component, CSSProperties } from 'react';
-
-const errorStyle: CSSProperties = {
-  margin: '0 auto',
-  width: 200,
-};
-
-const textStyle: CSSProperties = {
-  textAlign: 'center',
-};
+import { Component } from 'react';
 
 export class ErrorPage extends Component {
   render() {
     return (
-      <div style={errorStyle}>
-        <p style={textStyle}>Oops!</p>
-        <p style={textStyle}>Page not found</p>
+      <div className="my-1 mx-auto">
+        <p className="text-center text-2xl">Oops!</p>
+        <p className="text-center text-1xl">Page not found</p>
       </div>
     );
   }

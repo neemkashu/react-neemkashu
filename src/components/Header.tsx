@@ -1,24 +1,5 @@
-import { Component, CSSProperties } from 'react';
+import { Component } from 'react';
 import { NavLink } from 'react-router-dom';
-
-const ulStyle: CSSProperties = {
-  listStyleType: 'none',
-  display: 'flex',
-  flexDirection: 'row',
-  gap: 10,
-  margin: 0,
-  padding: 5,
-};
-const linkStyle: CSSProperties = {
-  padding: '0.2rem',
-};
-
-const navStyle: CSSProperties = {
-  display: 'flex',
-  justifyContent: 'space-between',
-  padding: '0 0.8rem',
-  backgroundColor: 'orange',
-};
 
 type HeaderProps = {
   title: string;
@@ -30,22 +11,22 @@ class Header extends Component<HeaderProps> {
   }
   render() {
     return (
-      <header>
-        <nav style={navStyle}>
-          <ul style={ulStyle}>
+      <header className="flex justify-between items-center pr-2 bg-orange-400">
+        <nav className="flex justify-between py-1 px-4">
+          <ul className="flex flex-row gap-2 m-0 p-1">
             <li>
-              <NavLink style={linkStyle} to={`/`}>
+              <NavLink className="p-1 duration-300 ease-in-out" to={`/`}>
                 Main page
               </NavLink>
             </li>
             <li>
-              <NavLink style={linkStyle} to={`/about`}>
+              <NavLink className="p-1 duration-300 ease-in-out" to={`/about`}>
                 About
               </NavLink>
             </li>
           </ul>
-          <h1>{this.props.title}</h1>
         </nav>
+        <h1>{this.props.title}</h1>
       </header>
     );
   }
