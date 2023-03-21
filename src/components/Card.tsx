@@ -1,12 +1,8 @@
 import { Component } from 'react';
 import { CardInfo } from '../utils/mocha';
 
-export interface CardProps extends CardInfo {
-  width?: number;
-}
-
-export class Card extends Component<CardProps> {
-  constructor(props: CardProps) {
+export class Card extends Component<CardInfo> {
+  constructor(props: CardInfo) {
     super(props);
   }
   render() {

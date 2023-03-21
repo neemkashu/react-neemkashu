@@ -2,8 +2,7 @@ import { Component } from 'react';
 import { Search } from './Search';
 import { cards } from '../utils/mocha';
 import { CardGrid } from '../layouts/CardGrid';
-import { Card, CardProps } from './Card';
-import { CARD_WIDTH } from '../utils/constants';
+import { Card } from './Card';
 
 export class MainContent extends Component {
   render() {
@@ -14,8 +13,7 @@ export class MainContent extends Component {
         </div>
         <CardGrid>
           {cards.map((card, index) => {
-            const cardProps: CardProps = { width: CARD_WIDTH, ...card };
-            return <Card key={index} {...cardProps} />;
+            return <Card key={index} {...card} />;
           })}
         </CardGrid>
       </div>

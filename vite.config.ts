@@ -2,7 +2,7 @@
 /// <reference types="vite/client" />
 
 import react from '@vitejs/plugin-react';
-import { defineConfig } from 'vite';
+import { configDefaults, defineConfig } from 'vitest/config';
 import eslint from 'vite-plugin-eslint';
 
 // https://vitejs.dev/config/
@@ -20,6 +20,14 @@ export default defineConfig({
       provider: 'c8',
       reporter: ['text'],
       all: true,
+      exclude: [
+        ...configDefaults.coverage.exclude,
+        '*.cjs',
+        'src/main.tsx',
+        '*.d.ts',
+        'src/utils/constants.ts',
+        'src/utils/mocha.ts',
+      ],
     },
   },
 });
