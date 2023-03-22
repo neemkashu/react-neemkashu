@@ -2,32 +2,32 @@ import { About } from './components/About';
 import { ErrorPage } from './components/ErrorPage';
 import Header from './components/Header';
 import { MainContent } from './components/MainContent';
-import { Headers } from './utils/constants';
+import { RoutesInfo } from './utils/constants';
 
 export const routesConfig = [
   {
-    path: '/',
+    path: RoutesInfo.MAIN.path,
     element: (
       <>
-        <Header title={Headers.MAIN} />
+        <Header title={RoutesInfo.MAIN.header} />
         <MainContent />
       </>
     ),
   },
   {
-    path: '/about',
+    path: RoutesInfo.ABOUT.path,
     element: (
       <>
-        <Header title={Headers.ABOUT} />
+        <Header title={RoutesInfo.ABOUT.header} />
         <About />
       </>
     ),
   },
   {
-    path: '*',
+    path: RoutesInfo.NOT_FOUND.path,
     element: (
       <>
-        <Header title={Headers.NOT_FOUND} />
+        <Header title={RoutesInfo.NOT_FOUND.header} />
         <ErrorPage />
       </>
     ),

@@ -3,11 +3,12 @@ import { render, screen } from '@testing-library/react';
 import { routesConfig } from '../routesConfig';
 import userEvent from '@testing-library/user-event';
 import { describe, expect, it } from 'vitest';
+import { RoutesInfo } from 'src/utils/constants';
 
 describe('Router', () => {
   it('Renders about page', () => {
     const router = createMemoryRouter(routesConfig, {
-      initialEntries: ['/about'],
+      initialEntries: [RoutesInfo.ABOUT.path],
     });
     const { unmount } = render(<RouterProvider router={router} />);
 
@@ -16,7 +17,7 @@ describe('Router', () => {
   });
   it('Renders main page', () => {
     const router = createMemoryRouter(routesConfig, {
-      initialEntries: ['/'],
+      initialEntries: [RoutesInfo.MAIN.path],
     });
     const { unmount } = render(<RouterProvider router={router} />);
 
@@ -35,7 +36,7 @@ describe('Router', () => {
   });
   it('Implement navigation', async () => {
     const router = createMemoryRouter(routesConfig, {
-      initialEntries: ['/'],
+      initialEntries: [RoutesInfo.MAIN.path],
     });
     const { unmount } = render(<RouterProvider router={router} />);
     const user = userEvent.setup();
