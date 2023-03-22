@@ -7,11 +7,12 @@ type RefInputProps = {
   inputType: HTMLInputTypeAttribute;
   name?: string;
   innerText?: string;
+  accept?: string;
 };
 
 export class ReferencedInput extends Component<RefInputProps> {
   render() {
-    const { forwardRef, label, inputType, name, innerText } = this.props;
+    const { forwardRef, label, inputType, name, innerText, accept } = this.props;
     return (
       <div>
         <label>
@@ -20,6 +21,7 @@ export class ReferencedInput extends Component<RefInputProps> {
             ref={forwardRef}
             type={inputType}
             name={name}
+            accept={accept}
             className=" m-0 rounded border-2 border-solid border-yellow-900
           max-w-xs h-6 px-1 bg-white bg-no-repeat text-base
            duration-300 ease-in-out
