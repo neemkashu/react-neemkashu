@@ -1,3 +1,3 @@
 import { createRef } from 'react';
 
-export type inputRef = ReturnType<typeof createRef<HTMLInputElement>>;
+export type elementRef<T extends Element> = ReturnType<typeof createRef<T>>;

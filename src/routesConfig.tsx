@@ -1,6 +1,6 @@
 import { About } from './components/About';
 import { ErrorPage } from './components/ErrorPage';
-import { Form } from './components/Form/Form';
+import { PetForm } from './components/Form/PetForm';
 import Header from './components/Header';
 import { MainContent } from './components/MainContent';
 import { RoutesInfo } from './utils/constants';
@@ -29,7 +29,7 @@ export const routesConfig = [
     element: (
       <>
         <Header title={RoutesInfo.FORM.header} />
-        <Form />
+        <PetForm />
       </>
     ),
   },
