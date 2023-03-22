@@ -1,5 +1,6 @@
 import { About } from './components/About';
 import { ErrorPage } from './components/ErrorPage';
+import { Form } from './components/Form/Form';
 import Header from './components/Header';
 import { MainContent } from './components/MainContent';
 import { RoutesInfo } from './utils/constants';
@@ -20,6 +21,15 @@ export const routesConfig = [
       <>
         <Header title={RoutesInfo.ABOUT.header} />
         <About />
+      </>
+    ),
+  },
+  {
+    path: RoutesInfo.FORM.path,
+    element: (
+      <>
+        <Header title={RoutesInfo.FORM.header} />
+        <Form />
       </>
     ),
   },

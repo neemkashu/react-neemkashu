@@ -3,6 +3,7 @@ export const SEARCH_KEY = 'search';
 export const Headers = {
   MAIN: 'Main Page',
   ABOUT: 'About Us',
+  FORM: 'Form',
   NOT_FOUND: 'Not Found',
 } as const;
 
@@ -21,6 +22,10 @@ export const RoutesInfo: routs = {
   ABOUT: {
     path: '/about',
     header: Headers.ABOUT,
+  },
+  FORM: {
+    path: '/form',
+    header: Headers.FORM,
   },
   NOT_FOUND: {
     path: '*',
