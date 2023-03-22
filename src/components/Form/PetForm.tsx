@@ -19,7 +19,6 @@ export class PetForm extends Component<Record<string, never>> {
   }
   handleSubmit: FormEventHandler<HTMLFormElement> = (event) => {
     event.preventDefault();
-    console.log('this.inputSex.current', this.inputSex.current);
     this.inputSex.current?.getTheChecked();
     const formData = {
       inputVal: this.inputText.current?.value,
@@ -42,7 +41,8 @@ export class PetForm extends Component<Record<string, never>> {
           forwardRef={this.inputDate}
         />
         <Select label={"Pet's Type"} forwardRef={this.inputSelect} />
-        <Switcher label={"Pet's Sex"} forwardRef={this.inputSex} />
+        <Switcher label={"Pet's Sex"} ref={this.inputSex} />
+
         <button
           className=" self-center
           bg-zinc-500 hover:bg-zinc-400 text-white font-bold

@@ -1,60 +1,50 @@
 import { Component, createRef } from 'react';
 import { ReferencedInput } from './ReferencedInput';
 
-type RefInputProps = {
-  forwardRef: ReturnType<typeof createRef<Switcher>>;
+export type RefInputProps = {
   label: string;
 };
 const petSex = {
   MALE: 'male',
   FEMALE: 'female',
-};
+} as const;
+type optionKey = keyof typeof petSex;
+
 const NAME = 'radio-name';
 type radioRef = ReturnType<typeof createRef<HTMLInputElement>>;
+type switchOptionsType = Record<optionKey, { ref: radioRef; element: JSX.Element }>;
 
 export class Switcher extends Component<RefInputProps> {
-  switcherRef: RefInputProps['forwardRef'];
-  switchOptions: {
-    first: { ref: radioRef; element: JSX.Element };
-    second: { ref: radioRef; element: JSX.Element };
-  };
+  switchOptions: switchOptionsType;
+  maleRef: radioRef;
+  femaleRef: radioRef;
 
   constructor(props: RefInputProps) {
     super(props);
-    this.switcherRef = props.forwardRef;
-    console.log(' this.switcherRef', this.switcherRef);
 
-    const firstRef = createRef<HTMLInputElement>();
-    const secondRef = createRef<HTMLInputElement>();
+    this.maleRef = createRef<HTMLInputElement>();
+    this.femaleRef = createRef<HTMLInputElement>();
 
-    this.switchOptions = {
-      first: {
-        ref: firstRef,
+    this.switchOptions = Object.keys(petSex).reduce<switchOptionsType>((accum, option) => {
+      const key = option as keyof typeof petSex;
+      accum[key] = {
+        ref: key === 'MALE' ? this.maleRef : this.femaleRef,
         element: (
           <ReferencedInput
-            label={petSex.FEMALE}
+            label={petSex[key]}
+            key={key}
             name={NAME}
             inputType="radio"
-            forwardRef={firstRef}
+            forwardRef={key === 'MALE' ? this.maleRef : this.femaleRef}
           />
         ),
-      },
-      second: {
-        ref: secondRef,
-        element: (
-          <ReferencedInput
-            label={petSex.MALE}
-            name={NAME}
-            inputType="radio"
-            forwardRef={secondRef}
-          />
-        ),
-      },
-    };
+      };
+      return accum;
+    }, {} as switchOptionsType);
   }
+
   getTheChecked = () => {
-    console.log('this.switchOptions.first.ref.current', this.switchOptions.first.ref.current);
-    return this.switchOptions.first.ref.current?.checked ? petSex.FEMALE : petSex.MALE;
+    return this.maleRef.current?.checked ? petSex.MALE : petSex.FEMALE;
   };
   render() {
     const { label } = this.props;
@@ -63,16 +53,10 @@ export class Switcher extends Component<RefInputProps> {
       <div className="flex gap-2 items-center">
         <>
           {label}
-          {this.switchOptions.first.element}
-          {this.switchOptions.second.element}
+          {Object.values(this.switchOptions).map((option) => {
+            return option.element;
+          })}
         </>
-        <button
-          onClick={() => {
-            console.log(this.switcherRef.current);
-          }}
-        >
-          Show the ref
-        </button>
       </div>
     );
   }
