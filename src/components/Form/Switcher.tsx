@@ -11,6 +11,8 @@ const petSex = {
 type optionKey = keyof typeof petSex;
 
 const NAME = 'radio-name';
+const DEFAULT = 'not-chosen';
+
 type radioRef = ReturnType<typeof createRef<HTMLInputElement>>;
 type switchOptionsType = Record<optionKey, { ref: radioRef; element: JSX.Element }>;
 
@@ -44,7 +46,9 @@ export class Switcher extends Component<RefInputProps> {
   }
 
   getTheChecked = () => {
-    return this.maleRef.current?.checked ? petSex.MALE : petSex.FEMALE;
+    if (this.maleRef.current?.checked) return petSex.MALE;
+    if (this.femaleRef.current?.checked) return petSex.FEMALE;
+    return DEFAULT;
   };
   render() {
     const { label } = this.props;

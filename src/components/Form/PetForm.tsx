@@ -9,6 +9,7 @@ export class PetForm extends Component<Record<string, never>> {
   inputDate: elementRef<HTMLInputElement>;
   inputSex: ReturnType<typeof createRef<Switcher>>;
   inputSelect: elementRef<HTMLSelectElement>;
+  inputCheckbox: elementRef<HTMLInputElement>;
 
   constructor(props: Record<string, never>) {
     super(props);
@@ -16,15 +17,16 @@ export class PetForm extends Component<Record<string, never>> {
     this.inputDate = createRef<HTMLInputElement>();
     this.inputSelect = createRef<HTMLSelectElement>();
     this.inputSex = createRef<Switcher>();
+    this.inputCheckbox = createRef<HTMLInputElement>();
   }
   handleSubmit: FormEventHandler<HTMLFormElement> = (event) => {
     event.preventDefault();
-    this.inputSex.current?.getTheChecked();
     const formData = {
       inputVal: this.inputText.current?.value,
       dateVal: this.inputDate.current?.value,
       selectVal: this.inputSelect.current?.value,
       sexVal: this.inputSex.current?.getTheChecked(),
+      checkVal: this.inputCheckbox.current?.checked,
     };
     console.log(formData);
   };
@@ -42,6 +44,11 @@ export class PetForm extends Component<Record<string, never>> {
         />
         <Select label={"Pet's Type"} forwardRef={this.inputSelect} />
         <Switcher label={"Pet's Sex"} ref={this.inputSex} />
+        <ReferencedInput
+          label={'Have you participated in shows before?'}
+          inputType="checkbox"
+          forwardRef={this.inputCheckbox}
+        />
 
         <button
           className=" self-center
