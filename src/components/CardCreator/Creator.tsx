@@ -42,7 +42,7 @@ export class Creator extends Component<Record<string, never>, CreatorState> {
 
   render() {
     return (
-      <div className="flex flex-col lg:flex-row p-2">
+      <div className="flex flex-col lg:flex-row gap-2 p-2">
         <PetForm backData={this.getCardInfo} />
         <CardGrid>{this.state.cards.map((card) => card)}</CardGrid>
       </div>

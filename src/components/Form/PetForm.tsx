@@ -2,9 +2,16 @@ import { Component, createRef, FormEventHandler } from 'react';
 import { elementRef, PetFormData } from 'src/utils/types';
 import { Select } from './Select';
 import { ReferencedInput } from './ReferencedInput';
-import { DEFAULT_VALUE, Switcher } from './Switcher';
+import { Switcher } from './Switcher';
+import { checkFormIsValid, ErrorMessages, FieldMessages } from './formChecker';
 
 type FormProps = { backData: (x: PetFormData) => void };
+
+const EmptyMessages = Object.keys(ErrorMessages).reduce<FieldMessages>((accum, key) => {
+  const keyErr = key as keyof FieldMessages;
+  accum[keyErr] = '';
+  return accum;
+}, {} as FieldMessages);
 
 export class PetForm extends Component<FormProps> {
   inputText: elementRef<HTMLInputElement>;
@@ -13,6 +20,7 @@ export class PetForm extends Component<FormProps> {
   inputSelect: elementRef<HTMLSelectElement>;
   inputCheckbox: elementRef<HTMLInputElement>;
   inputFile: elementRef<HTMLInputElement>;
+  errorMessages: FieldMessages;
 
   constructor(props: FormProps) {
     super(props);
@@ -22,6 +30,7 @@ export class PetForm extends Component<FormProps> {
     this.inputSex = createRef<Switcher>();
     this.inputCheckbox = createRef<HTMLInputElement>();
     this.inputFile = createRef<HTMLInputElement>();
+    this.errorMessages = EmptyMessages;
   }
   handleSubmit: FormEventHandler<HTMLFormElement> = (event) => {
     event.preventDefault();
@@ -29,17 +38,19 @@ export class PetForm extends Component<FormProps> {
       name: this.inputText.current?.value ?? '',
       birth: this.inputDate.current?.value ?? '',
       type: this.inputSelect.current?.value ?? '',
-      sex: this.inputSex.current?.getTheChecked() ?? DEFAULT_VALUE,
+      sex: this.inputSex.current?.getTheChecked() ?? '',
       isExperienced: this.inputCheckbox.current?.checked ?? false,
       img: this.inputFile.current?.files ?? null,
     };
-    this.props.backData(formData);
+    if (checkFormIsValid(formData)) {
+      this.props.backData(formData);
+    }
   };
   render() {
     return (
       <form
         onSubmit={this.handleSubmit}
-        className="flex flex-col gap-2 p-3 w-min self-center lg:self-start"
+        className="flex flex-col gap-4 p-1 tiny:p-3 w-min border-2 border-dotted border-yellow-600 rounded-lg self-center lg:self-start"
       >
         <h2 className="font-bold text-yellow-800 text-lg text-center">
           {'Please fill out the form'}

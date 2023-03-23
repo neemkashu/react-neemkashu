@@ -14,7 +14,7 @@ const AnimalTypes = {
   OTHER: 'other',
 } as const;
 
-const DEFAULT = 'defaultSelection';
+const DEFAULT = '';
 
 export class Select extends Component<SelectProps> {
   render() {
