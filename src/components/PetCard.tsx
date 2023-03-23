@@ -7,14 +7,14 @@ interface PetInfo {
   img: string;
 }
 
-export const PetCard = (props: PetInfo) => {
-  const { name, birth, type, sex, isExperienced, img } = props;
+// type PerCardProps = Omit<PetInfo, 'img'> & { img: HTMLImageElement };
 
+export const PetCard = ({ name, birth, type, sex, isExperienced, img }: PetInfo) => {
   return (
     <div className="p-2 border-2 rounded-lg bg-white border-zinc-300 shadow-md shadow-zinc-400">
-      <div className="flex flex-col gap-2 tiny:flex-row sm:flex-col lg:flex-row">
+      <div className="flex flex-col flex-wrap justify-evenly gap-2 tiny:flex-row sm:flex-col lg:flex-row">
         <img
-          className=" 100 self-center w-1/2 xxl:w-auto"
+          className=" 100 self-center max-w-64 max-h-64"
           src={img}
           alt=""
         />
@@ -28,7 +28,7 @@ export const PetCard = (props: PetInfo) => {
               <strong>Birth:</strong> {birth}
             </li>
             <li>
-              <strong>Has ever been in the show:</strong> {isExperienced ? 'yes' : 'no'}
+              <strong>First show:</strong> {isExperienced ? 'yes' : 'no'}
             </li>
           </ul>
         </div>

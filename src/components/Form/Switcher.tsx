@@ -11,7 +11,7 @@ const petSex = {
 type optionKey = keyof typeof petSex;
 
 const NAME = 'radio-name';
-const DEFAULT_VALUE = 'not-chosen';
+export const DEFAULT_VALUE = 'not-chosen';
 
 type radioRef = ReturnType<typeof createRef<HTMLInputElement>>;
 type switchOptionsType = Record<optionKey, { ref: radioRef; element: JSX.Element }>;

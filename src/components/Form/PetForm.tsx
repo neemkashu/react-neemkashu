@@ -1,10 +1,12 @@
 import { Component, createRef, FormEventHandler } from 'react';
-import { elementRef } from 'src/utils/types';
+import { elementRef, PetFormData } from 'src/utils/types';
 import { Select } from './Select';
 import { ReferencedInput } from './ReferencedInput';
-import { Switcher } from './Switcher';
+import { DEFAULT_VALUE, Switcher } from './Switcher';
 
-export class PetForm extends Component<Record<string, never>> {
+type FormProps = { backData: (x: PetFormData) => void };
+
+export class PetForm extends Component<FormProps> {
   inputText: elementRef<HTMLInputElement>;
   inputDate: elementRef<HTMLInputElement>;
   inputSex: ReturnType<typeof createRef<Switcher>>;
@@ -12,7 +14,7 @@ export class PetForm extends Component<Record<string, never>> {
   inputCheckbox: elementRef<HTMLInputElement>;
   inputFile: elementRef<HTMLInputElement>;
 
-  constructor(props: Record<string, never>) {
+  constructor(props: FormProps) {
     super(props);
     this.inputText = createRef<HTMLInputElement>();
     this.inputDate = createRef<HTMLInputElement>();
@@ -23,24 +25,24 @@ export class PetForm extends Component<Record<string, never>> {
   }
   handleSubmit: FormEventHandler<HTMLFormElement> = (event) => {
     event.preventDefault();
-    const formData = {
-      inputVal: this.inputText.current?.value,
-      dateVal: this.inputDate.current?.value,
-      selectVal: this.inputSelect.current?.value,
-      sexVal: this.inputSex.current?.getTheChecked(),
-      checkVal: this.inputCheckbox.current?.checked,
-      imgVal: this.inputFile.current?.value,
+    const formData: PetFormData = {
+      name: this.inputText.current?.value ?? '',
+      birth: this.inputDate.current?.value ?? '',
+      type: this.inputSelect.current?.value ?? '',
+      sex: this.inputSex.current?.getTheChecked() ?? DEFAULT_VALUE,
+      isExperienced: this.inputCheckbox.current?.checked ?? false,
+      img: this.inputFile.current?.files ?? null,
     };
-    console.log(formData);
+    this.props.backData(formData);
   };
   render() {
     return (
       <form
         onSubmit={this.handleSubmit}
-        className="flex flex-col gap-2 p-3 w-min self-center"
+        className="flex flex-col gap-2 p-3 w-min self-center lg:self-start"
       >
-        <h2 className="font-bold text-yellow-800 text-lg">
-          {'Please, complete all fields of the form'}
+        <h2 className="font-bold text-yellow-800 text-lg text-center">
+          {'Please fill out the form'}
         </h2>
         <ReferencedInput
           label={"Pet's name"}
@@ -61,7 +63,7 @@ export class PetForm extends Component<Record<string, never>> {
           ref={this.inputSex}
         />
         <ReferencedInput
-          label={'Have you participated in shows before?'}
+          label={'Is this your first show?'}
           inputType="checkbox"
           forwardRef={this.inputCheckbox}
         />
