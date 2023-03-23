@@ -20,8 +20,9 @@ const getValidationVerdicts = (formData: PetFormData): FieldVerdicts => {
     type: type !== '',
     sex: sex !== '',
     isExperienced: true,
-    img: img !== null,
+    img: img !== null && img.length > 0,
   };
+  console.log('VALIDATIONS IMG', validations.img, img?.length);
   return validations;
 };
 
@@ -33,9 +34,11 @@ export const checkFormIsValid = (formData: PetFormData): boolean => {
 export const getErrorMessages = (formData: PetFormData): FieldMessages => {
   const validations = getValidationVerdicts(formData);
 
+  console.log('validations', validations);
+
   const messages = Object.keys(ErrorMessages).reduce<FieldMessages>((accum, key) => {
     const keyErr = key as keyof FieldMessages;
-    accum[keyErr] = validations[keyErr] ? ErrorMessages[keyErr] : '';
+    accum[keyErr] = validations[keyErr] ? '' : ErrorMessages[keyErr];
     return accum;
   }, {} as FieldMessages);
 

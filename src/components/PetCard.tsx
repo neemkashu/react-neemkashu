@@ -7,8 +7,6 @@ interface PetInfo {
   img: string;
 }
 
-// type PerCardProps = Omit<PetInfo, 'img'> & { img: HTMLImageElement };
-
 export const PetCard = ({ name, birth, type, sex, isExperienced, img }: PetInfo) => {
   return (
     <div className="p-2 border-2 rounded-lg bg-white border-zinc-300 shadow-md shadow-zinc-400">

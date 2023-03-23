@@ -2,7 +2,11 @@
 module.exports = {
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
   theme: {
-    extend: {},
+    extend: {
+      gridTemplateColumns: {
+        form: 'auto 1fr',
+      },
+    },
     screens: {
       tiny: '480px',
       sm: '640px',
