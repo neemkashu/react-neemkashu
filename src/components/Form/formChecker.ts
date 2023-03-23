@@ -22,7 +22,6 @@ const getValidationVerdicts = (formData: PetFormData): FieldVerdicts => {
     isExperienced: true,
     img: img !== null && img.length > 0,
   };
-  console.log('VALIDATIONS IMG', validations.img, img?.length);
   return validations;
 };
 
@@ -33,8 +32,6 @@ export const checkFormIsValid = (formData: PetFormData): boolean => {
 
 export const getErrorMessages = (formData: PetFormData): FieldMessages => {
   const validations = getValidationVerdicts(formData);
-
-  console.log('validations', validations);
 
   const messages = Object.keys(ErrorMessages).reduce<FieldMessages>((accum, key) => {
     const keyErr = key as keyof FieldMessages;
