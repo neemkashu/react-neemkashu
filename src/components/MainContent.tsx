@@ -14,7 +14,12 @@ export class MainContent extends Component {
         </div>
         <CardGrid>
           {cards.map((card) => {
-            return <Card key={v4()} {...card} />;
+            return (
+              <Card
+                key={v4()}
+                {...card}
+              />
+            );
           })}
         </CardGrid>
       </div>

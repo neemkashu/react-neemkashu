@@ -30,12 +30,19 @@ export class Select extends Component<SelectProps> {
         hover:shadow-neutral-400 hover:bg-amber-50
         focus-visible:bg-yellow-200 focus-visible:outline-0"
         >
-          <option disabled value={DEFAULT} className="bg-slate-100">
+          <option
+            disabled
+            value={DEFAULT}
+            className="bg-slate-100"
+          >
             {'-- select the type --'}
           </option>
           {Object.values(AnimalTypes).map((animal) => {
             return (
-              <option key={animal} value={animal}>
+              <option
+                key={animal}
+                value={animal}
+              >
                 {animal}
               </option>
             );

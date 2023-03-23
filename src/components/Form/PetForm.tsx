@@ -35,18 +35,31 @@ export class PetForm extends Component<Record<string, never>> {
   };
   render() {
     return (
-      <form onSubmit={this.handleSubmit} className="flex flex-col gap-2 p-3 lg:w-1/2">
+      <form
+        onSubmit={this.handleSubmit}
+        className="flex flex-col gap-2 p-3 lg:w-1/2"
+      >
         <h2 className="font-bold text-yellow-800 text-lg">
           {'Please, complete all fields of the form'}
         </h2>
-        <ReferencedInput label={"Pet's name"} inputType="text" forwardRef={this.inputText} />
+        <ReferencedInput
+          label={"Pet's name"}
+          inputType="text"
+          forwardRef={this.inputText}
+        />
         <ReferencedInput
           label={"Pet's date of birth"}
           inputType="date"
           forwardRef={this.inputDate}
         />
-        <Select label={"Pet's type"} forwardRef={this.inputSelect} />
-        <Switcher label={"Pet's sex"} ref={this.inputSex} />
+        <Select
+          label={"Pet's type"}
+          forwardRef={this.inputSelect}
+        />
+        <Switcher
+          label={"Pet's sex"}
+          ref={this.inputSex}
+        />
         <ReferencedInput
           label={'Have you participated in shows before?'}
           inputType="checkbox"

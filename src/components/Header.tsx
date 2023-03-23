@@ -19,7 +19,10 @@ class Header extends Component<HeaderProps> {
               if (details.path === RoutesInfo.NOT_FOUND.path) return null;
               return (
                 <li key={key}>
-                  <NavLink className="p-1 duration-300 ease-in-out" to={details.path}>
+                  <NavLink
+                    className="p-1 duration-300 ease-in-out"
+                    to={details.path}
+                  >
                     {details.header}
                   </NavLink>
                 </li>
