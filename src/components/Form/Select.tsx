@@ -1,5 +1,6 @@
 import { Component } from 'react';
 import { elementRef } from 'src/utils/types';
+import { v4 } from 'uuid';
 
 type SelectProps = {
   forwardRef: elementRef<HTMLSelectElement>;
@@ -18,11 +19,13 @@ const DEFAULT = 'defaultSelection';
 export class Select extends Component<SelectProps> {
   render() {
     const { forwardRef, label } = this.props;
+    const key = v4();
     return (
-      <label>
-        {label}
+      <div className="flex justify-between">
+        <label htmlFor={key}>{label}</label>
         <select
           ref={forwardRef}
+          id={key}
           defaultValue={DEFAULT}
           className=" m-0 rounded border-2 border-solid border-yellow-900
          max-w-xs h-6 px-1 bg-white bg-no-repeat text-base
@@ -48,7 +51,7 @@ export class Select extends Component<SelectProps> {
             );
           })}
         </select>
-      </label>
+      </div>
     );
   }
 }

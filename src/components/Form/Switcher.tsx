@@ -11,7 +11,7 @@ const petSex = {
 type optionKey = keyof typeof petSex;
 
 const NAME = 'radio-name';
-const DEFAULT = 'not-chosen';
+const DEFAULT_VALUE = 'not-chosen';
 
 type radioRef = ReturnType<typeof createRef<HTMLInputElement>>;
 type switchOptionsType = Record<optionKey, { ref: radioRef; element: JSX.Element }>;
@@ -48,19 +48,17 @@ export class Switcher extends Component<RefInputProps> {
   getTheChecked = () => {
     if (this.maleRef.current?.checked) return petSex.MALE;
     if (this.femaleRef.current?.checked) return petSex.FEMALE;
-    return DEFAULT;
+    return DEFAULT_VALUE;
   };
   render() {
     const { label } = this.props;
 
     return (
-      <div className="flex gap-2 items-center">
-        <>
-          {label}
-          {Object.values(this.switchOptions).map((option) => {
-            return option.element;
-          })}
-        </>
+      <div className="flex gap-2 items-center justify-between">
+        <div className=" grow">{label}</div>
+        {Object.values(this.switchOptions).map((option) => {
+          return option.element;
+        })}
       </div>
     );
   }
