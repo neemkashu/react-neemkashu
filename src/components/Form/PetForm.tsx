@@ -46,6 +46,7 @@ export class PetForm extends Component<FormProps, messages> {
     };
     if (checkFormIsValid(formData)) {
       this.props.backData(formData);
+      this.setState({ errorMessages: EmptyMessages });
     } else {
       this.setState({ errorMessages: getErrorMessages(formData) });
     }
