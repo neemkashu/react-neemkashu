@@ -35,7 +35,7 @@ export class PetForm extends Component<Record<string, never>> {
   };
   render() {
     return (
-      <form onSubmit={this.handleSubmit} className="flex flex-col gap-2 p-3">
+      <form onSubmit={this.handleSubmit} className="flex flex-col gap-2 p-3 lg:w-1/2">
         <h2 className="font-bold text-yellow-800 text-lg">
           {'Please, complete all fields of the form'}
         </h2>

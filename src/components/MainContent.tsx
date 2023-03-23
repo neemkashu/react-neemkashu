@@ -3,6 +3,7 @@ import { Search } from './Search';
 import { cards } from '../utils/mocha';
 import { CardGrid } from '../layouts/CardGrid';
 import { Card } from './Card';
+import { v4 } from 'uuid';
 
 export class MainContent extends Component {
   render() {
@@ -12,8 +13,8 @@ export class MainContent extends Component {
           <Search />
         </div>
         <CardGrid>
-          {cards.map((card, index) => {
-            return <Card key={index} {...card} />;
+          {cards.map((card) => {
+            return <Card key={v4()} {...card} />;
           })}
         </CardGrid>
       </div>
