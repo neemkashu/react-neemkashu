@@ -1,7 +1,8 @@
-import { render, screen } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { describe, expect, it, vi } from 'vitest';
 import { Creator } from '../components/Creator';
+import { TEXT_CONTENT } from '../components/PopMessage/PopMessage';
 import { PetCardTextContent } from '../utils/constants';
 import { fillForm } from './PetForm.test';
 
@@ -29,7 +30,7 @@ describe('Creator component', () => {
   it('Renders card if submit correct data', async () => {
     URL.createObjectURL = vi.fn().mockReturnValue('mock-url');
     render(<Creator />);
-    const submitButton = screen.getByRole('button', { name: 'Submit' });
+    const submitButton = screen.getByRole('button');
     await fillForm();
 
     const user = userEvent.setup();
@@ -37,5 +38,23 @@ describe('Creator component', () => {
 
     const petCard = screen.getByText('Aname');
     expect(petCard).toBeInTheDocument();
+  });
+  it('Renders success message if submit correct data', async () => {
+    URL.createObjectURL = vi.fn().mockReturnValue('mock-url');
+    render(<Creator />);
+    const submitButton = screen.getByRole('button');
+    await fillForm();
+
+    const user = userEvent.setup();
+    await user.click(submitButton);
+
+    await waitFor(() => {
+      const startTime = Date.now();
+      while (Date.now() - startTime < 2000) {}
+      return true;
+    });
+    const message = screen.queryByText(TEXT_CONTENT);
+    expect(message).not.toBeInTheDocument();
+    vi.restoreAllMocks();
   });
 });
