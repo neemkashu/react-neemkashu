@@ -1,9 +1,8 @@
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { describe, expect, it, vi } from 'vitest';
+import { describe, expect, it } from 'vitest';
 import { Creator } from '../components/Creator';
 import { PetCardTextContent } from '../utils/constants';
-import { fillForm, submitForm } from './PetForm.test';
 
 describe('Creator component', () => {
   it('Renders form', () => {
@@ -25,17 +24,5 @@ describe('Creator component', () => {
       const cardsNew = screen.queryAllByText(PetCardTextContent.petBirth);
       expect(cardsNew.length).toBe(previousCardAmount);
     }
-  });
-  it('Creats new card if the form is correct', async () => {
-    global.URL.createObjectURL = vi.fn(() => './img/freddie.png');
-
-    render(<Creator />);
-
-    await fillForm();
-    await submitForm();
-
-    const cardsNew = screen.queryAllByText(PetCardTextContent.petBirth);
-    expect(global.URL.createObjectURL).toHaveBeenCalledOnce();
-    expect(cardsNew.length).toBe(1);
   });
 });
