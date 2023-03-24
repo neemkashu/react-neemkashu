@@ -1,14 +1,18 @@
 import { Component } from 'react';
 import { v4 } from 'uuid';
-import { CardGrid } from '../../layouts/CardGrid';
-import { PetFormData } from '../Form/formChecker';
-import { PetForm } from '../Form/PetForm';
-import { PetCard } from '../PetCard';
+import { CardGrid } from '../layouts/CardGrid';
+import { PetFormData } from './Form/formChecker';
+import { PetForm } from './Form/PetForm';
+import { PopMessage } from './PopMessage/PopMessage';
+import { PetCard } from './PetCard';
 
 type CreatorState = {
   cards: JSX.Element[];
   nextCard: PetFormData | null;
+  isPopupShown: boolean;
 };
+
+const NOTIFICATION_DURATION = 2000;
 
 export class Creator extends Component<Record<string, never>, CreatorState> {
   constructor(props: Record<string, never>) {
@@ -16,11 +20,18 @@ export class Creator extends Component<Record<string, never>, CreatorState> {
     this.state = {
       cards: [],
       nextCard: null,
+      isPopupShown: false,
     };
   }
   getCardInfo = (data: PetFormData) => {
     console.log({ data });
     this.setState({ nextCard: data });
+    this.setState({ isPopupShown: true });
+
+    setTimeout(() => {
+      this.setState({ isPopupShown: false });
+    }, NOTIFICATION_DURATION);
+
     this.setState({ cards: [this.makeCard(data), ...this.state.cards] });
   };
   makeCard = (data: PetFormData): JSX.Element => {
@@ -43,8 +54,11 @@ export class Creator extends Component<Record<string, never>, CreatorState> {
   render() {
     return (
       <div className="grid grid-col-1 md:grid-cols-form w-auto justify-center gap-2 p-2">
-        <PetForm backData={this.getCardInfo} />
-        <CardGrid>{this.state.cards.map((card) => card)}</CardGrid>
+        <div className=" relative">
+          <PetForm backData={this.getCardInfo} />
+          {this.state.isPopupShown ? <PopMessage /> : null}
+        </div>
+        <CardGrid>{this.state.cards}</CardGrid>
       </div>
     );
   }
