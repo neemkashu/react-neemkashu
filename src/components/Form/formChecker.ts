@@ -1,4 +1,11 @@
-import { PetFormData } from '../../utils/types';
+export type PetFormData = {
+  name: string;
+  birth: string;
+  type: string;
+  sex: string;
+  isExperienced: boolean;
+  img: FileList | null;
+};
 
 export type FieldMessages = Record<keyof PetFormData, string>;
 export type FieldVerdicts = Record<keyof PetFormData, boolean>;

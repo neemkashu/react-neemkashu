@@ -1,9 +1,15 @@
 import { Component, createRef, FormEventHandler } from 'react';
-import { elementRef, PetFormData } from 'src/utils/types';
+import { elementRef } from 'src/utils/types';
 import { Select } from './Select';
 import { ReferencedInput } from './ReferencedInput';
 import { Switcher } from './Switcher';
-import { checkFormIsValid, ErrorMessages, FieldMessages, getErrorMessages } from './formChecker';
+import {
+  checkFormIsValid,
+  ErrorMessages,
+  FieldMessages,
+  getErrorMessages,
+  PetFormData,
+} from './formChecker';
 import { FieldErrorMessage } from './FieldErrorMessage';
 
 type FormProps = { backData: (x: PetFormData) => void };
@@ -22,6 +28,7 @@ export class PetForm extends Component<FormProps, messages> {
   inputSelect: elementRef<HTMLSelectElement>;
   inputCheckbox: elementRef<HTMLInputElement>;
   inputFile: elementRef<HTMLInputElement>;
+  formRef: elementRef<HTMLFormElement>;
 
   constructor(props: FormProps) {
     super(props);
@@ -31,6 +38,7 @@ export class PetForm extends Component<FormProps, messages> {
     this.inputSex = createRef<Switcher>();
     this.inputCheckbox = createRef<HTMLInputElement>();
     this.inputFile = createRef<HTMLInputElement>();
+    this.formRef = createRef<HTMLFormElement>();
 
     this.state = { errorMessages: EmptyMessages };
   }
@@ -47,6 +55,7 @@ export class PetForm extends Component<FormProps, messages> {
     if (checkFormIsValid(formData)) {
       this.props.backData(formData);
       this.setState({ errorMessages: EmptyMessages });
+      this.formRef.current?.reset();
     } else {
       this.setState({ errorMessages: getErrorMessages(formData) });
     }
@@ -54,6 +63,7 @@ export class PetForm extends Component<FormProps, messages> {
   render() {
     return (
       <form
+        ref={this.formRef}
         onSubmit={this.handleSubmit}
         className="flex flex-col gap-4 p-1 tiny:p-3 h-min w-min border-2 border-dotted border-yellow-600 rounded-lg
          justify-self-center lg:self-start"

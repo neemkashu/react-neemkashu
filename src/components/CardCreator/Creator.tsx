@@ -1,7 +1,7 @@
 import { Component } from 'react';
 import { v4 } from 'uuid';
 import { CardGrid } from '../../layouts/CardGrid';
-import { PetFormData } from '../../utils/types';
+import { PetFormData } from '../Form/formChecker';
 import { PetForm } from '../Form/PetForm';
 import { PetCard } from '../PetCard';
 
