@@ -6,7 +6,7 @@ type SelectProps = {
   label: string;
 };
 
-const AnimalTypes = {
+export const AnimalTypes = {
   DOG: 'dog',
   CAT: 'cat',
   BIRD: 'bird',

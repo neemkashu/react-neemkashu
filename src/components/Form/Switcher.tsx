@@ -10,7 +10,7 @@ const petSex = {
 } as const;
 type optionKey = keyof typeof petSex;
 
-const NAME = 'radio-name';
+const HTML_INPUT_NAME = 'radio-name';
 
 type radioRef = ReturnType<typeof createRef<ReferencedInput<string>>>;
 type switchOptionsType = Record<optionKey, { ref: radioRef; element: JSX.Element }>;
@@ -34,7 +34,7 @@ export class Switcher extends Component<RefInputProps> {
           <ReferencedInput
             label={petSex[key]}
             key={key}
-            name={NAME}
+            name={HTML_INPUT_NAME}
             inputType="radio"
             ref={key === 'MALE' ? this.maleRef : this.femaleRef}
           />

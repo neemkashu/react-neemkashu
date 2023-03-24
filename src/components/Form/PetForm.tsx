@@ -64,6 +64,7 @@ export class PetForm extends Component<FormProps, messages> {
   render() {
     return (
       <form
+        name=""
         ref={this.formRef}
         onSubmit={this.handleSubmit}
         className="flex flex-col gap-4 p-1 tiny:p-3 h-min w-min border-2 border-dotted border-yellow-600 rounded-lg

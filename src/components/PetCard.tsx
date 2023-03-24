@@ -7,6 +7,11 @@ interface PetInfo {
   img: string;
 }
 
+export const PetCardTextContent = {
+  petBirth: 'Birth',
+  petShow: 'First show',
+} as const;
+
 export const PetCard = ({ name, birth, type, sex, isExperienced, img }: PetInfo) => {
   return (
     <div className="p-2 border-2 rounded-lg bg-white border-zinc-300 shadow-md shadow-zinc-400 max-h-min">
@@ -23,10 +28,18 @@ export const PetCard = ({ name, birth, type, sex, isExperienced, img }: PetInfo)
           </h3>
           <ul>
             <li>
-              <strong>Birth:</strong> {birth}
+              <strong>
+                {PetCardTextContent.petBirth}
+                {':'}
+              </strong>{' '}
+              {birth}
             </li>
             <li>
-              <strong>First show:</strong> {isExperienced ? 'yes' : 'no'}
+              <strong>
+                {PetCardTextContent.petShow}
+                {':'}
+              </strong>{' '}
+              {isExperienced ? 'yes' : 'no'}
             </li>
           </ul>
         </div>
