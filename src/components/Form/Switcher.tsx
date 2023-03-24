@@ -12,7 +12,7 @@ type optionKey = keyof typeof petSex;
 
 const NAME = 'radio-name';
 
-type radioRef = ReturnType<typeof createRef<HTMLInputElement>>;
+type radioRef = ReturnType<typeof createRef<ReferencedInput<string>>>;
 type switchOptionsType = Record<optionKey, { ref: radioRef; element: JSX.Element }>;
 
 export class Switcher extends Component<RefInputProps> {
@@ -23,8 +23,8 @@ export class Switcher extends Component<RefInputProps> {
   constructor(props: RefInputProps) {
     super(props);
 
-    this.maleRef = createRef<HTMLInputElement>();
-    this.femaleRef = createRef<HTMLInputElement>();
+    this.maleRef = createRef<ReferencedInput<string>>();
+    this.femaleRef = createRef<ReferencedInput<string>>();
 
     this.switchOptions = Object.keys(petSex).reduce<switchOptionsType>((accum, option) => {
       const key = option as keyof typeof petSex;
@@ -36,7 +36,7 @@ export class Switcher extends Component<RefInputProps> {
             key={key}
             name={NAME}
             inputType="radio"
-            forwardRef={key === 'MALE' ? this.maleRef : this.femaleRef}
+            ref={key === 'MALE' ? this.maleRef : this.femaleRef}
           />
         ),
       };
@@ -44,9 +44,9 @@ export class Switcher extends Component<RefInputProps> {
     }, {} as switchOptionsType);
   }
 
-  getTheChecked = () => {
-    if (this.maleRef.current?.checked) return petSex.MALE;
-    if (this.femaleRef.current?.checked) return petSex.FEMALE;
+  getAnswer = () => {
+    if (this.maleRef.current?.getIsChecked()) return petSex.MALE;
+    if (this.femaleRef.current?.getIsChecked()) return petSex.FEMALE;
     return '';
   };
   render() {

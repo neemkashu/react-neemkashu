@@ -1,3 +1,3 @@
-import { createRef } from 'react';
+import { Component, createRef } from 'react';
 
-export type elementRef<T extends Element> = ReturnType<typeof createRef<T>>;
+export type elementRef<T extends Element | Component> = ReturnType<typeof createRef<T>>;

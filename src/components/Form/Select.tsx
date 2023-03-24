@@ -1,9 +1,8 @@
-import { Component } from 'react';
+import { Component, createRef } from 'react';
 import { elementRef } from 'src/utils/types';
 import { v4 } from 'uuid';
 
 type SelectProps = {
-  forwardRef: elementRef<HTMLSelectElement>;
   label: string;
 };
 
@@ -17,14 +16,23 @@ const AnimalTypes = {
 const DEFAULT = '';
 
 export class Select extends Component<SelectProps> {
+  selectRef: elementRef<HTMLSelectElement>;
+
+  constructor(props: SelectProps) {
+    super(props);
+    this.selectRef = createRef<HTMLSelectElement>();
+  }
+  getAnswer = () => {
+    return this.selectRef.current?.value ?? '';
+  };
   render() {
-    const { forwardRef, label } = this.props;
+    const { label } = this.props;
     const key = v4();
     return (
       <div className="flex justify-between">
         <label htmlFor={key}>{label}</label>
         <select
-          ref={forwardRef}
+          ref={this.selectRef}
           id={key}
           defaultValue={DEFAULT}
           className=" m-0 rounded border-2 border-solid border-yellow-900

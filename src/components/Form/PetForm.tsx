@@ -22,22 +22,22 @@ const EmptyMessages = Object.keys(ErrorMessages).reduce<FieldMessages>((accum, k
 }, {} as FieldMessages);
 
 export class PetForm extends Component<FormProps, messages> {
-  inputText: elementRef<HTMLInputElement>;
-  inputDate: elementRef<HTMLInputElement>;
+  inputText: elementRef<ReferencedInput<string>>;
+  inputDate: elementRef<ReferencedInput<string>>;
   inputSex: ReturnType<typeof createRef<Switcher>>;
-  inputSelect: elementRef<HTMLSelectElement>;
-  inputCheckbox: elementRef<HTMLInputElement>;
-  inputFile: elementRef<HTMLInputElement>;
+  inputSelect: elementRef<Select>;
+  inputCheckbox: elementRef<ReferencedInput<boolean>>;
+  inputFile: elementRef<ReferencedInput<FileList | null>>;
   formRef: elementRef<HTMLFormElement>;
 
   constructor(props: FormProps) {
     super(props);
-    this.inputText = createRef<HTMLInputElement>();
-    this.inputDate = createRef<HTMLInputElement>();
-    this.inputSelect = createRef<HTMLSelectElement>();
+    this.inputText = createRef<ReferencedInput<string>>();
+    this.inputDate = createRef<ReferencedInput<string>>();
+    this.inputSelect = createRef<Select>();
     this.inputSex = createRef<Switcher>();
-    this.inputCheckbox = createRef<HTMLInputElement>();
-    this.inputFile = createRef<HTMLInputElement>();
+    this.inputCheckbox = createRef<ReferencedInput<boolean>>();
+    this.inputFile = createRef<ReferencedInput<FileList | null>>();
     this.formRef = createRef<HTMLFormElement>();
 
     this.state = { errorMessages: EmptyMessages };
@@ -45,12 +45,12 @@ export class PetForm extends Component<FormProps, messages> {
   handleSubmit: FormEventHandler<HTMLFormElement> = (event) => {
     event.preventDefault();
     const formData: PetFormData = {
-      name: this.inputText.current?.value ?? '',
-      birth: this.inputDate.current?.value ?? '',
-      type: this.inputSelect.current?.value ?? '',
-      sex: this.inputSex.current?.getTheChecked() ?? '',
-      isExperienced: this.inputCheckbox.current?.checked ?? false,
-      img: this.inputFile.current?.files ?? null,
+      name: this.inputText.current?.getAnswer() ?? '',
+      birth: this.inputDate.current?.getAnswer() ?? '',
+      type: this.inputSelect.current?.getAnswer() ?? '',
+      sex: this.inputSex.current?.getAnswer() ?? '',
+      isExperienced: this.inputCheckbox.current?.getAnswer() ?? false,
+      img: this.inputFile.current?.getAnswer() ?? null,
     };
     if (checkFormIsValid(formData)) {
       this.props.backData(formData);
@@ -74,18 +74,18 @@ export class PetForm extends Component<FormProps, messages> {
         <ReferencedInput
           label={"Pet's name"}
           inputType="text"
-          forwardRef={this.inputText}
+          ref={this.inputText}
         />
         <FieldErrorMessage message={this.state.errorMessages.name} />
         <ReferencedInput
           label={"Pet's date of birth"}
           inputType="date"
-          forwardRef={this.inputDate}
+          ref={this.inputDate}
         />
         <FieldErrorMessage message={this.state.errorMessages.birth} />
         <Select
           label={"Pet's type"}
-          forwardRef={this.inputSelect}
+          ref={this.inputSelect}
         />
         <FieldErrorMessage message={this.state.errorMessages.type} />
         <Switcher
@@ -96,13 +96,13 @@ export class PetForm extends Component<FormProps, messages> {
         <ReferencedInput
           label={'Is this your first show?'}
           inputType="checkbox"
-          forwardRef={this.inputCheckbox}
+          ref={this.inputCheckbox}
         />
         <FieldErrorMessage message={this.state.errorMessages.isExperienced} />
         <ReferencedInput
           label={'Upload a photo of the pet'}
           inputType="file"
-          forwardRef={this.inputFile}
+          ref={this.inputFile}
           accept="image/png, image/jpeg"
         />
         <FieldErrorMessage message={this.state.errorMessages.img} />

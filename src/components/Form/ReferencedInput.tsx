@@ -1,10 +1,9 @@
-import { Component, HTMLInputTypeAttribute } from 'react';
+import { Component, createRef, HTMLInputTypeAttribute } from 'react';
 import { elementRef } from 'src/utils/types';
 import { v4 } from 'uuid';
 import styles from '../styles/Input.module.css';
 
 type RefInputProps = {
-  forwardRef: elementRef<HTMLInputElement>;
   label: string;
   inputType: HTMLInputTypeAttribute;
   name?: string;
@@ -12,9 +11,24 @@ type RefInputProps = {
   accept?: string;
 };
 
-export class ReferencedInput extends Component<RefInputProps> {
+export class ReferencedInput<T> extends Component<RefInputProps> {
+  inputRef: elementRef<HTMLInputElement>;
+
+  constructor(props: RefInputProps) {
+    super(props);
+    this.inputRef = createRef<HTMLInputElement>();
+  }
+  getAnswer = (): T => {
+    const { inputType } = this.props;
+    if (inputType === 'file') return (this.inputRef.current?.files ?? null) as T;
+    if (inputType === 'checkbox') return (this.inputRef.current?.checked ?? false) as T;
+    return (this.inputRef.current?.value ?? '') as T;
+  };
+  getIsChecked = (): boolean => {
+    return this.inputRef.current?.checked ?? false;
+  };
   render() {
-    const { forwardRef, label, inputType, name, innerText, accept } = this.props;
+    const { label, inputType, name, innerText, accept } = this.props;
     const inputStyle = inputType === 'radio' ? styles.radio : styles.nonradio;
     const fileStyle = inputType === 'file' ? 'flex-col' : 'flex-row';
     const key = v4();
@@ -22,7 +36,7 @@ export class ReferencedInput extends Component<RefInputProps> {
       <div className={`flex ${fileStyle}  ${inputStyle}`}>
         <label htmlFor={key}>{label}</label>
         <input
-          ref={forwardRef}
+          ref={this.inputRef}
           type={inputType}
           name={name}
           id={key}
