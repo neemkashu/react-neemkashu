@@ -52,6 +52,7 @@ export class PetForm extends Component<FormProps, messages> {
       isExperienced: this.inputCheckbox.current?.getAnswer() ?? false,
       img: this.inputFile.current?.getAnswer() ?? null,
     };
+
     if (checkFormIsValid(formData)) {
       this.props.backData(formData);
       this.setState({ errorMessages: EmptyMessages });
