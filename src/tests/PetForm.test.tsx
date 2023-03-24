@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 import { ErrorMessages, PetFormData } from '../components/Form/formChecker';
 import { PetForm } from '../components/Form/PetForm';
 import { AnimalTypes } from '../components/Form/Select';
@@ -71,5 +71,37 @@ describe('Form component', () => {
     expect(screen.queryByText(ErrorMessages.type)).not.toBeInTheDocument();
     expect(screen.queryByText(ErrorMessages.sex)).not.toBeInTheDocument();
     expect(screen.queryByText(ErrorMessages.img)).not.toBeInTheDocument();
+  });
+  it('provides callback form data if is valid', async () => {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const backDataMock = vi.fn();
+
+    render(<PetForm backData={backDataMock} />);
+
+    const submitButton = screen.getByRole('button');
+    const inputName = screen.getByLabelText<HTMLInputElement>(/name/i);
+    const inputDate = screen.getByLabelText<HTMLInputElement>(/date/i);
+    const inputSelect = screen.getByLabelText<HTMLSelectElement>(/type/i);
+    const inputCheckbox = screen.getByLabelText<HTMLInputElement>(/first/i);
+    const inputSwitcher = screen.getByLabelText<HTMLInputElement>(/female/i);
+    const inputFile = screen.getByLabelText<HTMLInputElement>(/photo/i);
+
+    const user = userEvent.setup();
+
+    inputName.value = 'Aname';
+    inputDate.value = '2013-12-12';
+    inputSelect.value = AnimalTypes.DOG;
+    inputCheckbox.checked = true;
+    inputSwitcher.checked = true;
+
+    const file = new File(['foo'], 'foo.png', {
+      type: 'image/png',
+    });
+
+    await userEvent.upload(inputFile, file);
+
+    await user.click(submitButton);
+
+    expect(backDataMock).toBeCalled();
   });
 });

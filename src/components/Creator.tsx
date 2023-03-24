@@ -24,7 +24,6 @@ export class Creator extends Component<Record<string, never>, CreatorState> {
     };
   }
   getCardInfo = (data: PetFormData) => {
-    console.log({ data });
     this.setState({ nextCard: data });
     this.setState({ isPopupShown: true });
 

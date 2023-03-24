@@ -140,3 +140,12 @@ export class LocalStorageMock {
     delete this.store[key];
   }
 }
+
+export const pet = {
+  name: 'Jennifer',
+  img: '../../assets/images/jennifer.png',
+  type: 'dog',
+  birth: '2013-12-12',
+  isExperienced: true,
+  sex: 'female',
+};
