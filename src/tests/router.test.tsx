@@ -34,6 +34,15 @@ describe('Router', () => {
     expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent(/not found/i);
     unmount();
   });
+  it('Renders form page', () => {
+    const router = createMemoryRouter(routesConfig, {
+      initialEntries: ['/form'],
+    });
+    const { unmount } = render(<RouterProvider router={router} />);
+
+    expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent(/form/i);
+    unmount();
+  });
   it('Implement navigation', async () => {
     const router = createMemoryRouter(routesConfig, {
       initialEntries: [RoutesInfo.MAIN.path],

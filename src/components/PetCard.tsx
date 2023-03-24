@@ -1,3 +1,5 @@
+import { PetCardTextContent } from '../utils/constants';
+
 interface PetInfo {
   name: string;
   birth: string;
@@ -6,11 +8,6 @@ interface PetInfo {
   isExperienced: boolean;
   img: string;
 }
-
-export const PetCardTextContent = {
-  petBirth: 'Birth',
-  petShow: 'First show',
-} as const;
 
 export const PetCard = ({ name, birth, type, sex, isExperienced, img }: PetInfo) => {
   return (

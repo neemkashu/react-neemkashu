@@ -149,3 +149,11 @@ export const pet = {
   isExperienced: true,
   sex: 'female',
 };
+export const petMale = {
+  name: 'Jennifer',
+  img: '../../assets/images/jennifer.png',
+  type: 'dog',
+  birth: '2013-12-12',
+  isExperienced: false,
+  sex: 'male',
+};

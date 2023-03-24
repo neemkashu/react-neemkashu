@@ -1,7 +1,8 @@
 import { render, screen } from '@testing-library/react';
-import { pet } from '../utils/mocha';
+import { pet, petMale } from '../utils/mocha';
 import { describe, expect, it } from 'vitest';
 import { PetCard } from '../components/PetCard';
+import { PetCardTextContent } from '../utils/constants';
 
 describe('Pet Card', () => {
   it('Renders headers content', () => {
@@ -9,5 +10,20 @@ describe('Pet Card', () => {
     expect(screen.getByRole('heading', { level: 2 })).toHaveTextContent(pet.name);
     expect(screen.getByRole('heading', { level: 3 })).toHaveTextContent(pet.type);
     expect(screen.getByRole('heading', { level: 3 })).toHaveTextContent(pet.sex);
+  });
+  it('Renders properties of card parameters (female)', () => {
+    render(<PetCard {...pet} />);
+    const parametersListItems = screen.getAllByRole('listitem');
+
+    expect(parametersListItems).toHaveLength(2);
+
+    expect(parametersListItems[0]).toHaveTextContent(pet.birth);
+    expect(parametersListItems[1]).toHaveTextContent('yes');
+    expect(parametersListItems[1]).toHaveTextContent(PetCardTextContent.petShow);
+  });
+  it('Renders properties of card parameters (male)', () => {
+    render(<PetCard {...petMale} />);
+    const parametersListItems = screen.getAllByRole('listitem');
+    expect(parametersListItems[1]).toHaveTextContent('no');
   });
 });
