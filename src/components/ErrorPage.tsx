@@ -1,10 +1,8 @@
 import { Component } from 'react';
-import { redirect } from 'react-router-dom';
 
 export class ErrorPage extends Component {
   constructor(props: Record<string, never>) {
     super(props);
-    redirect('/404');
   }
   render() {
     return (
