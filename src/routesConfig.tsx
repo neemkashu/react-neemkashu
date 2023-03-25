@@ -1,3 +1,4 @@
+import { Navigate } from 'react-router-dom';
 import { About } from './components/About';
 import { ErrorPage } from './components/ErrorPage';
 import Header from './components/Header';
@@ -35,10 +36,10 @@ export const routesConfig = [
   {
     path: '*',
     element: (
-      <>
-        <Header title={Headers.NOT_FOUND} />
-        <ErrorPage />
-      </>
+      <Navigate
+        to="/404"
+        replace={true}
+      />
     ),
   },
 ];
