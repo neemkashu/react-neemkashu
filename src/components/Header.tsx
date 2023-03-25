@@ -15,12 +15,18 @@ class Header extends Component<HeaderProps> {
         <nav className="flex justify-between py-2 px-1 sm:px-2">
           <ul className="flex flex-row gap-2 m-0 p-0">
             <li>
-              <NavLink className="p-1 duration-300 ease-in-out" to={`/`}>
+              <NavLink
+                className="p-1 duration-300 ease-in-out"
+                to={`/`}
+              >
                 Main page
               </NavLink>
             </li>
             <li>
-              <NavLink className="p-1 duration-300 ease-in-out" to={`/about`}>
+              <NavLink
+                className="p-1 duration-300 ease-in-out"
+                to={`/about`}
+              >
                 About
               </NavLink>
             </li>

@@ -9,7 +9,11 @@ export class Card extends Component<CardInfo> {
     return (
       <div className="p-2 border-2 rounded-lg bg-white border-zinc-300 shadow-md shadow-zinc-400">
         <div className="flex flex-col gap-2 tiny:flex-row sm:flex-col lg:flex-row">
-          <img className=" 100 self-center w-1/2 xxl:w-auto" src={this.props.img} alt="" />
+          <img
+            className=" 100 self-center w-1/2 xxl:w-auto"
+            src={this.props.img}
+            alt=""
+          />
           <div className="flex flex-col gap-1">
             <h2 className="text-2xl">{this.props.name}</h2>
             <h3>
