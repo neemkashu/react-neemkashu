@@ -120,8 +120,7 @@ export class LocalStorageMock {
   }
 
   key(index: number): string | null {
-    const key = Object.keys(this.store)[index] ?? null;
-    return key;
+    return Object.keys(this.store)[index] ?? null;
   }
 
   clear() {
