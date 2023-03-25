@@ -24,6 +24,15 @@ export const routesConfig = [
     ),
   },
   {
+    path: '/404',
+    element: (
+      <>
+        <Header title={Headers.NOT_FOUND} />
+        <ErrorPage />
+      </>
+    ),
+  },
+  {
     path: '*',
     element: (
       <>
