@@ -1,3 +1,4 @@
+import { Navigate } from 'react-router-dom';
 import { AboutPage } from './pages/AboutPage';
 import { FormPage } from './pages/FormPage';
 import { MainPage } from './pages/MainPage';
@@ -21,5 +22,14 @@ export const routesConfig = [
   {
     path: RoutesInfo.NOT_FOUND.path,
     element: <NotFoundPage />,
+  },
+  {
+    path: '*',
+    element: (
+      <Navigate
+        to={RoutesInfo.NOT_FOUND.path}
+        replace={true}
+      />
+    ),
   },
 ];

@@ -28,7 +28,7 @@ export const RoutesInfo: routs = {
     header: Headers.FORM,
   },
   NOT_FOUND: {
-    path: '*',
+    path: '/404',
     header: Headers.NOT_FOUND,
   },
 };
