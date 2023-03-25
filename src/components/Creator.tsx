@@ -3,7 +3,7 @@ import { v4 } from 'uuid';
 import { CardGrid } from '../layouts/CardGrid';
 import { PetFormData } from './Form/formChecker';
 import { PetForm } from './Form/PetForm';
-import { PopMessage } from './PopMessage/PopMessage';
+import { PopMessage } from './Form/PopMessage';
 import { PetCard } from './PetCard';
 
 type CreatorState = {

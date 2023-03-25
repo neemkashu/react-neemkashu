@@ -2,8 +2,8 @@ import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { describe, expect, it, vi } from 'vitest';
 import { Creator } from '../components/Creator';
-import { TEXT_CONTENT } from '../components/PopMessage/PopMessage';
-import { PetCardTextContent } from '../utils/constants';
+import { TEXT_CONTENT } from '../components/Form/PopMessage';
+import { PetCardTextContent } from '../components/PetCard';
 import { fillForm } from './PetForm.test';
 
 describe('Creator component', () => {
@@ -16,14 +16,14 @@ describe('Creator component', () => {
     const form = screen.getByRole('form', { name: '' });
 
     if (form instanceof HTMLFormElement) {
-      const cards = screen.queryAllByText(PetCardTextContent.petBirth);
+      const cards = screen.queryAllByText(PetCardTextContent.PET_BIRTH);
       const previousCardAmount = cards.length;
 
       const submitButton = screen.getByRole('button');
       const user = userEvent.setup();
       await user.click(submitButton);
 
-      const cardsNew = screen.queryAllByText(PetCardTextContent.petBirth);
+      const cardsNew = screen.queryAllByText(PetCardTextContent.PET_BIRTH);
       expect(cardsNew.length).toBe(previousCardAmount);
     }
   });

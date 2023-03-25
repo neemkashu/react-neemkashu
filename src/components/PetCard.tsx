@@ -1,4 +1,7 @@
-import { PetCardTextContent } from '../utils/constants';
+export const PetCardTextContent = {
+  PET_BIRTH: 'Birth',
+  PET_SHOW: 'First show',
+} as const;
 
 interface PetInfo {
   name: string;
@@ -26,14 +29,14 @@ export const PetCard = ({ name, birth, type, sex, isExperienced, img }: PetInfo)
           <ul>
             <li>
               <strong>
-                {PetCardTextContent.petBirth}
+                {PetCardTextContent.PET_BIRTH}
                 {':'}
               </strong>{' '}
               {birth}
             </li>
             <li>
               <strong>
-                {PetCardTextContent.petShow}
+                {PetCardTextContent.PET_SHOW}
                 {':'}
               </strong>{' '}
               {isExperienced ? 'yes' : 'no'}

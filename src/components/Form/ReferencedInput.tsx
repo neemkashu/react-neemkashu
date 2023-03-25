@@ -1,7 +1,7 @@
 import { Component, createRef, HTMLInputTypeAttribute } from 'react';
 import { elementRef } from 'src/utils/types';
 import { v4 } from 'uuid';
-import styles from '../styles/Input.module.css';
+import styles from '../../styles/ReferencedInput.module.css';
 
 type RefInputProps = {
   label: string;

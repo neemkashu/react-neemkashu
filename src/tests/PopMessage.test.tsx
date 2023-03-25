@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
-import { PopMessage, TEXT_CONTENT } from '../components/PopMessage/PopMessage';
+import { PopMessage, TEXT_CONTENT } from '../components/Form/PopMessage';
 
 describe('Rendering pop up', () => {
   it('Renders about content', () => {

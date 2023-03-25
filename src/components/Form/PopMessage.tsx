@@ -1,4 +1,4 @@
-import styles from './PopMessage.module.css';
+import styles from '../../styles/PopMessage.module.css';
 
 export const TEXT_CONTENT = 'You have successfully created a card!';
 

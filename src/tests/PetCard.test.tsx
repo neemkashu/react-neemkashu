@@ -1,8 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import { pet, petMale } from '../utils/mocha';
 import { describe, expect, it } from 'vitest';
-import { PetCard } from '../components/PetCard';
-import { PetCardTextContent } from '../utils/constants';
+import { PetCard, PetCardTextContent } from '../components/PetCard';
 
 describe('Pet Card', () => {
   it('Renders headers content', () => {
@@ -19,7 +18,7 @@ describe('Pet Card', () => {
 
     expect(parametersListItems[0]).toHaveTextContent(pet.birth);
     expect(parametersListItems[1]).toHaveTextContent('yes');
-    expect(parametersListItems[1]).toHaveTextContent(PetCardTextContent.petShow);
+    expect(parametersListItems[1]).toHaveTextContent(PetCardTextContent.PET_SHOW);
   });
   it('Renders properties of card parameters (male)', () => {
     render(<PetCard {...petMale} />);

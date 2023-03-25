@@ -32,8 +32,3 @@ export const RoutesInfo: routs = {
     header: Headers.NOT_FOUND,
   },
 };
-
-export const PetCardTextContent = {
-  petBirth: 'Birth',
-  petShow: 'First show',
-} as const;

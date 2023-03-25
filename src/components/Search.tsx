@@ -1,13 +1,13 @@
 import { ChangeEventHandler, Component } from 'react';
 import { SEARCH_KEY } from '../utils/constants';
-import styles from './styles/Search.module.css';
+import styles from '../styles/Search.module.css';
 
 type SearchState = {
   searchValue: string;
 };
 
 export class Search extends Component<Record<string, never>, SearchState> {
-  constructor(props = {}) {
+  constructor(props: Record<string, never>) {
     super(props);
     this.state = {
       searchValue: localStorage.getItem(SEARCH_KEY) ?? '',

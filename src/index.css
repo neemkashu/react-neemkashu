@@ -10,7 +10,16 @@
   color: rgba(69, 69, 69, 0.87);
   background-color: #ffe4bd;
 }
-
+html {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  -webkit-box-sizing: inherit;
+  -moz-box-sizing: inherit;
+  box-sizing: inherit;
+}
 a {
   font-weight: 500;
   color: #564108;
@@ -22,9 +31,6 @@ a:hover {
 h1, h2, h3, ul {
   margin: 0;
   padding: 0;
-}
-div {
-  box-sizing: border-box;
 }
 img {
   display: block;
@@ -53,4 +59,14 @@ p {
 .active {
   background-color: bisque;
   border-radius: 0.5rem;
+}
+
+input[type='date']::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+}
+select {
+  cursor: pointer;
+}
+input[type='search']::-webkit-search-cancel-button {
+  cursor: pointer;
 }

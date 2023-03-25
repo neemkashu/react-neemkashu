@@ -4,6 +4,3 @@
     background-position-x: 0.4rem;
     background-position-y: 0.4rem;
 }
-.input::-webkit-search-cancel-button {
-    cursor: pointer;
-}
