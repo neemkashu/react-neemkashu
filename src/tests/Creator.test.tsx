@@ -29,6 +29,7 @@ describe('Creator component', () => {
   });
   it('Renders card if submit correct data', async () => {
     URL.createObjectURL = vi.fn().mockReturnValue('mock-url');
+    URL.revokeObjectURL = vi.fn();
     render(<Creator />);
     const submitButton = screen.getByRole('button');
     await fillForm();
@@ -36,11 +37,13 @@ describe('Creator component', () => {
     const user = userEvent.setup();
     await user.click(submitButton);
 
-    const petCard = screen.getByText('Aname');
+    const petCard = screen.getAllByRole('heading', { level: 2 })[1];
     expect(petCard).toBeInTheDocument();
+    expect(petCard).toHaveTextContent('Aname');
   });
   it('Renders success message if submit correct data', async () => {
     URL.createObjectURL = vi.fn().mockReturnValue('mock-url');
+    URL.revokeObjectURL = vi.fn();
     render(<Creator />);
     const submitButton = screen.getByRole('button');
     await fillForm();
