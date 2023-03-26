@@ -3,7 +3,6 @@ import { Search } from './Search';
 import { cards } from '../utils/mocha';
 import { CardGrid } from '../layouts/CardGrid';
 import { Card } from './Card';
-import { v4 } from 'uuid';
 
 export class MainContent extends Component {
   render() {
@@ -13,10 +12,11 @@ export class MainContent extends Component {
           <Search />
         </div>
         <CardGrid>
-          {cards.map((card) => {
+          {cards.map((card, index) => {
+            const key = `${index}-${card.name}-${card.breed}`;
             return (
               <Card
-                key={v4()}
+                key={key}
                 {...card}
               />
             );

@@ -36,6 +36,7 @@ export class Creator extends Component<Record<string, never>, CreatorState> {
   makeCard = (data: PetFormData): JSX.Element => {
     const { name, birth, type, sex, isExperienced, img } = data;
     const imgSrc = (img && URL.createObjectURL(img[0])) ?? '';
+    const key = v4();
 
     return (
       <PetCard
@@ -45,7 +46,7 @@ export class Creator extends Component<Record<string, never>, CreatorState> {
         sex={sex}
         isExperienced={isExperienced}
         img={imgSrc}
-        key={v4()}
+        key={key}
       />
     );
   };
