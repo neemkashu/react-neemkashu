@@ -15,18 +15,18 @@ export const ErrorMessages: FieldMessages = {
   birth: 'choose date of birth',
   type: 'choose type of the pet',
   sex: 'choose male or female',
-  isExperienced: '',
+  isExperienced: 'confirm that you have read the rules of the show',
   img: 'choose file with a picture',
 } as const;
 
 const getValidationVerdicts = (formData: PetFormData): FieldVerdicts => {
-  const { name, birth, type, sex, img } = formData;
+  const { name, birth, type, sex, img, isExperienced } = formData;
   const validations = {
     name: name !== '' && name[0].toLowerCase() !== name[0],
     birth: birth !== '',
     type: type !== '',
     sex: sex !== '',
-    isExperienced: true,
+    isExperienced: isExperienced,
     img: img !== null && img.length > 0,
   };
   return validations;

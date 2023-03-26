@@ -14,6 +14,7 @@ export async function fillForm() {
   const inputName = screen.getByLabelText<HTMLInputElement>(/name/i);
   const inputDate = screen.getByLabelText<HTMLInputElement>(/date/i);
   const inputSelect = screen.getByLabelText<HTMLSelectElement>(/type/i);
+  const inputCheckbox = screen.getByLabelText<HTMLInputElement>(/read/i);
   const inputSwitcher = screen.getByLabelText<HTMLInputElement>(/female/i);
   const inputFile = screen.getByLabelText<HTMLInputElement>(/photo/i);
 
@@ -21,6 +22,7 @@ export async function fillForm() {
   inputDate.value = '2013-12-12';
   inputSelect.value = AnimalTypes.DOG;
   inputSwitcher.checked = true;
+  inputCheckbox.checked = true;
 
   const file = new File(['freddie'], './img/freddie.png', {
     type: 'image/png',

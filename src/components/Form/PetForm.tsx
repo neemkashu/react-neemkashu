@@ -87,7 +87,7 @@ export class PetForm extends Component<FormProps, messages> {
         />
         <FieldErrorMessage message={this.state.errorMessages.sex} />
         <ReferencedInput
-          label={'Is this your first show?'}
+          label={'I have read and agree to the rules of the show'}
           inputType="checkbox"
           ref={this.inputCheckbox}
         />

@@ -1,6 +1,6 @@
 export const PetCardTextContent = {
   PET_BIRTH: 'Birth',
-  PET_SHOW: 'First show',
+  PET_SHOW: 'Agrement recived',
 } as const;
 
 interface PetInfo {
