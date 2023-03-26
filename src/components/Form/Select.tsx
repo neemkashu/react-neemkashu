@@ -38,7 +38,7 @@ export class Select extends Component<SelectProps> {
           className=" m-0 rounded border-2 border-solid border-yellow-900
          max-w-xs px-1 bg-white bg-no-repeat text-base
          duration-300 ease-in-out
-        hover:shadow-neutral-400 hover:bg-amber-50
+        hover:shadow-neutral-400 hover:bg-amber-200
         focus-visible:bg-yellow-200 focus-visible:outline-0"
         >
           <option

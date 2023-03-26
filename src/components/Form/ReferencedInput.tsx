@@ -34,7 +34,12 @@ export class ReferencedInput<T> extends Component<RefInputProps> {
     const key = v4();
     return (
       <div className={`flex ${fileStyle}  ${inputStyle}`}>
-        <label htmlFor={key}>{label}</label>
+        <label
+          className={inputType === 'radio' ? 'hover:cursor-pointer' : ''}
+          htmlFor={key}
+        >
+          {label}
+        </label>
         <input
           ref={this.inputRef}
           type={inputType}
@@ -44,7 +49,7 @@ export class ReferencedInput<T> extends Component<RefInputProps> {
           className=" m-0 rounded border-2 border-solid border-yellow-900
           max-w- px-1 bg-white bg-no-repeat text-base
            duration-300 ease-in-out
-          hover:shadow-neutral-400 hover:bg-amber-50
+          hover:shadow-neutral-400 hover:bg-amber-200
           focus-visible:bg-yellow-200 focus-visible:outline-0"
         >
           {innerText}
