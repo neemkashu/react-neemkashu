@@ -1,5 +1,4 @@
 import { Component, createRef, FormEventHandler } from 'react';
-import { elementRef } from 'src/utils/types';
 import { Select } from './Select';
 import { ReferencedInput } from './ReferencedInput';
 import { Switcher } from './Switcher';
@@ -22,26 +21,18 @@ const EmptyMessages = Object.keys(ErrorMessages).reduce<FieldMessages>((accum, k
 }, {} as FieldMessages);
 
 export class PetForm extends Component<FormProps, messages> {
-  inputText: elementRef<ReferencedInput<string>>;
-  inputDate: elementRef<ReferencedInput<string>>;
-  inputSex: ReturnType<typeof createRef<Switcher>>;
-  inputSelect: elementRef<Select>;
-  inputCheckbox: elementRef<ReferencedInput<boolean>>;
-  inputFile: elementRef<ReferencedInput<FileList | null>>;
-  formRef: elementRef<HTMLFormElement>;
-
   constructor(props: FormProps) {
     super(props);
-    this.inputText = createRef<ReferencedInput<string>>();
-    this.inputDate = createRef<ReferencedInput<string>>();
-    this.inputSelect = createRef<Select>();
-    this.inputSex = createRef<Switcher>();
-    this.inputCheckbox = createRef<ReferencedInput<boolean>>();
-    this.inputFile = createRef<ReferencedInput<FileList | null>>();
-    this.formRef = createRef<HTMLFormElement>();
-
     this.state = { errorMessages: EmptyMessages };
   }
+  inputText = createRef<ReferencedInput<string>>();
+  inputDate = createRef<ReferencedInput<string>>();
+  inputSelect = createRef<Select>();
+  inputSex = createRef<Switcher>();
+  inputCheckbox = createRef<ReferencedInput<boolean>>();
+  inputFile = createRef<ReferencedInput<FileList | null>>();
+  formRef = createRef<HTMLFormElement>();
+
   handleSubmit: FormEventHandler<HTMLFormElement> = (event) => {
     event.preventDefault();
     const formData: PetFormData = {
