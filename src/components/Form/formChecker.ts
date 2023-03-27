@@ -1,0 +1,50 @@
+export type PetFormData = {
+  name: string;
+  birth: string;
+  type: string;
+  sex: string;
+  isExperienced: boolean;
+  img: FileList | null;
+};
+
+export type FieldMessages = Record<keyof PetFormData, string>;
+export type FieldVerdicts = Record<keyof PetFormData, boolean>;
+
+export const ErrorMessages: FieldMessages = {
+  name: 'enter a name with first uppercase letter',
+  birth: 'choose date of birth',
+  type: 'choose type of the pet',
+  sex: 'choose male or female',
+  isExperienced: 'confirm that you have read the rules of the show',
+  img: 'choose file with a picture',
+} as const;
+
+const getValidationVerdicts = (formData: PetFormData): FieldVerdicts => {
+  const { name, birth, type, sex, img, isExperienced } = formData;
+  const validations = {
+    name: name !== '' && name[0].toLowerCase() !== name[0],
+    birth: birth !== '',
+    type: type !== '',
+    sex: sex !== '',
+    isExperienced: isExperienced,
+    img: img !== null && img.length > 0,
+  };
+  return validations;
+};
+
+export const checkFormIsValid = (formData: PetFormData): boolean => {
+  const validations = getValidationVerdicts(formData);
+  return Object.values(validations).every((validValue) => validValue);
+};
+
+export const getErrorMessages = (formData: PetFormData): FieldMessages => {
+  const validations = getValidationVerdicts(formData);
+
+  const messages = Object.keys(ErrorMessages).reduce<FieldMessages>((accum, key) => {
+    const keyErr = key as keyof FieldMessages;
+    accum[keyErr] = validations[keyErr] ? '' : ErrorMessages[keyErr];
+    return accum;
+  }, {} as FieldMessages);
+
+  return messages;
+};

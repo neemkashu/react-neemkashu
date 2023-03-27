@@ -1,5 +1,3 @@
-/* c8 ignore start */
-
 export type CardInfo = {
   name: string;
   img: string;
@@ -122,8 +120,7 @@ export class LocalStorageMock {
   }
 
   key(index: number): string | null {
-    const key = Object.keys(this.store)[index] ?? null;
-    return key;
+    return Object.keys(this.store)[index] ?? null;
   }
 
   clear() {
@@ -142,3 +139,20 @@ export class LocalStorageMock {
     delete this.store[key];
   }
 }
+
+export const pet = {
+  name: 'Jennifer',
+  img: '../../assets/images/jennifer.png',
+  type: 'dog',
+  birth: '2013-12-12',
+  isExperienced: true,
+  sex: 'female',
+};
+export const petMale = {
+  name: 'Jennifer',
+  img: '../../assets/images/jennifer.png',
+  type: 'dog',
+  birth: '2013-12-12',
+  isExperienced: false,
+  sex: 'male',
+};

@@ -1,29 +1,11 @@
-import { Component, CSSProperties, PropsWithChildren } from 'react';
-import { CARD_WIDTH } from '../utils/constants';
+import { Component, PropsWithChildren } from 'react';
 
-interface CardGridProps {
-  cardWidth?: string;
-  cardGap?: string;
-}
-type CardGridComponent = PropsWithChildren<CardGridProps>;
-
-const gridStyle: CSSProperties = {
-  display: 'grid',
-  justifyContent: 'center',
-  width: '100%',
-};
-
-export class CardGrid extends Component<CardGridComponent, CardGridProps> {
-  constructor(props: CardGridProps) {
-    super(props);
-  }
-
+export class CardGrid extends Component<PropsWithChildren> {
   render() {
-    const style = {
-      ...gridStyle,
-      gap: this.props.cardGap ?? '0.8rem',
-      gridTemplateColumns: `repeat(auto-fill, ${this.props.cardWidth ?? `${CARD_WIDTH}px`})`,
-    };
-    return <div style={style}>{this.props.children}</div>;
+    return (
+      <div className="grid justify-center gap-3 grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 auto-rows-min">
+        {this.props.children}
+      </div>
+    );
   }
 }

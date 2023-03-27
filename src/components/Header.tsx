@@ -1,51 +1,36 @@
-import { Component, CSSProperties } from 'react';
+import { Component } from 'react';
 import { NavLink } from 'react-router-dom';
-
-const ulStyle: CSSProperties = {
-  listStyleType: 'none',
-  display: 'flex',
-  flexDirection: 'row',
-  gap: 10,
-  margin: 0,
-  padding: 5,
-};
-const linkStyle: CSSProperties = {
-  padding: '0.2rem',
-};
-
-const navStyle: CSSProperties = {
-  display: 'flex',
-  justifyContent: 'space-between',
-  padding: '0 0.8rem',
-  backgroundColor: 'orange',
-};
+import { RoutesInfo } from '../../src/utils/constants';
 
 type HeaderProps = {
   title: string;
 };
-
+// TODO: refactor routes and links into constants when hooks will be allowed
 class Header extends Component<HeaderProps> {
   constructor(props: HeaderProps) {
     super(props);
   }
   render() {
     return (
-      <header>
-        <nav style={navStyle}>
-          <ul style={ulStyle}>
-            <li>
-              <NavLink style={linkStyle} to={`/`}>
-                Main page
-              </NavLink>
-            </li>
-            <li>
-              <NavLink style={linkStyle} to={`/about`}>
-                About
-              </NavLink>
-            </li>
+      <header className="flex justify-between items-center pr-2 bg-orange-400">
+        <nav className="flex justify-between py-2 px-1 sm:px-2">
+          <ul className="flex flex-row gap-2 m-0 p-0">
+            {Object.entries(RoutesInfo).map(([key, details]) => {
+              if (details.path === RoutesInfo.NOT_FOUND.path) return null;
+              return (
+                <li key={key}>
+                  <NavLink
+                    className="p-1 duration-300 ease-in-out"
+                    to={details.path}
+                  >
+                    {details.header}
+                  </NavLink>
+                </li>
+              );
+            })}
           </ul>
-          <h1>{this.props.title}</h1>
         </nav>
+        <h1>{this.props.title}</h1>
       </header>
     );
   }

@@ -1,35 +1,35 @@
-import { About } from './components/About';
-import { ErrorPage } from './components/ErrorPage';
-import Header from './components/Header';
-import { MainContent } from './components/MainContent';
-import { Headers } from './utils/constants';
+import { Navigate } from 'react-router-dom';
+import { AboutPage } from './pages/AboutPage';
+import { FormPage } from './pages/FormPage';
+import { MainPage } from './pages/MainPage';
+import { NotFoundPage } from './pages/NotFoundPage';
+
+import { RoutesInfo } from './utils/constants';
 
 export const routesConfig = [
   {
-    path: '/',
-    element: (
-      <>
-        <Header title={Headers.MAIN} />
-        <MainContent />
-      </>
-    ),
+    path: RoutesInfo.MAIN.path,
+    element: <MainPage />,
   },
   {
-    path: '/about',
-    element: (
-      <>
-        <Header title={Headers.ABOUT} />
-        <About />
-      </>
-    ),
+    path: RoutesInfo.ABOUT.path,
+    element: <AboutPage />,
+  },
+  {
+    path: RoutesInfo.FORM.path,
+    element: <FormPage />,
+  },
+  {
+    path: RoutesInfo.NOT_FOUND.path,
+    element: <NotFoundPage />,
   },
   {
     path: '*',
     element: (
-      <>
-        <Header title={Headers.NOT_FOUND} />
-        <ErrorPage />
-      </>
+      <Navigate
+        to={RoutesInfo.NOT_FOUND.path}
+        replace={true}
+      />
     ),
   },
 ];
