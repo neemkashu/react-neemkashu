@@ -1,0 +1,77 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color: rgba(69, 69, 69, 0.87);
+  background-color: #ffe4bd;
+}
+html {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  -webkit-box-sizing: inherit;
+  -moz-box-sizing: inherit;
+  box-sizing: inherit;
+}
+a {
+  font-weight: 500;
+  color: #564108;
+  text-decoration: inherit;
+}
+a:hover {
+  color: #7d6023;
+}
+h1, h2, h3, ul {
+  margin: 0;
+  padding: 0;
+}
+img {
+  display: block;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  align-items: flex-start;
+  justify-items: center;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+p {
+  font-size: 1rem;
+  line-height: 1.1;
+  margin: 0;
+}
+
+#root {
+  max-width: 1920px;
+  width: 100%;
+}
+
+.active {
+  background-color: bisque;
+  border-radius: 0.5rem;
+}
+
+input[type='date']::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+}
+select {
+  cursor: pointer;
+}
+input[type='search']::-webkit-search-cancel-button {
+  cursor: pointer;
+}
+input[type='checkbox'] {
+  width: 1rem;
+  height: 1rem;
+  cursor: pointer;
+}
