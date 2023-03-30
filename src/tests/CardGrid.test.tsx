@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
-import { CardGrid } from 'src/layouts/CardGrid';
+import { CardGrid } from '../layouts/CardGrid';
 
 describe('Grid component', () => {
   it('Renders grid children', () => {
