@@ -1,5 +1,5 @@
 import { Navigate, Outlet } from 'react-router-dom';
-import Header from './components/Header';
+import Header from './components/Header/Header';
 import { AboutPage } from './pages/AboutPage';
 import { FormPage } from './pages/FormPage';
 import { MainPage } from './pages/MainPage';
