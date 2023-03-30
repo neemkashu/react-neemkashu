@@ -21,7 +21,7 @@ const EmptyMessages = mapOverObject(ErrorMessages, (accum, key) => {
 export const PetForm = ({ backData }: FormProps) => {
   const inputText = useRef<InputWithGetter<string>>(null);
   const inputDate = useRef<InputWithGetter<string>>(null);
-  const inputSelect = useRef<Select>(null);
+  const inputSelect = useRef<InputWithGetter<string>>(null);
   const inputSex = useRef<InputWithGetter<string>>(null);
   const inputCheckbox = useRef<InputWithGetter<boolean>>(null);
   const inputFile = useRef<InputWithGetter<FileList | null>>(null);
@@ -31,10 +31,11 @@ export const PetForm = ({ backData }: FormProps) => {
 
   const handleSubmit: FormEventHandler<HTMLFormElement> = (event) => {
     event.preventDefault();
+
     const formData: PetFormData = {
       name: inputText.current?.getUserAnswer() ?? '',
       birth: inputDate.current?.getUserAnswer() ?? '',
-      type: inputSelect.current?.getAnswer() ?? '',
+      type: inputSelect.current?.getUserAnswer() ?? '',
       sex: inputSex.current?.getUserAnswer() ?? '',
       isExperienced: inputCheckbox.current?.getUserAnswer() ?? false,
       img: inputFile.current?.getUserAnswer() ?? null,
@@ -72,7 +73,7 @@ export const PetForm = ({ backData }: FormProps) => {
       <FieldErrorMessage message={errorMessages.birth} />
       <Select
         label={"Pet's type"}
-        ref={inputSelect}
+        answerRef={inputSelect}
       />
       <FieldErrorMessage message={errorMessages.type} />
       <Switcher
