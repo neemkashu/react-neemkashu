@@ -28,18 +28,10 @@ export const PetCard = ({ name, birth, type, sex, isExperienced, img }: PetInfo)
           </h3>
           <ul>
             <li>
-              <strong>
-                {PetCardTextContent.PET_BIRTH}
-                {':'}
-              </strong>{' '}
-              {birth}
+              <strong>{PetCardTextContent.PET_BIRTH}:</strong> {birth}
             </li>
             <li>
-              <strong>
-                {PetCardTextContent.PET_SHOW}
-                {':'}
-              </strong>{' '}
-              {isExperienced ? 'yes' : 'no'}
+              <strong>{PetCardTextContent.PET_SHOW}:</strong> {isExperienced ? 'yes' : 'no'}
             </li>
           </ul>
         </div>

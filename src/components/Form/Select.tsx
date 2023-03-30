@@ -1,6 +1,6 @@
 import { Component, createRef } from 'react';
-import { elementRef } from 'src/utils/types';
 import { v4 } from 'uuid';
+import { elementRef } from '../../utils/types';
 
 type SelectProps = {
   label: string;
@@ -15,6 +15,8 @@ export const AnimalTypes = {
 
 const DEFAULT = '';
 
+const PLACE_HOLDER = '-- select the type --';
+
 export class Select extends Component<SelectProps> {
   selectRef: elementRef<HTMLSelectElement>;
 
@@ -22,9 +24,11 @@ export class Select extends Component<SelectProps> {
     super(props);
     this.selectRef = createRef<HTMLSelectElement>();
   }
+
   getAnswer = () => {
     return this.selectRef.current?.value ?? '';
   };
+
   render() {
     const { label } = this.props;
     const key = v4();
@@ -46,7 +50,7 @@ export class Select extends Component<SelectProps> {
             value={DEFAULT}
             className="bg-slate-100"
           >
-            {'-- select the type --'}
+            {PLACE_HOLDER}
           </option>
           {Object.values(AnimalTypes).map((animal) => {
             return (

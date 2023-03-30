@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom';
-import { RoutesInfo } from '../utils/constants';
+import { RoutesInfo } from '../../utils/constants';
 
 export const NavigationBar = () => {
   return (

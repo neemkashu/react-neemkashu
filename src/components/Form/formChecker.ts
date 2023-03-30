@@ -26,7 +26,7 @@ const getValidationVerdicts = (formData: PetFormData): FieldVerdicts => {
     birth: birth !== '',
     type: type !== '',
     sex: sex !== '',
-    isExperienced: isExperienced,
+    isExperienced,
     img: img !== null && img.length > 0,
   };
   return validations;
