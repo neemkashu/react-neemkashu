@@ -1,15 +1,10 @@
-import { Component, createRef, FormEventHandler, useState } from 'react';
+import { FormEventHandler, useRef, useState } from 'react';
 import { Select } from './Select';
-import { ReferencedInput } from './ReferencedInput';
+import { InputWithGetter, ReferencedInput } from './ReferencedInput';
 import { Switcher } from './Switcher';
-import {
-  checkFormIsValid,
-  ErrorMessages,
-  FieldMessages,
-  getErrorMessages,
-  PetFormData,
-} from './formChecker';
+import { checkFormIsValid, ErrorMessages, getErrorMessages, PetFormData } from './formChecker';
 import { FieldErrorMessage } from './FieldErrorMessage';
+import { mapOverObject } from '../../utils/helpers';
 
 type FormProps = { backData: (x: PetFormData) => void };
 
@@ -18,32 +13,31 @@ const AGREE_LABEL = 'I have read and agree to the rules of the show';
 const UPLOAD_CAPTION = 'Upload a photo of the pet';
 const SUBMIT_CAPTION = 'Submit';
 
-const EmptyMessages = Object.keys(ErrorMessages).reduce<FieldMessages>((accum, key) => {
-  const keyErr = key as keyof FieldMessages;
-  accum[keyErr] = '';
+const EmptyMessages = mapOverObject(ErrorMessages, (accum, key) => {
+  accum[key] = '';
   return accum;
-}, {} as FieldMessages);
+});
 
 export const PetForm = ({ backData }: FormProps) => {
-  const inputText = createRef<typeof ReferencedInput<string>>();
-  const inputDate = createRef<typeof ReferencedInput<string>>();
-  const inputSelect = createRef<Select>();
-  const inputSex = createRef<typeof Switcher>();
-  const inputCheckbox = createRef<typeof ReferencedInput<boolean>>();
-  const inputFile = createRef<typeof ReferencedInput<FileList | null>>();
-  const formRef = createRef<HTMLFormElement>();
+  const inputText = useRef<InputWithGetter<string>>(null);
+  const inputDate = useRef<InputWithGetter<string>>(null);
+  const inputSelect = useRef<Select>(null);
+  const inputSex = useRef<InputWithGetter<string>>(null);
+  const inputCheckbox = useRef<InputWithGetter<boolean>>(null);
+  const inputFile = useRef<InputWithGetter<FileList | null>>(null);
+  const formRef = useRef<HTMLFormElement>(null);
 
   const [errorMessages, setErrorMessages] = useState(EmptyMessages);
 
   const handleSubmit: FormEventHandler<HTMLFormElement> = (event) => {
     event.preventDefault();
     const formData: PetFormData = {
-      name: inputText.current?.getAnswer() ?? '',
-      birth: inputDate.current?.getAnswer() ?? '',
+      name: inputText.current?.getUserAnswer() ?? '',
+      birth: inputDate.current?.getUserAnswer() ?? '',
       type: inputSelect.current?.getAnswer() ?? '',
-      sex: inputSex.current?.getAnswer() ?? '',
-      isExperienced: inputCheckbox.current?.getAnswer() ?? false,
-      img: inputFile.current?.getAnswer() ?? null,
+      sex: inputSex.current?.getUserAnswer() ?? '',
+      isExperienced: inputCheckbox.current?.getUserAnswer() ?? false,
+      img: inputFile.current?.getUserAnswer() ?? null,
     };
 
     if (checkFormIsValid(formData)) {
@@ -67,13 +61,13 @@ export const PetForm = ({ backData }: FormProps) => {
       <ReferencedInput
         label={"Pet's name"}
         inputType="text"
-        ref={inputText}
+        answerRef={inputText}
       />
       <FieldErrorMessage message={errorMessages.name} />
       <ReferencedInput
         label={"Pet's date of birth"}
         inputType="date"
-        ref={inputDate}
+        answerRef={inputDate}
       />
       <FieldErrorMessage message={errorMessages.birth} />
       <Select
@@ -83,19 +77,19 @@ export const PetForm = ({ backData }: FormProps) => {
       <FieldErrorMessage message={errorMessages.type} />
       <Switcher
         label={"Pet's sex"}
-        ref={inputSex}
+        answerRef={inputSex}
       />
       <FieldErrorMessage message={errorMessages.sex} />
       <ReferencedInput
         label={AGREE_LABEL}
         inputType="checkbox"
-        ref={inputCheckbox}
+        answerRef={inputCheckbox}
       />
       <FieldErrorMessage message={errorMessages.isExperienced} />
       <ReferencedInput
         label={UPLOAD_CAPTION}
         inputType="file"
-        ref={inputFile}
+        answerRef={inputFile}
         accept="image/png, image/jpeg"
       />
       <FieldErrorMessage message={errorMessages.img} />

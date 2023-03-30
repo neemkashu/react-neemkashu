@@ -30,7 +30,10 @@ export const ReferencedInput = <T extends string | FileList | null | boolean>(
             case 'file': {
               return (inputRef.current?.files ?? null) as T;
             }
-            case 'checkbox' || 'radio': {
+            case 'checkbox': {
+              return (inputRef.current?.checked ?? false) as T;
+            }
+            case 'radio': {
               return (inputRef.current?.checked ?? false) as T;
             }
 
