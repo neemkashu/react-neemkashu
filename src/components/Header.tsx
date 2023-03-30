@@ -1,39 +1,17 @@
-import { Component } from 'react';
-import { NavLink } from 'react-router-dom';
+import { useMatches } from 'react-router-dom';
 import { RoutesInfo } from '../../src/utils/constants';
+import { NavigationBar } from './NavigationBar';
 
-type HeaderProps = {
-  title: string;
+const Header = () => {
+  const matches = useMatches();
+  const title = Object.values(RoutesInfo).find(({ path }) => path === matches[1].pathname)?.header;
+
+  return (
+    <header className="flex justify-between items-center pr-2 bg-orange-400">
+      <NavigationBar />
+      <h1>{title}</h1>
+    </header>
+  );
 };
-// TODO: refactor routes and links into constants when hooks will be allowed
-class Header extends Component<HeaderProps> {
-  constructor(props: HeaderProps) {
-    super(props);
-  }
-  render() {
-    return (
-      <header className="flex justify-between items-center pr-2 bg-orange-400">
-        <nav className="flex justify-between py-2 px-1 sm:px-2">
-          <ul className="flex flex-row gap-2 m-0 p-0">
-            {Object.entries(RoutesInfo).map(([key, details]) => {
-              if (details.path === RoutesInfo.NOT_FOUND.path) return null;
-              return (
-                <li key={key}>
-                  <NavLink
-                    className="p-1 duration-300 ease-in-out"
-                    to={details.path}
-                  >
-                    {details.header}
-                  </NavLink>
-                </li>
-              );
-            })}
-          </ul>
-        </nav>
-        <h1>{this.props.title}</h1>
-      </header>
-    );
-  }
-}
 
 export default Header;
