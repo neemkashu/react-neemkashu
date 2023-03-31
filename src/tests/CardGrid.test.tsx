@@ -6,9 +6,10 @@ describe('Grid component', () => {
   it('Renders grid children', () => {
     const element = (
       <CardGrid>
-        {Array.from({ length: 6 }).map((_, index) => (
-          <h3 key={index}>Hello</h3>
-        ))}
+        {Array.from({ length: 6 }).map((_, index) => {
+          const key = `${index}`;
+          return <h3 key={key}>Hello</h3>;
+        })}
       </CardGrid>
     );
     render(element);

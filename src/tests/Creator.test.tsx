@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { describe, expect, it, vi } from 'vitest';
@@ -66,7 +67,9 @@ describe('Creator component', () => {
 
     await waitFor(() => {
       const startTime = Date.now();
-      while (Date.now() - startTime < 2000) {}
+      while (Date.now() - startTime < 2000) {
+        /* empty */
+      }
       return true;
     });
     const message = screen.queryByText(TEXT_CONTENT);

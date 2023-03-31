@@ -1,7 +1,7 @@
-import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { describe, expect, it, vi } from 'vitest';
-import { ErrorMessages, PetFormData } from '../components/Form/formChecker';
+import { render, screen } from '@testing-library/react';
+import { vi } from 'vitest';
+import { ErrorMessages } from '../components/Form/formChecker';
 import { PetForm } from '../components/Form/PetForm';
 import { AnimalTypes } from '../components/Form/Select';
 

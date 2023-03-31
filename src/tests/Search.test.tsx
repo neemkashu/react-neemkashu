@@ -1,10 +1,9 @@
 import { render, screen } from '@testing-library/react';
-import { LocalStorageMock } from '../utils/mocha';
 import { describe, expect, it } from 'vitest';
+import userEvent from '@testing-library/user-event';
+import { LocalStorageMock } from '../utils/mocha';
 import { Search } from '../components/Search';
 import { SEARCH_KEY } from '../utils/constants';
-
-import userEvent from '@testing-library/user-event';
 
 describe('Search', () => {
   global.localStorage = new LocalStorageMock();

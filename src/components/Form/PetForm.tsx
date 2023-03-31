@@ -23,12 +23,7 @@ const EmptyMessages = mapOverObject(ErrorMessages, (accum, key) => {
 export const PetForm = ({ backData }: FormProps) => {
   const [errorMessages, setErrorMessages] = useState(EmptyMessages);
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-    reset,
-  } = useForm<PetFormData>();
+  const { register, handleSubmit, reset } = useForm<PetFormData>();
 
   const onSubmit = (formData: PetFormData) => {
     if (checkFormIsValid(formData)) {

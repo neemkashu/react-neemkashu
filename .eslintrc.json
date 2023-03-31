@@ -2,6 +2,7 @@
   "parser": "@typescript-eslint/parser",
   "extends": [
     "airbnb",
+    "airbnb-base",
     "airbnb/hooks",
     "plugin:react/recommended",
     "plugin:@typescript-eslint/recommended",
@@ -31,10 +32,18 @@
   ],
   "ignorePatterns": [
     "vite.config.ts",
-    "setupTests.ts",
-    "*.test.tsx"
+    "setupTests.ts"
   ],
   "rules": {
+    "import/no-extraneous-dependencies": [
+      "off",
+      {
+        "devDependencies": [
+          "**/*.test.js",
+          "**/*.spec.js"
+        ]
+      }
+    ],
     "react/require-default-props": "off",
     "react/no-unused-class-component-methods": "off",
     "no-param-reassign": [

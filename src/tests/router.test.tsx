@@ -1,9 +1,9 @@
 import { RouterProvider, createMemoryRouter } from 'react-router-dom';
-import { render, screen } from '@testing-library/react';
-import { routesConfig } from '../routesConfig';
-import userEvent from '@testing-library/user-event';
 import { describe, expect, it } from 'vitest';
-import { RoutesInfo } from 'src/utils/constants';
+import { render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+import { routesConfig } from '../routesConfig';
+import { RoutesInfo } from '../utils/constants';
 
 describe('Router', () => {
   it('Renders about page', () => {

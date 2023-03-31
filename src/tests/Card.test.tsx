@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
-import { CardInfo, cards } from '../utils/mocha';
 import { describe, expect, it } from 'vitest';
+import { CardInfo, cards } from '../utils/mocha';
 import { Card } from '../components/Card';
 
 describe('Card', () => {
