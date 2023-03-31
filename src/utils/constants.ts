@@ -12,9 +12,9 @@ type RouteDetails = {
   header: string;
 };
 
-type routs = Record<keyof typeof Headers, RouteDetails>;
+type Routs = Record<keyof typeof Headers, RouteDetails>;
 
-export const RoutesInfo: routs = {
+export const RoutesInfo: Routs = {
   MAIN: {
     path: '/',
     header: Headers.MAIN,
