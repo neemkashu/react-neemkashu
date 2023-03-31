@@ -18,11 +18,13 @@ export async function fillForm() {
   const inputSwitcher = screen.getByLabelText<HTMLInputElement>(/female/i);
   const inputFile = screen.getByLabelText<HTMLInputElement>(/photo/i);
 
-  inputName.value = 'Aname';
-  inputDate.value = '2013-12-12';
-  inputSelect.value = AnimalTypes.DOG;
-  inputSwitcher.checked = true;
-  inputCheckbox.checked = true;
+  const user = userEvent.setup();
+
+  await user.type(inputName, 'Aname');
+  await user.type(inputDate, '2020-04-01');
+  await user.selectOptions(inputSelect, AnimalTypes.DOG);
+  await user.click(inputCheckbox);
+  await user.click(inputSwitcher);
 
   const file = new File(['freddie'], './img/freddie.png', {
     type: 'image/png',
@@ -33,16 +35,14 @@ export async function fillForm() {
 
 describe('Form component', () => {
   it('Renders form', () => {
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const backDataMock = (x: PetFormData): void => {};
+    const backDataMock = vi.fn();
 
     render(<PetForm backData={backDataMock} />);
 
     expect(screen.getByRole('form')).toBeInTheDocument();
   });
   it('renders erros if submit is clicked when form is empty', async () => {
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const backDataMock = vi.fn((x: PetFormData): void => {});
+    const backDataMock = vi.fn();
 
     render(<PetForm backData={backDataMock} />);
 
@@ -57,8 +57,7 @@ describe('Form component', () => {
     expect(backDataMock).not.toBeCalled();
   });
   it('clears error if form data is valid', async () => {
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const backDataMock = vi.fn((x: PetFormData): void => {});
+    const backDataMock = vi.fn();
 
     render(<PetForm backData={backDataMock} />);
 
