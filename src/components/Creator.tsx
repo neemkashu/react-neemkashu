@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { v4 } from 'uuid';
 import { CardGrid } from '../layouts/CardGrid';
 import { PetFormData } from './Form/formChecker';
@@ -22,12 +22,12 @@ const makeCard = (data: PetFormData): CardData => {
 export const Creator = () => {
   const [cards, setCards] = useState<CardData[]>([]);
   const [isPopShown, setIsPopShown] = useState(false);
-  const [timer, setTimer] = useState<ReturnType<typeof setTimeout>>();
+  const timerRef = useRef<ReturnType<typeof setTimeout>>();
 
   useEffect(() => {
     return () => {
-      clearTimeout(timer);
-      cards.map(({ imgSrc }) => imgSrc).forEach((imageUrl) => URL.revokeObjectURL(imageUrl ?? ''));
+      setIsPopShown(false);
+      clearTimeout(timerRef?.current);
     };
   }, []);
 
@@ -38,15 +38,12 @@ export const Creator = () => {
       setIsPopShown(false);
     }, NOTIFICATION_DURATION);
 
-    setTimer(timerId);
+    timerRef.current = timerId;
   };
-
-  useEffect(() => {
-    showPopUp();
-  }, [cards]);
 
   const getCardInfo = (data: PetFormData) => {
     setCards([makeCard(data), ...cards]);
+    showPopUp();
   };
 
   return (

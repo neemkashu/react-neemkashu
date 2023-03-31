@@ -41,6 +41,19 @@ describe('Creator component', () => {
     expect(petCard).toBeInTheDocument();
     expect(petCard).toHaveTextContent('Aname');
   });
+  it('Renders notification if submit correct data', async () => {
+    URL.createObjectURL = vi.fn().mockReturnValue('mock-url');
+    URL.revokeObjectURL = vi.fn();
+    render(<Creator />);
+    const submitButton = screen.getByRole('button');
+    await fillForm();
+
+    const user = userEvent.setup();
+    await user.click(submitButton);
+
+    const message = screen.queryByText(TEXT_CONTENT);
+    expect(message).toBeInTheDocument();
+  });
   it('Renders success message if submit correct data', async () => {
     URL.createObjectURL = vi.fn().mockReturnValue('mock-url');
     URL.revokeObjectURL = vi.fn();
