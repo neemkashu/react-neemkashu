@@ -1,38 +1,20 @@
-import { useImperativeHandle, useRef } from 'react';
-import { AnswerRef, InputWithGetter, ReferencedInput } from './ReferencedInput';
+import { UseFormRegister } from 'react-hook-form';
+import { ReferencedInput } from './ReferencedInput';
+import { PetFormData } from './formChecker';
 
 export type RefInputProps = {
   label: string;
-  answerRef: AnswerRef<string>;
+  register: UseFormRegister<PetFormData>;
 };
 
-const HTML_INPUT_NAME = 'radio-name';
-
-export const Switcher = ({ label, answerRef }: RefInputProps) => {
-  const maleRef = useRef<InputWithGetter<boolean>>(null);
-  const femaleRef = useRef<InputWithGetter<boolean>>(null);
-
-  useImperativeHandle(
-    answerRef,
-    () => {
-      return {
-        getUserAnswer() {
-          const valueMale = maleRef.current?.getUserAnswer() ? 'male' : '';
-          const valueFemale = femaleRef.current?.getUserAnswer() ? 'female' : '';
-          return (valueMale || valueFemale) ?? '';
-        },
-      };
-    },
-    []
-  );
-
+export const Switcher = ({ label, register }: RefInputProps) => {
   const switchOptions = ['male', 'female'].map((option) => (
     <ReferencedInput
       label={option}
       key={option}
-      name={HTML_INPUT_NAME}
+      value={option}
       inputType="radio"
-      answerRef={option === 'male' ? maleRef : femaleRef}
+      register={register('sex')}
     />
   ));
   return (

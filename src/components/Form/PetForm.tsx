@@ -1,10 +1,12 @@
-import { FormEventHandler, useRef, useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { useState } from 'react';
 import { Select } from './Select';
-import { InputWithGetter, ReferencedInput } from './ReferencedInput';
-import { Switcher } from './Switcher';
+import { ReferencedInput } from './ReferencedInput';
+// import { Switcher } from './Switcher';
 import { checkFormIsValid, ErrorMessages, getErrorMessages, PetFormData } from './formChecker';
 import { FieldErrorMessage } from './FieldErrorMessage';
 import { mapOverObject } from '../../utils/helpers';
+import { Switcher } from './Switcher';
 
 type FormProps = { backData: (x: PetFormData) => void };
 
@@ -19,32 +21,20 @@ const EmptyMessages = mapOverObject(ErrorMessages, (accum, key) => {
 });
 
 export const PetForm = ({ backData }: FormProps) => {
-  const inputText = useRef<InputWithGetter<string>>(null);
-  const inputDate = useRef<InputWithGetter<string>>(null);
-  const inputSelect = useRef<InputWithGetter<string>>(null);
-  const inputSex = useRef<InputWithGetter<string>>(null);
-  const inputCheckbox = useRef<InputWithGetter<boolean>>(null);
-  const inputFile = useRef<InputWithGetter<FileList | null>>(null);
-  const formRef = useRef<HTMLFormElement>(null);
-
   const [errorMessages, setErrorMessages] = useState(EmptyMessages);
 
-  const handleSubmit: FormEventHandler<HTMLFormElement> = (event) => {
-    event.preventDefault();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm<PetFormData>();
 
-    const formData: PetFormData = {
-      name: inputText.current?.getUserAnswer() ?? '',
-      birth: inputDate.current?.getUserAnswer() ?? '',
-      type: inputSelect.current?.getUserAnswer() ?? '',
-      sex: inputSex.current?.getUserAnswer() ?? '',
-      isExperienced: inputCheckbox.current?.getUserAnswer() ?? false,
-      img: inputFile.current?.getUserAnswer() ?? null,
-    };
-
+  const onSubmit = (formData: PetFormData) => {
     if (checkFormIsValid(formData)) {
       backData(formData);
       setErrorMessages(EmptyMessages);
-      formRef.current?.reset();
+      reset();
     } else {
       setErrorMessages(getErrorMessages(formData));
     }
@@ -53,8 +43,7 @@ export const PetForm = ({ backData }: FormProps) => {
   return (
     <form
       name=""
-      ref={formRef}
-      onSubmit={handleSubmit}
+      onSubmit={handleSubmit(onSubmit)}
       className="flex flex-col gap-4 p-1 tiny:p-3 h-min w-min border-2 border-dotted border-yellow-600 rounded-lg
          justify-self-center lg:self-start"
     >
@@ -62,35 +51,35 @@ export const PetForm = ({ backData }: FormProps) => {
       <ReferencedInput
         label={"Pet's name"}
         inputType="text"
-        answerRef={inputText}
+        register={register('name')}
       />
       <FieldErrorMessage message={errorMessages.name} />
       <ReferencedInput
         label={"Pet's date of birth"}
         inputType="date"
-        answerRef={inputDate}
+        register={register('birth')}
       />
       <FieldErrorMessage message={errorMessages.birth} />
       <Select
         label={"Pet's type"}
-        answerRef={inputSelect}
+        register={register}
       />
       <FieldErrorMessage message={errorMessages.type} />
       <Switcher
         label={"Pet's sex"}
-        answerRef={inputSex}
+        register={register}
       />
       <FieldErrorMessage message={errorMessages.sex} />
       <ReferencedInput
         label={AGREE_LABEL}
         inputType="checkbox"
-        answerRef={inputCheckbox}
+        register={register('isExperienced')}
       />
       <FieldErrorMessage message={errorMessages.isExperienced} />
       <ReferencedInput
         label={UPLOAD_CAPTION}
         inputType="file"
-        answerRef={inputFile}
+        register={register('img')}
         accept="image/png, image/jpeg"
       />
       <FieldErrorMessage message={errorMessages.img} />

@@ -60,7 +60,7 @@ export const Creator = () => {
               name={name}
               birth={birth}
               type={type}
-              sex={sex}
+              sex={sex ?? ''}
               isExperienced={isExperienced}
               img={imgSrc}
               key={id}

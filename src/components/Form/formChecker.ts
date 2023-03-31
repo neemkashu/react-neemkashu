@@ -4,7 +4,7 @@ export type PetFormData = {
   name: string;
   birth: string;
   type: string;
-  sex: string;
+  sex: string | null;
   isExperienced: boolean;
   img: FileList | null;
 };
@@ -34,8 +34,8 @@ const getValidationVerdicts = (formData: PetFormData): FieldVerdicts => {
   const validations = {
     name: name !== '' && name[0].toLowerCase() !== name[0],
     birth: vilidateBirth(birth),
-    type: type !== '',
-    sex: sex !== '',
+    type: !!type,
+    sex: !!sex,
     isExperienced,
     img: !!img?.length,
   };

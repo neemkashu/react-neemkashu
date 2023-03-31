@@ -1,10 +1,10 @@
-import { useImperativeHandle, useRef } from 'react';
+import { UseFormRegister } from 'react-hook-form';
 import { v4 } from 'uuid';
-import { AnswerRef } from './ReferencedInput';
+import { PetFormData } from './formChecker';
 
 type SelectProps = {
   label: string;
-  answerRef: AnswerRef<string>;
+  register: UseFormRegister<PetFormData>;
 };
 
 export const AnimalTypes = {
@@ -18,21 +18,8 @@ const DEFAULT = '';
 
 const PLACE_HOLDER = '-- select the type --';
 
-export const Select = ({ label, answerRef }: SelectProps) => {
-  const selectRef = useRef<HTMLSelectElement>(null);
+export const Select = ({ label, register }: SelectProps) => {
   const uniqueId = v4();
-
-  useImperativeHandle(
-    answerRef,
-    () => {
-      return {
-        getUserAnswer() {
-          return selectRef.current?.value ?? '';
-        },
-      };
-    },
-    []
-  );
 
   const options = Object.values(AnimalTypes).map((animal) => {
     return (
@@ -49,9 +36,9 @@ export const Select = ({ label, answerRef }: SelectProps) => {
     <div className="flex justify-between">
       <label htmlFor={uniqueId}>{label}</label>
       <select
-        ref={selectRef}
         id={uniqueId}
         defaultValue={DEFAULT}
+        {...register('type')}
         className=" m-0 rounded border-2 border-solid border-yellow-900
          max-w-xs px-1 bg-white bg-no-repeat text-base
          duration-300 ease-in-out
