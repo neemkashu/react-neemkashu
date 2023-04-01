@@ -32,3 +32,5 @@ export const RoutesInfo: Routs = {
     header: Headers.NOT_FOUND,
   },
 };
+
+export const imageRegExp = /^.+\.(png|gif|jpe?g)$/i;

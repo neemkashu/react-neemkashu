@@ -1,3 +1,4 @@
+import { imageRegExp } from '../../utils/constants';
 import { mapOverObject } from '../../utils/helpers';
 
 export type PetFormData = {
@@ -27,6 +28,14 @@ const vilidateBirth = (birth: string): boolean => {
   const today = new Date();
   return date.getTime() < today.getTime();
 };
+const vilidateImage = (img: FileList | null) => {
+  const isEmptyList = !img?.length;
+  if (!isEmptyList) {
+    const isPicture = imageRegExp.test(img[0].name);
+    return isPicture;
+  }
+  return false;
+};
 
 export const getValidationVerdicts = (formData: PetFormData): FieldVerdicts => {
   const { name, birth, type, sex, img, isExperienced } = formData;
@@ -37,7 +46,7 @@ export const getValidationVerdicts = (formData: PetFormData): FieldVerdicts => {
     type: !!type,
     sex: !!sex,
     isExperienced,
-    img: !!img?.length,
+    img: vilidateImage(img),
   };
 
   return validations;

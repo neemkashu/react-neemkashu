@@ -10,11 +10,6 @@ import { Switcher } from './Switcher';
 
 type FormProps = { backData: (x: PetFormData) => void };
 
-const INVITE_CAPTION = 'Please fill out the form';
-const AGREE_LABEL = 'I have read and agree to the rules of the show';
-const UPLOAD_CAPTION = 'Upload a photo of the pet';
-const SUBMIT_CAPTION = 'Submit';
-
 const EmptyMessages = mapOverObject(ErrorMessages, (accum, key) => {
   accum[key] = '';
   return accum;
@@ -42,7 +37,7 @@ export const PetForm = ({ backData }: FormProps) => {
       className="flex flex-col gap-4 p-1 tiny:p-3 h-min w-min border-2 border-dotted border-yellow-600 rounded-lg
          justify-self-center lg:self-start"
     >
-      <h2 className="font-bold text-yellow-800 text-lg text-center">{INVITE_CAPTION}</h2>
+      <h2 className="font-bold text-yellow-800 text-lg text-center">Please fill out the form</h2>
       <ReferencedInput
         label={"Pet's name"}
         inputType="text"
@@ -66,13 +61,13 @@ export const PetForm = ({ backData }: FormProps) => {
       />
       <FieldErrorMessage message={errorMessages.sex} />
       <ReferencedInput
-        label={AGREE_LABEL}
+        label="I have read and agree to the rules of the show"
         inputType="checkbox"
         register={register('isExperienced')}
       />
       <FieldErrorMessage message={errorMessages.isExperienced} />
       <ReferencedInput
-        label={UPLOAD_CAPTION}
+        label="Upload a photo of the pet"
         inputType="file"
         register={register('img')}
         accept="image/png, image/jpeg"
@@ -86,7 +81,7 @@ export const PetForm = ({ backData }: FormProps) => {
           duration-300 ease-in-out"
         type="submit"
       >
-        {SUBMIT_CAPTION}
+        Submit
       </button>
     </form>
   );
