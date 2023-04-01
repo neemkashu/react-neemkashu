@@ -28,7 +28,7 @@ const vilidateBirth = (birth: string): boolean => {
   return date.getTime() < today.getTime();
 };
 
-const getValidationVerdicts = (formData: PetFormData): FieldVerdicts => {
+export const getValidationVerdicts = (formData: PetFormData): FieldVerdicts => {
   const { name, birth, type, sex, img, isExperienced } = formData;
 
   const validations = {
