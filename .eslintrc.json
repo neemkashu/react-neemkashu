@@ -1,6 +1,10 @@
 {
   "parser": "@typescript-eslint/parser",
   "extends": [
+    "airbnb",
+    "airbnb-typescript",
+    "airbnb-base",
+    "airbnb/hooks",
     "plugin:react/recommended",
     "plugin:@typescript-eslint/recommended",
     "prettier",
@@ -19,7 +23,8 @@
       "jsx": true
     },
     "ecmaVersion": "latest",
-    "sourceType": "module"
+    "sourceType": "module",
+    "project": "./tsconfig.json"
   },
   "plugins": [
     "@typescript-eslint",
@@ -27,7 +32,68 @@
     "prettier",
     "react-hooks"
   ],
+  "ignorePatterns": [
+    "vite.config.ts",
+    "setupTests.ts"
+  ],
   "rules": {
+    "import/no-extraneous-dependencies": [
+      "off",
+      {
+        "devDependencies": [
+          "**/*.test.js",
+          "**/*.spec.js"
+        ]
+      }
+    ],
+    "react/require-default-props": "off",
+    "react/no-unused-class-component-methods": "off",
+    "no-param-reassign": [
+      "error",
+      {
+        "props": true,
+        "ignorePropertyModificationsFor": [
+          "accum"
+        ]
+      }
+    ],
+    "react/jsx-props-no-spreading": [
+      0,
+      {
+        "exceptions": [
+          "CardGrid"
+        ]
+      }
+    ],
+    "import/extensions": [
+      "error",
+      "ignorePackages",
+      {
+        "js": "never",
+        "jsx": "never",
+        "ts": "never",
+        "tsx": "never"
+      }
+    ],
+    "react/jsx-filename-extension": [
+      1,
+      {
+        "extensions": [
+          ".tsx",
+          ".ts"
+        ]
+      }
+    ],
+    "import/prefer-default-export": [
+      "off"
+    ],
+    "react/function-component-definition": [
+      2,
+      {
+        "namedComponents": "arrow-function",
+        "unnamedComponents": "arrow-function"
+      }
+    ],
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn",
     "comma-dangle": [
@@ -59,6 +125,16 @@
     "react": {
       "pragma": "React",
       "version": "detect"
+    },
+    "import/resolver": {
+      "node": {
+        "extensions": [
+          ".js",
+          ".jsx",
+          ".ts",
+          ".tsx"
+        ]
+      }
     }
   }
 }

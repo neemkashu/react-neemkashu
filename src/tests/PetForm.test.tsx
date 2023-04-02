@@ -1,7 +1,7 @@
-import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { describe, expect, it, vi } from 'vitest';
-import { ErrorMessages, PetFormData } from '../components/Form/formChecker';
+import { render, screen } from '@testing-library/react';
+import { vi } from 'vitest';
+import { ErrorMessages } from '../components/Form/formChecker';
 import { PetForm } from '../components/Form/PetForm';
 import { AnimalTypes } from '../components/Form/Select';
 
@@ -18,11 +18,13 @@ export async function fillForm() {
   const inputSwitcher = screen.getByLabelText<HTMLInputElement>(/female/i);
   const inputFile = screen.getByLabelText<HTMLInputElement>(/photo/i);
 
-  inputName.value = 'Aname';
-  inputDate.value = '2013-12-12';
-  inputSelect.value = AnimalTypes.DOG;
-  inputSwitcher.checked = true;
-  inputCheckbox.checked = true;
+  const user = userEvent.setup();
+
+  await user.type(inputName, 'Aname');
+  await user.type(inputDate, '2020-04-01');
+  await user.selectOptions(inputSelect, AnimalTypes.DOG);
+  await user.click(inputCheckbox);
+  await user.click(inputSwitcher);
 
   const file = new File(['freddie'], './img/freddie.png', {
     type: 'image/png',
@@ -33,22 +35,20 @@ export async function fillForm() {
 
 describe('Form component', () => {
   it('Renders form', () => {
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const backDataMock = (x: PetFormData): void => {};
+    const backDataMock = vi.fn();
 
     render(<PetForm backData={backDataMock} />);
 
     expect(screen.getByRole('form')).toBeInTheDocument();
   });
   it('renders erros if submit is clicked when form is empty', async () => {
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const backDataMock = vi.fn((x: PetFormData): void => {});
+    const backDataMock = vi.fn();
 
     render(<PetForm backData={backDataMock} />);
 
     await submitForm();
 
-    screen.getByText(ErrorMessages.name);
+    screen.getByText('Write the name');
     screen.getByText(ErrorMessages.birth);
     screen.getByText(ErrorMessages.type);
     screen.getByText(ErrorMessages.sex);
@@ -56,9 +56,27 @@ describe('Form component', () => {
 
     expect(backDataMock).not.toBeCalled();
   });
+  it('renders another error for incorrect filling of name', async () => {
+    const backDataMock = vi.fn();
+    const user = userEvent.setup();
+
+    render(<PetForm backData={backDataMock} />);
+
+    await submitForm();
+
+    screen.getByText('Write the name');
+    expect(screen.queryByText(ErrorMessages.name)).not.toBeInTheDocument();
+
+    const inputName = screen.getByLabelText<HTMLInputElement>(/name/i);
+    await user.type(inputName, 'aname');
+
+    await submitForm();
+
+    expect(screen.queryByText('Write the name')).not.toBeInTheDocument();
+    expect(screen.queryByText(ErrorMessages.name)).toBeInTheDocument();
+  });
   it('clears error if form data is valid', async () => {
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const backDataMock = vi.fn((x: PetFormData): void => {});
+    const backDataMock = vi.fn();
 
     render(<PetForm backData={backDataMock} />);
 
@@ -67,6 +85,7 @@ describe('Form component', () => {
 
     await submitForm();
 
+    expect(screen.queryByText('Write the name')).not.toBeInTheDocument();
     expect(screen.queryByText(ErrorMessages.name)).not.toBeInTheDocument();
     expect(screen.queryByText(ErrorMessages.birth)).not.toBeInTheDocument();
     expect(screen.queryByText(ErrorMessages.type)).not.toBeInTheDocument();

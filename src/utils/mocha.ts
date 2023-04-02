@@ -115,6 +115,7 @@ export class LocalStorageMock {
   constructor() {
     this.store = {};
   }
+
   get length() {
     return Object.keys(this.store).length;
   }

@@ -7,12 +7,15 @@ import { PetCardTextContent } from '../components/PetCard';
 import { fillForm } from './PetForm.test';
 
 describe('Creator component', () => {
-  it('Renders form', () => {
+  beforeEach(() => {
+    URL.createObjectURL = vi.fn().mockReturnValue('mock-url');
     render(<Creator />);
+  });
+
+  it('Renders form', () => {
     expect(screen.getByRole('form')).toBeInTheDocument();
   });
   it('Does nothing if the form is incorrect', async () => {
-    render(<Creator />);
     const form = screen.getByRole('form', { name: '' });
 
     if (form instanceof HTMLFormElement) {
@@ -28,9 +31,6 @@ describe('Creator component', () => {
     }
   });
   it('Renders card if submit correct data', async () => {
-    URL.createObjectURL = vi.fn().mockReturnValue('mock-url');
-    URL.revokeObjectURL = vi.fn();
-    render(<Creator />);
     const submitButton = screen.getByRole('button');
     await fillForm();
 
@@ -41,10 +41,17 @@ describe('Creator component', () => {
     expect(petCard).toBeInTheDocument();
     expect(petCard).toHaveTextContent('Aname');
   });
+  it('Renders notification if submit correct data', async () => {
+    const submitButton = screen.getByRole('button');
+    await fillForm();
+
+    const user = userEvent.setup();
+    await user.click(submitButton);
+
+    const message = screen.queryByText(TEXT_CONTENT);
+    expect(message).toBeInTheDocument();
+  });
   it('Renders success message if submit correct data', async () => {
-    URL.createObjectURL = vi.fn().mockReturnValue('mock-url');
-    URL.revokeObjectURL = vi.fn();
-    render(<Creator />);
     const submitButton = screen.getByRole('button');
     await fillForm();
 
@@ -53,11 +60,12 @@ describe('Creator component', () => {
 
     await waitFor(() => {
       const startTime = Date.now();
-      while (Date.now() - startTime < 2000) {}
+      while (Date.now() - startTime < 2000) {
+        /* empty */
+      }
       return true;
     });
     const message = screen.queryByText(TEXT_CONTENT);
     expect(message).not.toBeInTheDocument();
-    vi.restoreAllMocks();
   });
 });

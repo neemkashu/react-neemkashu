@@ -1,9 +1,9 @@
-import { Component, createRef } from 'react';
-import { elementRef } from 'src/utils/types';
+import { UseFormRegisterReturn } from 'react-hook-form';
 import { v4 } from 'uuid';
 
 type SelectProps = {
   label: string;
+  register: UseFormRegisterReturn<'type'>;
 };
 
 export const AnimalTypes = {
@@ -15,51 +15,44 @@ export const AnimalTypes = {
 
 const DEFAULT = '';
 
-export class Select extends Component<SelectProps> {
-  selectRef: elementRef<HTMLSelectElement>;
+const PLACE_HOLDER = '-- select the type --';
 
-  constructor(props: SelectProps) {
-    super(props);
-    this.selectRef = createRef<HTMLSelectElement>();
-  }
-  getAnswer = () => {
-    return this.selectRef.current?.value ?? '';
-  };
-  render() {
-    const { label } = this.props;
-    const key = v4();
+export const Select = ({ label, register }: SelectProps) => {
+  const uniqueId = v4();
+
+  const options = Object.values(AnimalTypes).map((animal) => {
     return (
-      <div className="flex justify-between">
-        <label htmlFor={key}>{label}</label>
-        <select
-          ref={this.selectRef}
-          id={key}
-          defaultValue={DEFAULT}
-          className=" m-0 rounded border-2 border-solid border-yellow-900
+      <option
+        key={animal}
+        value={animal}
+      >
+        {animal}
+      </option>
+    );
+  });
+
+  return (
+    <div className="flex justify-between">
+      <label htmlFor={uniqueId}>{label}</label>
+      <select
+        id={uniqueId}
+        defaultValue={DEFAULT}
+        {...register}
+        className=" m-0 rounded border-2 border-solid border-yellow-900
          max-w-xs px-1 bg-white bg-no-repeat text-base
          duration-300 ease-in-out
         hover:shadow-neutral-400 hover:bg-amber-200
         focus-visible:bg-yellow-200 focus-visible:outline-0"
+      >
+        <option
+          disabled
+          value={DEFAULT}
+          className="bg-slate-100"
         >
-          <option
-            disabled
-            value={DEFAULT}
-            className="bg-slate-100"
-          >
-            {'-- select the type --'}
-          </option>
-          {Object.values(AnimalTypes).map((animal) => {
-            return (
-              <option
-                key={animal}
-                value={animal}
-              >
-                {animal}
-              </option>
-            );
-          })}
-        </select>
-      </div>
-    );
-  }
-}
+          {PLACE_HOLDER}
+        </option>
+        {options}
+      </select>
+    </div>
+  );
+};

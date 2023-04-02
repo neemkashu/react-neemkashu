@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
-import { pet, petMale } from '../utils/mocha';
 import { describe, expect, it } from 'vitest';
+import { pet, petMale } from '../utils/mocha';
 import { PetCard, PetCardTextContent } from '../components/PetCard';
 
 describe('Pet Card', () => {

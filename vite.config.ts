@@ -27,6 +27,7 @@ export default defineConfig({
         'src/utils/constants.ts',
         'src/utils/mocha.ts',
         'src/utils/types.ts',
+        'src/pages/*',
       ],
     },
   },
