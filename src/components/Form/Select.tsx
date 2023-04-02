@@ -1,10 +1,9 @@
-import { UseFormRegister } from 'react-hook-form';
+import { UseFormRegisterReturn } from 'react-hook-form';
 import { v4 } from 'uuid';
-import { PetFormData } from './formChecker';
 
 type SelectProps = {
   label: string;
-  register: UseFormRegister<PetFormData>;
+  register: UseFormRegisterReturn<'type'>;
 };
 
 export const AnimalTypes = {
@@ -38,7 +37,7 @@ export const Select = ({ label, register }: SelectProps) => {
       <select
         id={uniqueId}
         defaultValue={DEFAULT}
-        {...register('type')}
+        {...register}
         className=" m-0 rounded border-2 border-solid border-yellow-900
          max-w-xs px-1 bg-white bg-no-repeat text-base
          duration-300 ease-in-out

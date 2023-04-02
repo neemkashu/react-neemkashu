@@ -1,10 +1,9 @@
-import { UseFormRegister } from 'react-hook-form';
+import { UseFormRegisterReturn } from 'react-hook-form';
 import { ReferencedInput } from './ReferencedInput';
-import { PetFormData } from './formChecker';
 
 export type RefInputProps = {
   label: string;
-  register: UseFormRegister<PetFormData>;
+  register: UseFormRegisterReturn<'sex'>;
 };
 
 export const Switcher = ({ label, register }: RefInputProps) => {
@@ -14,7 +13,7 @@ export const Switcher = ({ label, register }: RefInputProps) => {
       key={option}
       value={option}
       inputType="radio"
-      register={register('sex')}
+      register={register}
     />
   ));
   return (

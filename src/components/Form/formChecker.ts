@@ -22,19 +22,22 @@ export const ErrorMessages: FieldMessages = {
   img: 'Choose a file with a picture',
 } as const;
 
-const vilidateBirth = (birth: string): boolean => {
+export const vilidateBirth = (birth: string): boolean => {
   if (!birth) return !!birth;
   const date = new Date(birth);
   const today = new Date();
   return date.getTime() < today.getTime();
 };
-const vilidateImage = (img: FileList | null) => {
+export const vilidateImage = (img: FileList | null) => {
   const isEmptyList = !img?.length;
   if (!isEmptyList) {
     const isPicture = imageRegExp.test(img[0].name);
     return isPicture;
   }
   return false;
+};
+export const validateName = (name: string): boolean => {
+  return name !== '' && name[0].toLowerCase() !== name[0];
 };
 
 export const getValidationVerdicts = (formData: PetFormData): FieldVerdicts => {

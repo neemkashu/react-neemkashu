@@ -1,33 +1,32 @@
 import { useForm } from 'react-hook-form';
-import { useState } from 'react';
 import { Select } from './Select';
 import { ReferencedInput } from './ReferencedInput';
-// import { Switcher } from './Switcher';
-import { checkFormIsValid, ErrorMessages, getErrorMessages, PetFormData } from './formChecker';
+import {
+  ErrorMessages,
+  PetFormData,
+  validateName,
+  vilidateBirth,
+  vilidateImage,
+} from './formChecker';
 import { FieldErrorMessage } from './FieldErrorMessage';
-import { mapOverObject } from '../../utils/helpers';
 import { Switcher } from './Switcher';
 
 type FormProps = { backData: (x: PetFormData) => void };
 
-const EmptyMessages = mapOverObject(ErrorMessages, (accum, key) => {
-  accum[key] = '';
-  return accum;
-});
-
 export const PetForm = ({ backData }: FormProps) => {
-  const [errorMessages, setErrorMessages] = useState(EmptyMessages);
-
-  const { register, handleSubmit, reset } = useForm<PetFormData>();
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm<PetFormData>({
+    mode: 'onSubmit',
+    reValidateMode: 'onSubmit',
+  });
 
   const onSubmit = (formData: PetFormData) => {
-    if (checkFormIsValid(formData)) {
-      backData(formData);
-      setErrorMessages(EmptyMessages);
-      reset();
-    } else {
-      setErrorMessages(getErrorMessages(formData));
-    }
+    backData(formData);
+    reset();
   };
 
   return (
@@ -41,38 +40,47 @@ export const PetForm = ({ backData }: FormProps) => {
       <ReferencedInput
         label={"Pet's name"}
         inputType="text"
-        register={register('name')}
+        register={register('name', {
+          required: 'Write the name',
+          validate: { capitalLetter: validateName },
+        })}
       />
-      <FieldErrorMessage message={errorMessages.name} />
+      <FieldErrorMessage message={errors.name?.message || (errors.name && ErrorMessages.name)} />
       <ReferencedInput
         label={"Pet's date of birth"}
         inputType="date"
-        register={register('birth')}
+        register={register('birth', {
+          validate: { isNotFuture: vilidateBirth },
+        })}
       />
-      <FieldErrorMessage message={errorMessages.birth} />
+      <FieldErrorMessage message={errors.birth && ErrorMessages.birth} />
       <Select
         label={"Pet's type"}
-        register={register}
+        register={register('type', { required: true })}
       />
-      <FieldErrorMessage message={errorMessages.type} />
+      <FieldErrorMessage message={errors.type && ErrorMessages.type} />
       <Switcher
         label={"Pet's sex"}
-        register={register}
+        register={register('sex', { required: true })}
       />
-      <FieldErrorMessage message={errorMessages.sex} />
+      <FieldErrorMessage message={errors.sex && ErrorMessages.sex} />
       <ReferencedInput
         label="I have read and agree to the rules of the show"
         inputType="checkbox"
-        register={register('isExperienced')}
+        register={register('isExperienced', { required: true })}
       />
-      <FieldErrorMessage message={errorMessages.isExperienced} />
+      <FieldErrorMessage message={errors.isExperienced && ErrorMessages.isExperienced} />
       <ReferencedInput
         label="Upload a photo of the pet"
         inputType="file"
-        register={register('img')}
+        register={register('img', {
+          validate: {
+            nonEmpty: vilidateImage,
+          },
+        })}
         accept="image/png, image/jpeg"
       />
-      <FieldErrorMessage message={errorMessages.img} />
+      <FieldErrorMessage message={errors.img && ErrorMessages.img} />
 
       <button
         className=" self-center

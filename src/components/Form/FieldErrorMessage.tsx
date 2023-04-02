@@ -1,5 +1,5 @@
 interface Message {
-  message: string;
+  message?: string;
 }
 
 export const FieldErrorMessage = ({ message }: Message): JSX.Element | null => {
