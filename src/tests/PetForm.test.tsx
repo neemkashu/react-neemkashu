@@ -48,13 +48,32 @@ describe('Form component', () => {
 
     await submitForm();
 
-    screen.getByText(ErrorMessages.name);
+    screen.getByText('Write the name');
     screen.getByText(ErrorMessages.birth);
     screen.getByText(ErrorMessages.type);
     screen.getByText(ErrorMessages.sex);
     screen.getByText(ErrorMessages.img);
 
     expect(backDataMock).not.toBeCalled();
+  });
+  it('renders another error for incorrect filling of name', async () => {
+    const backDataMock = vi.fn();
+    const user = userEvent.setup();
+
+    render(<PetForm backData={backDataMock} />);
+
+    await submitForm();
+
+    screen.getByText('Write the name');
+    expect(screen.queryByText(ErrorMessages.name)).not.toBeInTheDocument();
+
+    const inputName = screen.getByLabelText<HTMLInputElement>(/name/i);
+    await user.type(inputName, 'aname');
+
+    await submitForm();
+
+    expect(screen.queryByText('Write the name')).not.toBeInTheDocument();
+    expect(screen.queryByText(ErrorMessages.name)).toBeInTheDocument();
   });
   it('clears error if form data is valid', async () => {
     const backDataMock = vi.fn();
@@ -66,6 +85,7 @@ describe('Form component', () => {
 
     await submitForm();
 
+    expect(screen.queryByText('Write the name')).not.toBeInTheDocument();
     expect(screen.queryByText(ErrorMessages.name)).not.toBeInTheDocument();
     expect(screen.queryByText(ErrorMessages.birth)).not.toBeInTheDocument();
     expect(screen.queryByText(ErrorMessages.type)).not.toBeInTheDocument();
