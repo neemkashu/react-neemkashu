@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
 import userEvent from '@testing-library/user-event';
 import { LocalStorageMock } from '../utils/mocha';
-import { Search } from '../components/Search';
+import { Search } from '../components/Search/Search';
 import { SEARCH_KEY } from '../utils/constants';
 
 describe('Search', () => {
