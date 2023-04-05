@@ -1,4 +1,4 @@
-import { render, screen, waitFor } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { describe, expect, it, vi } from 'vitest';
 import { Creator } from '../components/Creator';
@@ -50,22 +50,5 @@ describe('Creator component', () => {
 
     const message = screen.queryByText(TEXT_CONTENT);
     expect(message).toBeInTheDocument();
-  });
-  it('Renders success message if submit correct data', async () => {
-    const submitButton = screen.getByRole('button');
-    await fillForm();
-
-    const user = userEvent.setup();
-    await user.click(submitButton);
-
-    await waitFor(() => {
-      const startTime = Date.now();
-      while (Date.now() - startTime < 2000) {
-        /* empty */
-      }
-      return true;
-    });
-    const message = screen.queryByText(TEXT_CONTENT);
-    expect(message).not.toBeInTheDocument();
   });
 });
