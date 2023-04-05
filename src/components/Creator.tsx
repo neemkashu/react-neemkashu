@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { FC, useState } from 'react';
 import { v4 } from 'uuid';
 import { CardGrid } from '../layouts/CardGrid';
 import { PetFormData } from './Form/formChecker';
@@ -16,15 +16,15 @@ const makeCard = (data: PetFormData): CardData => {
   return nextCard;
 };
 
-export const Creator = () => {
+export const Creator: FC<Record<string, never>> = () => {
   const [cards, setCards] = useState<CardData[]>([]);
   const [isPopShown, setIsPopShown] = useState(false);
 
-  const getCardInfo = (data: PetFormData) => {
+  const getCardInfo = (data: PetFormData): void => {
     setCards([makeCard(data), ...cards]);
     setIsPopShown(true);
   };
-  const hidePopup = () => setIsPopShown(false);
+  const hidePopup = (): void => setIsPopShown(false);
 
   return (
     <div className="grid grid-col-1 md:grid-cols-form w-auto justify-center gap-2 p-2">

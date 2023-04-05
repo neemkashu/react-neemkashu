@@ -1,11 +1,11 @@
-import { useEffect } from 'react';
+import { FC, useEffect } from 'react';
 import styles from '../../styles/PopMessage.module.css';
 
 export const NOTIFICATION_DURATION = 2000;
 
 export const TEXT_CONTENT = 'You have successfully created a card!';
 
-export const PopMessage = ({ hide }: { hide: () => void }) => {
+export const PopMessage: FC<{ hide: () => void }> = ({ hide }) => {
   useEffect((): (() => void) => {
     const timeoutId = setTimeout((): void => {
       hide();

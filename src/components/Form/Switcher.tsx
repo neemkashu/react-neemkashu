@@ -1,3 +1,4 @@
+import { FC } from 'react';
 import { UseFormRegisterReturn } from 'react-hook-form';
 import { ReferencedInput } from './ReferencedInput';
 
@@ -6,7 +7,7 @@ export type RefInputProps = {
   register: UseFormRegisterReturn<'sex'>;
 };
 
-export const Switcher = ({ label, register }: RefInputProps) => {
+export const Switcher: FC<RefInputProps> = ({ label, register }) => {
   const switchOptions = ['male', 'female'].map((option) => (
     <ReferencedInput
       label={option}

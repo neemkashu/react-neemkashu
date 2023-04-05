@@ -1,5 +1,6 @@
+import { FC } from 'react';
 import { About } from '../components/About';
 
-export const AboutPage = () => {
+export const AboutPage: FC<Record<string, never>> = () => {
   return <About />;
 };

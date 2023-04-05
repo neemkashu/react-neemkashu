@@ -1,11 +1,11 @@
-import { ChangeEventHandler, useEffect, useRef, useState } from 'react';
+import { ChangeEventHandler, FC, useEffect, useRef, useState } from 'react';
 import { SEARCH_KEY } from '../utils/constants';
 import styles from '../styles/Search.module.css';
 
 const getSearchFromStore = (): string => {
   return localStorage.getItem(SEARCH_KEY) ?? '';
 };
-export const Search = () => {
+export const Search: FC<Record<string, never>> = () => {
   const [searchValue, setSearchValue] = useState<string>(getSearchFromStore);
   const searchRef = useRef(searchValue);
 

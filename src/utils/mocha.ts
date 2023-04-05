@@ -116,7 +116,7 @@ export class LocalStorageMock {
     this.store = {};
   }
 
-  get length() {
+  get length(): number {
     return Object.keys(this.store).length;
   }
 
@@ -124,19 +124,19 @@ export class LocalStorageMock {
     return Object.keys(this.store)[index] ?? null;
   }
 
-  clear() {
+  clear(): void {
     this.store = {};
   }
 
-  getItem(key: string) {
+  getItem(key: string): string | null {
     return this.store[key] || null;
   }
 
-  setItem(key: string, value: string) {
+  setItem(key: string, value: string): void {
     this.store[key] = String(value);
   }
 
-  removeItem(key: string) {
+  removeItem(key: string): void {
     delete this.store[key];
   }
 }

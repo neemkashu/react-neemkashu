@@ -1,7 +1,8 @@
+import { FC } from 'react';
 import { NavigationBar } from './NavigationBar';
 import { useHeader } from './hooks';
 
-const Header = () => {
+const Header: FC<Record<string, never>> = () => {
   const title = useHeader();
 
   return (

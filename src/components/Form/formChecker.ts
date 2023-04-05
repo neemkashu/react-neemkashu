@@ -26,7 +26,7 @@ export const vilidateBirth = (birth: string): boolean => {
   const today = new Date();
   return date.getTime() < today.getTime();
 };
-export const vilidateImage = (img: FileList | null) => {
+export const vilidateImage = (img: FileList | null): boolean => {
   const isEmptyList = !img?.length;
   if (!isEmptyList) {
     const isPicture = imageRegExp.test(img[0].name);

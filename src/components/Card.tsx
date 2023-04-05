@@ -1,6 +1,7 @@
+import { FC } from 'react';
 import { CardInfo } from '../utils/mocha';
 
-export const Card = ({
+export const Card: FC<CardInfo> = ({
   img,
   name,
   type,
@@ -9,7 +10,7 @@ export const Card = ({
   inoculations,
   diseases,
   parasites,
-}: CardInfo) => {
+}) => {
   return (
     <div className="p-2 border-2 rounded-lg bg-white border-zinc-300 shadow-md shadow-zinc-400">
       <div className="flex flex-col gap-2 tiny:flex-row sm:flex-col lg:flex-row">
