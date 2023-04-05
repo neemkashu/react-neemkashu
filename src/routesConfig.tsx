@@ -6,6 +6,7 @@ import { MainPage } from './pages/MainPage';
 import { NotFoundPage } from './pages/NotFoundPage';
 
 import { RoutesInfo } from './utils/constants';
+import { photoLoader } from './components/Search/SearchController';
 
 export const routesConfig = [
   {
@@ -20,6 +21,7 @@ export const routesConfig = [
       {
         path: RoutesInfo.MAIN.path,
         element: <MainPage />,
+        loader: photoLoader,
       },
       {
         path: RoutesInfo.ABOUT.path,
