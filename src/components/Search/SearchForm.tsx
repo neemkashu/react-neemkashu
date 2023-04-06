@@ -1,5 +1,4 @@
-import { FC, useEffect } from 'react';
-import { useFetcher } from 'react-router-dom';
+import { FC } from 'react';
 import { useForm } from 'react-hook-form';
 import { FORM_SEARCH_KEY, Search } from './Search';
 
@@ -18,7 +17,7 @@ export const SearchForm: FC<Record<string, never>> = () => {
     <form
       name=""
       onSubmit={handleSubmit(onSubmit)}
-      className="flex flex-row flex-wrap jus tiny:flex-nowrap gap-2 p-1 tiny:p-3 h-min w-min
+      className="flex flex-row flex-wrap justify-center tiny:flex-nowrap gap-2 p-1 tiny:p-3 h-min w-min
       border-2 border-dotted border-yellow-600 rounded-lg
          justify-self-center lg:self-start"
     >

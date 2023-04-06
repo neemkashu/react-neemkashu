@@ -21,8 +21,8 @@ export interface FlickrData {
     photo: Photo[];
   };
   stat: string;
-  code?: string;
-  mesaage?: string;
+  code?: number;
+  message?: string;
 }
 const getMinDate = (): string => {
   const year = new Date();
@@ -42,8 +42,8 @@ const getRequestUrl = (): string => {
   params.append('min_taken_date', getMinDate());
   params.append('extras', ['description', 'owner_name', 'date_taken', 'tags', 'views'].join(','));
   params.append('sort', 'date-posted-desc');
-  params.append('nojsoncallback', '1');
   params.append('content_type', '0');
+  params.append('nojsoncallback', '1');
 
   url.search = params.toString();
   return url.toString();
@@ -52,18 +52,15 @@ const getRequestUrl = (): string => {
 export const getCards = async (): Promise<FlickrData | null> => {
   console.log('request!', getRequestUrl());
 
-  const response = await fetch(
-    `https://api.flickr.com/services/rest/?method=flickr.photos.search&
-    api_key=3d4be7ba62a9440ec1196e68fef6afbd
-    &text=mountain
-    &per_page=10
-    &extras=owner_name,description,tags
-    &format=json
-    &nojsoncallback=1`
-  );
+  const response = await fetch(getRequestUrl());
   if (!response.ok) {
-    throw new Error('Server side error!');
+    throw new Error('Sorry, Flickr error!');
   }
-  const data = await response.json();
+  const data: FlickrData = await response.json();
+
+  if (data.code) {
+    throw new Error(data.message);
+  }
+
   return data;
 };
