@@ -1,8 +1,8 @@
 const API_KEY = import.meta.env.VITE_API_KEY;
 
-// const LOCAL_URL = 'https://api.flickr.com/services/rest/';
+const LOCAL_URL = 'https://api.flickr.com/services/rest/';
 // const LOCAL_URL = 'http://localhost:3000/data';
-const LOCAL_URL = 'https://sore-plum-skunk-wig.cyclic.app/data';
+// const LOCAL_URL = 'https://sore-plum-skunk-wig.cyclic.app/data';
 
 export interface Photo {
   id: string;
@@ -37,14 +37,13 @@ const getMinDate = (): string => {
   return year.getTime().toString();
 };
 
-const getRequestUrl = (): string => {
+const getRequestUrl = (text?: string): string => {
   const url = new URL(LOCAL_URL);
   const params = new URLSearchParams();
   params.set('method', 'flickr.photos.search');
   params.append('api_key', API_KEY);
   params.append('format', 'json');
   params.append('per_page', '10');
-  params.append('tags', 'dog,cat');
   params.append('has_geo', 'true');
   params.append('min_taken_date', getMinDate());
   params.append('extras', ['description', 'owner_name', 'date_taken', 'tags', 'views'].join(','));
@@ -52,14 +51,16 @@ const getRequestUrl = (): string => {
   params.append('content_type', '0');
   params.append('nojsoncallback', '1');
 
+  if (text) params.append('text', text);
+
   url.search = params.toString();
   return url.toString();
 };
 
-export const getCards = async (): Promise<FlickrData | null> => {
-  console.log('request!', getRequestUrl());
+export const getCards = async (text?: string): Promise<FlickrData | null> => {
+  console.log('request!');
 
-  const response = await fetch(getRequestUrl());
+  const response = await fetch(getRequestUrl(text));
   if (!response.ok) {
     throw new Error('Sorry, Flickr error!');
   }

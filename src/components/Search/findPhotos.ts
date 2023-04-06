@@ -3,6 +3,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
+import { SEARCH_KEY } from '../../utils/constants';
 import { FORM_SEARCH_KEY } from './Search';
 
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
@@ -14,6 +15,10 @@ export const findPhotos = async ({ request }: { request: Record<string, any> }) 
 
   const formData = await request.formData();
 
-  console.log('ACTION request', formData.get(FORM_SEARCH_KEY));
-  return null;
+  const searchQuery = formData.get(FORM_SEARCH_KEY);
+
+  localStorage.setItem(SEARCH_KEY, searchQuery);
+
+  console.log('ACTION FIND PHOTOS', formData.get(FORM_SEARCH_KEY));
+  return searchQuery;
 };
