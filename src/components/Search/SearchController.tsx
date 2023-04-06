@@ -4,8 +4,9 @@ import { FlickrData, getCards } from '../../api/getCards';
 import { SearchForm } from './SearchForm';
 import { CardGrid } from '../../layouts/CardGrid';
 import { cards } from '../../utils/mocha';
-import { Card } from '../Card';
+import { Card } from '../Cards/Card';
 import { SearchError } from './SearchError';
+import { PhotoCardSmall } from '../Cards/PhotoCardSmall';
 
 export function photoLoader(): ReturnType<typeof defer> {
   const cardsRow = getCards();
@@ -30,17 +31,13 @@ export const SearchController: FC<Record<string, never>> = () => {
               resolve={data.cards}
               errorElement={<SearchError />}
             >
-              {(photos: FlickrData): JSX.Element[] => {
-                console.log('photos', `${photos}`);
-                return cards.map((card, index) => {
-                  const key = `${index}-${card.name}-${card.breed}`;
-                  return (
-                    <Card
-                      key={key}
-                      {...card}
-                    />
-                  );
-                });
+              {(dataRaw: FlickrData): JSX.Element[] => {
+                return dataRaw.photos.photo.map((card) => (
+                  <PhotoCardSmall
+                    key={card.id}
+                    {...card}
+                  />
+                ));
               }}
             </Await>
           </Suspense>

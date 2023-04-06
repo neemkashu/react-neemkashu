@@ -4,7 +4,7 @@ import { CardGrid } from '../layouts/CardGrid';
 import { PetFormData } from './Form/formChecker';
 import { PetForm } from './Form/PetForm';
 import { PopMessage } from './Form/PopMessage';
-import { PetCard } from './PetCard';
+import { PetCard } from './Cards/PetCard';
 
 type CardData = PetFormData & { id: string; imgSrc: string };
 const makeCard = (data: PetFormData): CardData => {

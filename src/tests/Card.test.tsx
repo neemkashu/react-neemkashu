@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
 import { CardInfo, cards } from '../utils/mocha';
-import { Card } from '../components/Card';
+import { Card } from '../components/Cards/Card';
 
 describe('Card', () => {
   it('Renders headers content', () => {

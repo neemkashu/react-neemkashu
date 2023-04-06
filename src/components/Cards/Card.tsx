@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { CardInfo } from '../utils/mocha';
+import { CardInfo } from '../../utils/mocha';
 
 export const Card: FC<CardInfo> = ({
   img,

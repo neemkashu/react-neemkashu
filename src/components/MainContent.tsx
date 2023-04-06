@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { cards } from '../utils/mocha';
 import { CardGrid } from '../layouts/CardGrid';
-import { Card } from './Card';
+import { Card } from './Cards/Card';
 import { SearchForm } from './Search/SearchForm';
 
 export const MainContent: FC<Record<string, never>> = () => {

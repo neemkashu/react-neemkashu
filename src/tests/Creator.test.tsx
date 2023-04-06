@@ -3,7 +3,7 @@ import userEvent from '@testing-library/user-event';
 import { describe, expect, it, vi } from 'vitest';
 import { Creator } from '../components/Creator';
 import { TEXT_CONTENT } from '../components/Form/PopMessage';
-import { PetCardTextContent } from '../components/PetCard';
+import { PetCardTextContent } from '../components/Cards/PetCard';
 import { fillForm } from './PetForm.test';
 
 describe('Creator component', () => {
