@@ -3,8 +3,6 @@ import { Await, defer, useLoaderData } from 'react-router-dom';
 import { FlickrData, getCards } from '../../api/getCards';
 import { SearchForm } from './SearchForm';
 import { CardGrid } from '../../layouts/CardGrid';
-import { cards } from '../../utils/mocha';
-import { Card } from '../Cards/Card';
 import { SearchError } from './SearchError';
 import { PhotoCardSmall } from '../Cards/PhotoCardSmall';
 

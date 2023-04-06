@@ -1,4 +1,5 @@
 import { FC } from 'react';
+import { useSubmit } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { FORM_SEARCH_KEY, Search } from './Search';
 
@@ -8,9 +9,10 @@ export const SearchForm: FC<Record<string, never>> = () => {
   const { register, handleSubmit } = useForm<SearchField>({
     mode: 'onSubmit',
   });
+  const submit = useSubmit();
 
   const onSubmit = (formData: SearchField): void => {
-    console.log('Search!', formData.searchText);
+    submit(formData, { method: 'post', action: '/' });
   };
 
   return (
