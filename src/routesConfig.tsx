@@ -1,4 +1,4 @@
-import { Navigate, Outlet } from 'react-router-dom';
+import { Navigate, Outlet, RouteObject } from 'react-router-dom';
 import Header from './components/Header';
 import { AboutPage } from './pages/AboutPage';
 import { FormPage } from './pages/FormPage';
@@ -9,7 +9,7 @@ import { RoutesInfo } from './utils/constants';
 import { photoLoader } from './components/Search/SearchController';
 import { findPhotos } from './components/Search/findPhotos';
 
-export const routesConfig = [
+export const routesConfig: RouteObject[] = [
   {
     path: RoutesInfo.MAIN.path,
     element: (

@@ -1,24 +1,21 @@
-/* eslint-disable guard-for-in */
-/* eslint-disable no-restricted-syntax */
-/* eslint-disable @typescript-eslint/no-unused-vars */
-/* eslint-disable @typescript-eslint/no-explicit-any */
-
+import { ActionFunctionArgs, IndexRouteObject } from 'react-router-dom';
 import { SEARCH_KEY } from '../../utils/constants';
 import { FORM_SEARCH_KEY } from './Search';
 
-/* eslint-disable @typescript-eslint/explicit-function-return-type */
-export const findPhotos = async ({ request }: { request: Record<string, any> }) => {
-  console.log('ACTION request', request);
+type Action = IndexRouteObject['action'];
 
-  // const data = await request.text();
-  // console.log('ACTION request data', data);
+const setToLocalStorage = (key: string, value: FormDataEntryValue | null): void => {
+  if (typeof value === 'string') {
+    localStorage.setItem(key, value);
+  }
+};
 
+export const findPhotos: Action = async ({ request }: ActionFunctionArgs) => {
   const formData = await request.formData();
 
   const searchQuery = formData.get(FORM_SEARCH_KEY);
 
-  localStorage.setItem(SEARCH_KEY, searchQuery);
+  setToLocalStorage(SEARCH_KEY, searchQuery ?? '');
 
-  console.log('ACTION FIND PHOTOS', formData.get(FORM_SEARCH_KEY));
   return searchQuery;
 };

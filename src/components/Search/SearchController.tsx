@@ -1,5 +1,5 @@
 import { FC, Suspense } from 'react';
-import { Await, defer, useActionData, useLoaderData } from 'react-router-dom';
+import { Await, defer, useLoaderData, LoaderFunction } from 'react-router-dom';
 import { FlickrData, getCards } from '../../api/getCards';
 import { SearchForm } from './SearchForm';
 import { CardGrid } from '../../layouts/CardGrid';
@@ -7,20 +7,17 @@ import { SearchError } from './SearchError';
 import { PhotoCardSmall } from '../Cards/PhotoCardSmall';
 import { SEARCH_KEY } from '../../utils/constants';
 
-export function photoLoader(): ReturnType<typeof defer> {
+export const photoLoader: LoaderFunction = () => {
   const searchQuery = localStorage.getItem(SEARCH_KEY);
   const cardsRow = getCards(searchQuery ?? '');
 
   return defer({
     cards: cardsRow,
   });
-}
+};
 
 export const SearchController: FC<Record<string, never>> = () => {
   const data = useLoaderData() as { cards: FlickrData | null };
-  // const searchedData = useActionData() as { cards: FlickrData | null };
-
-  console.log('CONTROLLER searchedData');
 
   return (
     <main>
