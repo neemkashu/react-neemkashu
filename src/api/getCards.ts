@@ -58,8 +58,6 @@ const getRequestUrl = (text?: string): string => {
 };
 
 export const getCards = async (text?: string): Promise<FlickrData | null> => {
-  console.log('request!');
-
   const response = await fetch(getRequestUrl(text));
   if (!response.ok) {
     throw new Error('Sorry, Flickr error!');

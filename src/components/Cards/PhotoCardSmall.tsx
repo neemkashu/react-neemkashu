@@ -14,13 +14,14 @@ export const PhotoCardSmall: FC<PhotoCard> = (card) => {
   const { ownername, title } = card;
   const { fading, Title } = useCard(title);
   const [showModal, setShowModal] = useState(false);
+  const source = getImageURL(card);
 
   return (
     <div className="p-2 border-2 rounded-lg bg-white border-zinc-300 shadow-md shadow-zinc-400 max-h-min">
       <div className="flex flex-col flex-wrap justify-evenly gap-2 tiny:flex-row sm:flex-col lg:flex-row">
         <img
-          className={`self-center max-w-64 h-64 hover:cursor-pointer ${fading}`}
-          src={getImageURL(card)}
+          className={`self-center max-w-64 h-64 ${fading}`}
+          src={source}
           alt=""
         />
         <div className="flex flex-col gap-1">
@@ -43,7 +44,13 @@ export const PhotoCardSmall: FC<PhotoCard> = (card) => {
         </div>
       </div>
       {showModal &&
-        createPortal(<ModalCard onClose={(): void => setShowModal(false)} />, document.body)}
+        createPortal(
+          <ModalCard
+            source={source}
+            onClose={(): void => setShowModal(false)}
+          />,
+          document.body
+        )}
     </div>
   );
 };
