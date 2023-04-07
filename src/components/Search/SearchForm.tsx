@@ -1,7 +1,8 @@
-import { FC } from 'react';
-import { useSubmit } from 'react-router-dom';
+import { FC, Suspense, useDeferredValue, useState } from 'react';
+import { Await, useActionData, useLoaderData, useNavigation, useSubmit } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { FORM_SEARCH_KEY, Search } from './Search';
+import { FlickrData } from '../../api/getCards';
 
 type SearchField = Record<typeof FORM_SEARCH_KEY, string>;
 
@@ -10,6 +11,8 @@ export const SearchForm: FC<Record<string, never>> = () => {
     mode: 'onSubmit',
   });
   const submit = useSubmit();
+  const navigation = useNavigation();
+  const isLoading = navigation.state;
 
   const onSubmit = (formData: SearchField): void => {
     submit(formData, { method: 'post', action: '/' });
@@ -24,6 +27,7 @@ export const SearchForm: FC<Record<string, never>> = () => {
          justify-self-center lg:self-start"
     >
       <Search register={register(FORM_SEARCH_KEY)} />
+      <p>{isLoading !== 'idle' ? 'Loading!' : 'End of loading!'}</p>
       <button
         className=" self-center
           bg-zinc-500 hover:bg-zinc-400 text-white font-bold

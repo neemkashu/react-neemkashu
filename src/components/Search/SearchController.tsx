@@ -4,10 +4,10 @@ import { FlickrData, getCards } from '../../api/getCards';
 import { SearchForm } from './SearchForm';
 import { CardGrid } from '../../layouts/CardGrid';
 import { SearchError } from './SearchError';
-import { PhotoCardSmall } from '../Cards/PhotoCardSmall';
 import { SEARCH_KEY } from '../../utils/constants';
+import { PhotoCards } from './PhotoCards';
 
-export const photoLoader: LoaderFunction = () => {
+export const photoLoader: LoaderFunction = async () => {
   const searchQuery = localStorage.getItem(SEARCH_KEY);
   const cardsRow = getCards(searchQuery ?? '');
 
@@ -31,14 +31,7 @@ export const SearchController: FC<Record<string, never>> = () => {
               resolve={data.cards}
               errorElement={<SearchError />}
             >
-              {(dataRaw: FlickrData): JSX.Element[] => {
-                return dataRaw.photos.photo.map((card) => (
-                  <PhotoCardSmall
-                    key={card.id}
-                    {...card}
-                  />
-                ));
-              }}
+              <PhotoCards />
             </Await>
           </Suspense>
         </CardGrid>

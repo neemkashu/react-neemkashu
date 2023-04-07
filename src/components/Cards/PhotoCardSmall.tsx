@@ -1,4 +1,5 @@
 import { FC } from 'react';
+import { useNavigation } from 'react-router-dom';
 import { Photo } from '../../api/getCards';
 
 type PhotoCard = Omit<Photo, 'description'>;
@@ -13,12 +14,17 @@ const PhotoCardCaptions = {
 } as const;
 
 export const PhotoCardSmall: FC<PhotoCard> = (card) => {
+  const navigation = useNavigation();
+  const isLoading = navigation.state;
+  const fading = isLoading !== 'idle' ? 'opacity-20' : 'opacity-100';
+
   const { ownername, title } = card;
+
   return (
     <div className="p-2 border-2 rounded-lg bg-white border-zinc-300 shadow-md shadow-zinc-400 max-h-min">
       <div className="flex flex-col flex-wrap justify-evenly gap-2 tiny:flex-row sm:flex-col lg:flex-row">
         <img
-          className="self-center max-w-64 h-64"
+          className={`self-center max-w-64 h-64 ${fading}`}
           src={getImageURL(card)}
           alt=""
         />
@@ -28,7 +34,8 @@ export const PhotoCardSmall: FC<PhotoCard> = (card) => {
               <strong>{PhotoCardCaptions.OWNER}:</strong> {ownername}
             </li>
             <li>
-              <strong>{PhotoCardCaptions.TITLE}:</strong> {title}
+              <strong>{title ? `${PhotoCardCaptions.TITLE}:` : 'No title provided'}</strong>{' '}
+              {title ?? ''}
             </li>
           </ul>
         </div>

@@ -45,7 +45,7 @@ const getRequestUrl = (text?: string): string => {
   params.append('format', 'json');
   params.append('per_page', '10');
   params.append('has_geo', 'true');
-  params.append('min_taken_date', getMinDate());
+  params.append('max_upload_date', getMinDate());
   params.append('extras', ['description', 'owner_name', 'date_taken', 'tags', 'views'].join(','));
   params.append('sort', 'date-posted-desc');
   params.append('content_type', '0');
