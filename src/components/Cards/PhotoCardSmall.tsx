@@ -1,6 +1,6 @@
 import { FC } from 'react';
-import { useNavigation } from 'react-router-dom';
 import { Photo } from '../../api/getCards';
+import { useCard } from './hooks';
 
 type PhotoCard = Omit<Photo, 'description'>;
 
@@ -8,17 +8,9 @@ const getImageURL = ({ id, secret, server, farm }: PhotoCard): string => {
   return `https://farm${farm}.staticflickr.com/${server}/${id}_${secret}.jpg`;
 };
 
-const PhotoCardCaptions = {
-  OWNER: 'Owner',
-  TITLE: 'Title',
-} as const;
-
 export const PhotoCardSmall: FC<PhotoCard> = (card) => {
-  const navigation = useNavigation();
-  const isLoading = navigation.state;
-  const fading = isLoading !== 'idle' ? 'opacity-20' : 'opacity-100';
-
   const { ownername, title } = card;
+  const { fading, Title } = useCard(title);
 
   return (
     <div className="p-2 border-2 rounded-lg bg-white border-zinc-300 shadow-md shadow-zinc-400 max-h-min">
@@ -31,12 +23,9 @@ export const PhotoCardSmall: FC<PhotoCard> = (card) => {
         <div className="flex flex-col gap-1">
           <ul>
             <li>
-              <strong>{PhotoCardCaptions.OWNER}:</strong> {ownername}
+              <strong>Owner:</strong> {ownername}
             </li>
-            <li>
-              <strong>{title ? `${PhotoCardCaptions.TITLE}:` : 'No title provided'}</strong>{' '}
-              {title ?? ''}
-            </li>
+            {Title}
           </ul>
         </div>
       </div>
