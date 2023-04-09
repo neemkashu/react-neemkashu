@@ -2,7 +2,7 @@ import { FC, MouseEventHandler, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { Photo, PhotoDetailed, getCard } from '../../api/getCards';
 import { useCard } from './hooks';
-import { ModalCard } from '../ModalCard';
+import { ModalCard } from '../Modal/ModalCard';
 
 type PhotoCard = Omit<Photo, 'description'>;
 
@@ -28,12 +28,14 @@ export const PhotoCardSmall: FC<PhotoCard> = (card) => {
 
   return (
     <div className="p-2 border-2 rounded-lg bg-white border-zinc-300 shadow-md shadow-zinc-400 max-h-min">
-      <div className="flex flex-col flex-wrap justify-evenly gap-2 tiny:flex-row sm:flex-col lg:flex-row">
-        <img
-          className={`self-center max-w-64 h-64 ${fading}`}
-          src={source}
-          alt=""
-        />
+      <div className="flex flex-col flex-wrap justify-evenly gap-2">
+        <div className="self-center w-full h-64 flex justify-center overflow-hidden">
+          <img
+            className={` max-w-none h-64 ${fading}`}
+            src={source}
+            alt=""
+          />
+        </div>
         <div className="flex flex-col gap-1">
           <button
             onClick={handleDetails}

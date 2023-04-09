@@ -100,9 +100,10 @@ const getRequestUrl = (text?: string): string => {
   params.append('per_page', '10');
   params.append('has_geo', 'true');
   params.append('max_upload_date', getMinDate());
-  params.append('extras', ['description', 'owner_name', 'date_taken', 'tags', 'views'].join(','));
+  params.append('extras', ['owner_name'].join(','));
   params.append('sort', 'date-posted-desc');
-  params.append('content_type', '0');
+  params.append('content_type', '1');
+  params.append('content_types', '0');
   params.append('nojsoncallback', '1');
 
   if (text) params.append('text', text);
