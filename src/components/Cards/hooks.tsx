@@ -29,11 +29,11 @@ export const useCardModal = ({
 
   const handleDetails: MouseEventHandler = async () => {
     setIsModalVisible(true);
-    setIsLoadingModal((prev) => !prev);
     if (!photoDetails) {
+      setIsLoadingModal(() => true);
       const photoData = await getCard(id);
       setPhotoDetails(photoData);
-      setIsLoadingModal((prev) => !prev);
+      setIsLoadingModal(() => false);
     }
   };
 
