@@ -1,20 +1,10 @@
 import { FC, Suspense } from 'react';
-import { Await, defer, useLoaderData, LoaderFunction } from 'react-router-dom';
-import { FlickrData, getCards } from '../../api/getCards';
+import { Await, useLoaderData } from 'react-router-dom';
+import { FlickrData } from '../../api/getCards';
 import { SearchForm } from './SearchForm';
 import { CardGrid } from '../../layouts/CardGrid';
 import { SearchError } from './SearchError';
-import { SEARCH_KEY } from '../../utils/constants';
 import { PhotoCards } from './PhotoCards';
-
-export const photoLoader: LoaderFunction = async () => {
-  const searchQuery = localStorage.getItem(SEARCH_KEY);
-  const cardsRow = getCards(searchQuery ?? '');
-
-  return defer({
-    cards: cardsRow,
-  });
-};
 
 export const SearchController: FC<Record<string, never>> = () => {
   const data = useLoaderData() as { cards: FlickrData | null };

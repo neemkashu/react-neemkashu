@@ -1,6 +1,6 @@
 import { ActionFunctionArgs, IndexRouteObject } from 'react-router-dom';
-import { SEARCH_KEY } from '../../utils/constants';
-import { FORM_SEARCH_KEY } from './Search';
+import { SEARCH_KEY } from '../utils/constants';
+import { FORM_SEARCH_KEY } from '../components/Search/Search';
 
 type Action = IndexRouteObject['action'];
 
