@@ -28,13 +28,10 @@ export const ModalCard: FC<{ onClose: () => void; source: string; details: Photo
           >
             ❌
           </button>
-          <div className="self-center w-auto flex justify-center">
-            <img
-              className=" max-h-64 max-w-64 sm:max-h-96 sm:max-w-96"
-              src={source}
-              alt=""
-            />
-          </div>
+          <div
+            className="self-center h-64 w-full bg-no-repeat bg-contain bg-center"
+            style={{ backgroundImage: `url(${source})` }}
+          />
           <div className="flex flex-col gap-1">
             <Details details={details} />
           </div>
