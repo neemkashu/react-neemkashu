@@ -1,7 +1,8 @@
+import { FC } from 'react';
 import { UseFormRegisterReturn } from 'react-hook-form';
 import { v4 } from 'uuid';
 
-type SelectProps = {
+type SelectForm = {
   label: string;
   register: UseFormRegisterReturn<'type'>;
 };
@@ -17,7 +18,7 @@ const DEFAULT = '';
 
 const PLACE_HOLDER = '-- select the type --';
 
-export const Select = ({ label, register }: SelectProps) => {
+export const Select: FC<SelectForm> = ({ label, register }) => {
   const uniqueId = v4();
 
   const options = Object.values(AnimalTypes).map((animal) => {

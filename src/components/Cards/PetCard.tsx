@@ -1,3 +1,6 @@
+import { FC } from 'react';
+import { ListItem } from '../Modal/ListItem';
+
 export const PetCardTextContent = {
   PET_BIRTH: 'Birth',
   PET_SHOW: 'Agrement recived',
@@ -12,7 +15,7 @@ interface PetInfo {
   img: string;
 }
 
-export const PetCard = ({ name, birth, type, sex, isExperienced, img }: PetInfo) => {
+export const PetCard: FC<PetInfo> = ({ name, birth, type, sex, isExperienced, img }) => {
   return (
     <div className="p-2 border-2 rounded-lg bg-white border-zinc-300 shadow-md shadow-zinc-400 max-h-min">
       <div className="flex flex-col flex-wrap justify-evenly gap-2 tiny:flex-row sm:flex-col lg:flex-row">
@@ -27,12 +30,8 @@ export const PetCard = ({ name, birth, type, sex, isExperienced, img }: PetInfo)
             {type} - {sex}
           </h3>
           <ul>
-            <li>
-              <strong>{PetCardTextContent.PET_BIRTH}:</strong> {birth}
-            </li>
-            <li>
-              <strong>{PetCardTextContent.PET_SHOW}:</strong> {isExperienced ? 'yes' : 'no'}
-            </li>
+            <ListItem caption={PetCardTextContent.PET_BIRTH}>{birth}</ListItem>
+            <ListItem caption="Agrement recived">{isExperienced ? 'yes' : 'no'}</ListItem>
           </ul>
         </div>
       </div>

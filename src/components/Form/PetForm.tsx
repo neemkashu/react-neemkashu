@@ -1,3 +1,4 @@
+import { FC } from 'react';
 import { useForm } from 'react-hook-form';
 import { Select } from './Select';
 import { ReferencedInput } from './ReferencedInput';
@@ -13,7 +14,7 @@ import { Switcher } from './Switcher';
 
 type FormProps = { backData: (x: PetFormData) => void };
 
-export const PetForm = ({ backData }: FormProps) => {
+export const PetForm: FC<FormProps> = ({ backData }) => {
   const {
     register,
     handleSubmit,
@@ -24,7 +25,7 @@ export const PetForm = ({ backData }: FormProps) => {
     reValidateMode: 'onSubmit',
   });
 
-  const onSubmit = (formData: PetFormData) => {
+  const onSubmit = (formData: PetFormData): void => {
     backData(formData);
     reset();
   };

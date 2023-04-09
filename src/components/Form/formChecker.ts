@@ -1,5 +1,4 @@
 import { imageRegExp } from '../../utils/constants';
-import { mapOverObject } from '../../utils/helpers';
 
 export type PetFormData = {
   name: string;
@@ -11,7 +10,6 @@ export type PetFormData = {
 };
 
 export type FieldMessages = Record<keyof PetFormData, string>;
-export type FieldVerdicts = Record<keyof PetFormData, boolean>;
 
 export const ErrorMessages: FieldMessages = {
   name: 'Enter a name with the first uppercase letter.',
@@ -28,7 +26,7 @@ export const vilidateBirth = (birth: string): boolean => {
   const today = new Date();
   return date.getTime() < today.getTime();
 };
-export const vilidateImage = (img: FileList | null) => {
+export const vilidateImage = (img: FileList | null): boolean => {
   const isEmptyList = !img?.length;
   if (!isEmptyList) {
     const isPicture = imageRegExp.test(img[0].name);
@@ -38,36 +36,4 @@ export const vilidateImage = (img: FileList | null) => {
 };
 export const validateName = (name: string): boolean => {
   return name !== '' && name[0].toLowerCase() !== name[0];
-};
-
-export const getValidationVerdicts = (formData: PetFormData): FieldVerdicts => {
-  const { name, birth, type, sex, img, isExperienced } = formData;
-
-  const validations = {
-    name: name !== '' && name[0].toLowerCase() !== name[0],
-    birth: vilidateBirth(birth),
-    type: !!type,
-    sex: !!sex,
-    isExperienced,
-    img: vilidateImage(img),
-  };
-
-  return validations;
-};
-
-export const checkFormIsValid = (formData: PetFormData): boolean => {
-  const validations = getValidationVerdicts(formData);
-
-  return Object.values(validations).every((validValue) => validValue);
-};
-
-export const getErrorMessages = (formData: PetFormData): FieldMessages => {
-  const validations = getValidationVerdicts(formData);
-
-  const messages = mapOverObject(ErrorMessages, (accum, keyErr) => {
-    accum[keyErr] = validations[keyErr] ? '' : ErrorMessages[keyErr];
-    return accum;
-  });
-
-  return messages;
 };

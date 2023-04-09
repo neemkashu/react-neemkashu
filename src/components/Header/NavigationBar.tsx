@@ -1,7 +1,8 @@
+import { FC } from 'react';
 import { NavLink } from 'react-router-dom';
 import { RoutesInfo } from '../../utils/constants';
 
-export const NavigationBar = () => {
+export const NavigationBar: FC<Record<string, never>> = () => {
   return (
     <nav className="flex justify-between py-2 px-1 sm:px-2">
       <ul className="flex flex-row gap-2 m-0 p-0">

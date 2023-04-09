@@ -5,12 +5,12 @@ import { ErrorMessages } from '../components/Form/formChecker';
 import { PetForm } from '../components/Form/PetForm';
 import { AnimalTypes } from '../components/Form/Select';
 
-export async function submitForm() {
+export async function submitForm(): Promise<void> {
   const submitButton = screen.getByRole('button');
   const user = userEvent.setup();
   await user.click(submitButton);
 }
-export async function fillForm() {
+export async function fillForm(): Promise<void> {
   const inputName = screen.getByLabelText<HTMLInputElement>(/name/i);
   const inputDate = screen.getByLabelText<HTMLInputElement>(/date/i);
   const inputSelect = screen.getByLabelText<HTMLSelectElement>(/type/i);

@@ -1,15 +1,23 @@
-import { ChangeEventHandler, useEffect, useRef, useState } from 'react';
-import { SEARCH_KEY } from '../utils/constants';
-import styles from '../styles/Search.module.css';
+import { ChangeEventHandler, FC, useEffect, useRef, useState } from 'react';
+import { UseFormRegisterReturn } from 'react-hook-form';
+import { SEARCH_KEY } from '../../utils/constants';
+import styles from '../../styles/Search.module.css';
+
+export const FORM_SEARCH_KEY = 'searchText';
 
 const getSearchFromStore = (): string => {
   return localStorage.getItem(SEARCH_KEY) ?? '';
 };
-export const Search = () => {
+export const Search: FC<{ register: UseFormRegisterReturn<typeof FORM_SEARCH_KEY> }> = ({
+  register,
+}) => {
   const [searchValue, setSearchValue] = useState<string>(getSearchFromStore);
   const searchRef = useRef(searchValue);
 
+  const { onChange } = register;
+
   const handleInput: ChangeEventHandler<HTMLInputElement> = (event) => {
+    onChange(event);
     const inputValue = event.target.value;
     setSearchValue(inputValue);
     searchRef.current = inputValue;
@@ -23,6 +31,7 @@ export const Search = () => {
 
   return (
     <input
+      {...register}
       onChange={handleInput}
       defaultValue={searchValue}
       className={`${styles.input} m-0 rounded-2xl border-2 border-solid border-yellow-900

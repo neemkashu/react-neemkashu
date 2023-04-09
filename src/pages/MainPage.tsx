@@ -1,5 +1,6 @@
-import { MainContent } from '../components/MainContent';
+import { FC } from 'react';
+import { SearchController } from '../components/Search/SearchController';
 
-export const MainPage = () => {
-  return <MainContent />;
+export const MainPage: FC<Record<string, never>> = () => {
+  return <SearchController />;
 };
