@@ -1,4 +1,5 @@
 import { FC } from 'react';
+import { ListItem } from '../Modal/ListItem';
 
 export const PetCardTextContent = {
   PET_BIRTH: 'Birth',
@@ -29,12 +30,8 @@ export const PetCard: FC<PetInfo> = ({ name, birth, type, sex, isExperienced, im
             {type} - {sex}
           </h3>
           <ul>
-            <li>
-              <strong>{PetCardTextContent.PET_BIRTH}:</strong> {birth}
-            </li>
-            <li>
-              <strong>{PetCardTextContent.PET_SHOW}:</strong> {isExperienced ? 'yes' : 'no'}
-            </li>
+            <ListItem caption={PetCardTextContent.PET_BIRTH}>{birth}</ListItem>
+            <ListItem caption="Agrement recived">{isExperienced ? 'yes' : 'no'}</ListItem>
           </ul>
         </div>
       </div>

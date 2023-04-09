@@ -12,14 +12,14 @@ export const SearchController: FC<Record<string, never>> = () => {
   return (
     <main>
       <div className="flex flex-col items-center gap-2 sm:p-3 p-2">
+        <div className="self-center sm:self-start flex flex-row items-center gap-2">
+          <SearchForm />
+        </div>
         <Suspense fallback={<p>Loading main page...</p>}>
           <Await
             resolve={data.cards}
             errorElement={<SearchError />}
           >
-            <div className="self-center sm:self-start flex flex-row items-center gap-2">
-              <SearchForm />
-            </div>
             <CardGrid>
               <PhotoCards />
             </CardGrid>
