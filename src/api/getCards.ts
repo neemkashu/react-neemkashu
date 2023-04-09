@@ -91,7 +91,7 @@ const getMinDate = (): string => {
   return year.getTime().toString();
 };
 
-const getRequestUrl = (text?: string): string => {
+export const getRequestUrl = (text?: string): string => {
   const url = new URL(LOCAL_URL);
   const params = new URLSearchParams();
   params.set('method', 'flickr.photos.search');
@@ -112,7 +112,7 @@ const getRequestUrl = (text?: string): string => {
   return url.toString();
 };
 
-const getPhotoRequest = (id: string): string => {
+export const getPhotoRequest = (id: string): string => {
   const url = new URL(LOCAL_URL);
   const params = new URLSearchParams();
 
@@ -142,6 +142,7 @@ export const getCard = async (id: string): Promise<PhotoDetailed | null> => {
 
 export const getCards = async (text?: string): Promise<FlickrData | null> => {
   const response = await fetch(getRequestUrl(text));
+
   if (!response.ok) {
     throw new Error('Sorry, Flickr error!');
   }

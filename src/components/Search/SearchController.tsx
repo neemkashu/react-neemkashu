@@ -17,7 +17,7 @@ export const SearchController: FC<Record<string, never>> = () => {
         </div>
         <Suspense fallback={<p>Loading main page...</p>}>
           <Await
-            resolve={data.cards}
+            resolve={data?.cards}
             errorElement={<SearchError />}
           >
             <CardGrid>

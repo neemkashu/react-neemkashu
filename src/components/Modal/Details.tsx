@@ -25,12 +25,12 @@ export const Details: FC<{ details: PhotoDetailed }> = ({ details }) => {
     <ul>
       <ListItem caption="Date">{date}</ListItem>
       <ListItem caption="Title">{cardTitle}</ListItem>
-      <ListItem caption="Description">
-        <p className=" min-h-0">{cardDescription}</p>
-      </ListItem>
       <ListItem caption="Location">{local}</ListItem>
       <ListItem caption="Tags">{tagList}</ListItem>
       <ListItem caption="Owner">{username}</ListItem>
+      <ListItem caption="Description">
+        <p className=" min-h-0">{cardDescription}</p>
+      </ListItem>
     </ul>
   );
 };
