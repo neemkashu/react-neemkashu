@@ -29,7 +29,7 @@ const routesMock: RouteObject[] = [
   },
 ];
 
-describe.skip('Photo Card', () => {
+describe('Photo Card', () => {
   beforeAll(() => server.listen());
   afterEach(() => server.resetHandlers());
   afterAll(() => server.close());
