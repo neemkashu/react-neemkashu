@@ -3,6 +3,7 @@ import { createPortal } from 'react-dom';
 import { Photo, PhotoDetailed, getCard } from '../../api/getCards';
 import { useCard } from './hooks';
 import { ModalCard } from '../Modal/ModalCard';
+import { ListItem } from '../Modal/ListItem';
 
 type PhotoCard = Omit<Photo, 'description'>;
 
@@ -12,7 +13,7 @@ const getImageURL = ({ id, secret, server, farm }: PhotoCard): string => {
 
 export const PhotoCardSmall: FC<PhotoCard> = (card) => {
   const { ownername, title, id } = card;
-  const { fading, Title } = useCard(title);
+  const { fading } = useCard();
   const [showModal, setShowModal] = useState(false);
   const [photoDetails, setPhotoDetails] = useState<PhotoDetailed | null>(null);
   const source = getImageURL(card);
@@ -22,7 +23,6 @@ export const PhotoCardSmall: FC<PhotoCard> = (card) => {
     if (!photoDetails) {
       const photoData = await getCard(id);
       setPhotoDetails(photoData);
-      console.log('fetch details', photoData);
     }
   };
 
@@ -48,10 +48,8 @@ export const PhotoCardSmall: FC<PhotoCard> = (card) => {
             Details
           </button>
           <ul>
-            <li>
-              <strong>Owner:</strong> {ownername}
-            </li>
-            {Title}
+            <ListItem caption="Owner">{ownername}</ListItem>
+            <ListItem caption="Title">{title}</ListItem>
           </ul>
         </div>
       </div>
