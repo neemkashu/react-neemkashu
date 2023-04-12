@@ -4,7 +4,7 @@ import { FlickrData } from '../../api/getCards';
 import { SearchForm } from './SearchForm';
 import { CardGrid } from '../../layouts/CardGrid';
 import { SearchError } from './SearchError';
-import { PhotoCards } from './PhotoCards';
+import { PhotoCards } from '../Cards/PhotoCards';
 
 export const SearchController: FC<Record<string, never>> = () => {
   const data = useLoaderData() as { cards: FlickrData | null };

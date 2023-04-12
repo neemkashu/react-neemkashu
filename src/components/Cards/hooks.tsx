@@ -44,7 +44,7 @@ export const useCardModal = ({
         value={id}
         handler={handleDetails}
       >
-        {isLoadingModal ? <Spinner size="20px" /> : 'Details'}
+        {isLoadingModal ? <Spinner /> : 'Details'}
       </ButtonSubmit>
     ),
     photoDetails,

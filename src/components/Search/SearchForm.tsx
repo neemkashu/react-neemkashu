@@ -27,9 +27,7 @@ export const SearchForm: FC<Record<string, never>> = () => {
          justify-self-center lg:self-start"
     >
       <Search register={register(FORM_SEARCH_KEY)} />
-      <ButtonSubmit disabled={isLoading}>
-        {isLoading ? <Spinner size="20px" /> : 'Search'}
-      </ButtonSubmit>
+      <ButtonSubmit disabled={isLoading}>{isLoading ? <Spinner /> : 'Search'}</ButtonSubmit>
     </form>
   );
 };

@@ -7,21 +7,16 @@ module.exports = {
         form: 'auto 1fr',
       },
     },
+    minWidth: {
+      '1/2': '50%',
+    },
     screens: {
       tiny: '480px',
       sm: '640px',
-      // => @media (min-width: 640px) { ... }
-
       md: '768px',
-      // => @media (min-width: 768px) { ... }
-
       lg: '1024px',
-      // => @media (min-width: 1024px) { ... }
-
       xl: '1280px',
-      // => @media (min-width: 1280px) { ... }
       xxl: '1550px',
-      // => @media (min-width: 1280px) { ... }
     },
   },
   plugins: [],
