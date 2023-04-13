@@ -1,5 +1,5 @@
 import { rest } from 'msw';
-import { getPhotoRequest, getRequestUrl, LOCAL_URL } from '../api/getCards';
+import { LOCAL_URL } from '../api/getCards';
 
 const photoResponse = {
   photo: {
@@ -413,5 +413,6 @@ export const handlers = [
     if (flickrMethod === 'flickr.photos.getInfo') {
       return res(ctx.status(200), ctx.json(photoResponse));
     }
+    throw new Error('no such flickrMethod');
   }),
 ];

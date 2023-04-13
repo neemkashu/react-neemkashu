@@ -1,8 +1,8 @@
 const API_KEY = import.meta.env.VITE_API_KEY;
 
-export const LOCAL_URL = 'https://api.flickr.com/services/rest/';
+// export const LOCAL_URL = 'https://api.flickr.com/services/rest/';
 // const LOCAL_URL = 'http://localhost:3000/data';
-// const LOCAL_URL = 'https://sore-plum-skunk-wig.cyclic.app/data';
+export const LOCAL_URL = 'https://sore-plum-skunk-wig.cyclic.app/data';
 
 interface Owner {
   username: string;

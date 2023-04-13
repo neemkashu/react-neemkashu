@@ -8,8 +8,7 @@ import { PhotoCards } from '../Cards/PhotoCards';
 
 export const SearchController: FC<Record<string, never>> = () => {
   const data = useLoaderData() as { cards: FlickrData | null };
-  console.debug('==========DATA', data);
-  console.log('==========DATA', data);
+
   return (
     <main>
       <div className="flex flex-col items-center gap-2 sm:p-3 p-2">

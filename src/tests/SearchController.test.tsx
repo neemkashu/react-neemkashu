@@ -6,7 +6,7 @@ import { RoutesInfo } from '../utils/constants';
 import { handlers } from '../mocks/apiHandlers';
 import { SearchController } from '../components/Search/SearchController';
 import { LocalStorageMock } from '../utils/mocha';
-import { photoLoader } from "../router/loaders";
+import { photoLoader } from '../router/loaders';
 
 const server = setupServer(...handlers);
 

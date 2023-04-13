@@ -1,6 +1,6 @@
 import { useState, MouseEventHandler } from 'react';
 import { useNavigation } from 'react-router-dom';
-import { ButtonSubmit } from '../../Buttons/Buttons';
+import { ButtonSubmit } from '../Buttons/Buttons';
 import { Spinner } from '../Spinner';
 import { PhotoDetailed, getCard } from '../../api/getCards';
 

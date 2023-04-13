@@ -3,7 +3,7 @@ import { useNavigation, useSubmit } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { FORM_SEARCH_KEY, Search } from './Search';
 import { Spinner } from '../Spinner';
-import { ButtonSubmit } from '../../Buttons/Buttons';
+import { ButtonSubmit } from '../Buttons/Buttons';
 
 type SearchField = Record<typeof FORM_SEARCH_KEY, string>;
 
