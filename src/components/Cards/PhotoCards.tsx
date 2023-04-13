@@ -1,12 +1,15 @@
-import { useAsyncValue } from 'react-router-dom';
-import { FlickrData } from '../../api/getCards';
 import { PhotoCardSmall } from './PhotoCardSmall';
+import { useGetPhotosByQuery } from '../../api/flickrApi';
+import { useSelector } from 'react-redux';
+import { selectSearchText } from '../../store';
 
 export const PhotoCards = (): JSX.Element => {
-  const dataRaw = useAsyncValue() as FlickrData | null;
-  if (!dataRaw) return <p>No photos!</p>;
+  const searchText = useSelector(selectSearchText);
+  const { data } = useGetPhotosByQuery(searchText);
 
-  const cards = dataRaw.photos.photo;
+  if (!data) return <p>No photos!</p>;
+
+  const cards = data.photos.photo;
 
   if (!cards.length) return <p>Sorry, no results for your request!</p>;
 

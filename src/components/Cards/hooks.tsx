@@ -1,17 +1,7 @@
 import { useState, MouseEventHandler } from 'react';
-import { useNavigation } from 'react-router-dom';
 import { ButtonSubmit } from '../Buttons/Buttons';
 import { Spinner } from '../Spinner';
 import { PhotoDetailed, getCard } from '../../api/getCards';
-
-export const useFading = (): {
-  fading: string;
-} => {
-  const navigation = useNavigation();
-  const isLoading = navigation.state;
-  const fading = isLoading !== 'idle' ? 'opacity-20' : 'opacity-100';
-  return { fading };
-};
 
 export const useCardModal = ({
   id,

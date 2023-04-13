@@ -1,9 +1,12 @@
 import { FC } from 'react';
 import { createPortal } from 'react-dom';
 import { Photo } from '../../api/getCards';
-import { useCardModal, useFading } from './hooks';
+import { useCardModal } from './hooks';
 import { ModalCard } from '../Modal/ModalCard';
 import { ListItem } from '../Modal/ListItem';
+import { useSelector } from 'react-redux';
+import { selectSearchText } from '../../store';
+import { useGetPhotosByQuery } from '../../api/flickrApi';
 
 type PhotoCard = Omit<Photo, 'description'>;
 
@@ -13,7 +16,9 @@ const getImageURL = ({ id, secret, server, farm }: PhotoCard): string => {
 
 export const PhotoCardSmall: FC<PhotoCard> = (card) => {
   const { ownername, title, id } = card;
-  const { fading } = useFading();
+  const searchText = useSelector(selectSearchText);
+  const { isFetching } = useGetPhotosByQuery(searchText);
+  const fading = isFetching ? 'opacity-20' : 'opacity-100';
   const source = getImageURL(card);
 
   const { button, photoDetails, isModalVisible, modalHandler } = useCardModal({ id });

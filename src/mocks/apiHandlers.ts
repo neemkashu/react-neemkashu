@@ -1,5 +1,5 @@
 import { rest } from 'msw';
-import { LOCAL_URL } from '../api/getCards';
+import { PROXY_URL } from '../api/getCards';
 
 const photoResponse = {
   photo: {
@@ -405,7 +405,7 @@ const searchResponse = {
 };
 
 export const handlers = [
-  rest.get(LOCAL_URL, (req, res, ctx) => {
+  rest.get(PROXY_URL, (req, res, ctx) => {
     const flickrMethod = req.url.searchParams.get('method');
     if (flickrMethod === 'flickr.photos.search') {
       return res(ctx.status(200), ctx.json(searchResponse));

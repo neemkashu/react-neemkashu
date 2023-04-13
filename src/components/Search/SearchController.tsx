@@ -1,13 +1,15 @@
-import { FC, Suspense } from 'react';
-import { Await, useLoaderData } from 'react-router-dom';
-import { FlickrData } from '../../api/getCards';
+import { FC } from 'react';
+import { useSelector } from 'react-redux';
 import { SearchForm } from './SearchForm';
 import { CardGrid } from '../../layouts/CardGrid';
 import { SearchError } from './SearchError';
 import { PhotoCards } from '../Cards/PhotoCards';
+import { useGetPhotosByQuery } from '../../api/flickrApi';
+import { selectSearchText } from '../../store';
 
 export const SearchController: FC<Record<string, never>> = () => {
-  const data = useLoaderData() as { cards: FlickrData | null };
+  const searchText = useSelector(selectSearchText);
+  const { isError, isLoading } = useGetPhotosByQuery(searchText);
 
   return (
     <main>
@@ -15,16 +17,13 @@ export const SearchController: FC<Record<string, never>> = () => {
         <div className="self-center sm:self-start flex flex-row items-center gap-2">
           <SearchForm />
         </div>
-        <Suspense fallback={<p>Loading main page...</p>}>
-          <Await
-            resolve={data?.cards}
-            errorElement={<SearchError />}
-          >
-            <CardGrid>
-              <PhotoCards />
-            </CardGrid>
-          </Await>
-        </Suspense>
+        {isError ? <SearchError /> : null}
+        {isLoading ? <p>Loading main page...</p> : null}
+        {!isError && !isLoading ? (
+          <CardGrid>
+            <PhotoCards />
+          </CardGrid>
+        ) : null}
       </div>
     </main>
   );

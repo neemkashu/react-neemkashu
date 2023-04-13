@@ -1,8 +1,4 @@
-const API_KEY = import.meta.env.VITE_API_KEY;
-
-// export const LOCAL_URL = 'https://api.flickr.com/services/rest/';
-// const LOCAL_URL = 'http://localhost:3000/data';
-export const LOCAL_URL = 'https://sore-plum-skunk-wig.cyclic.app/data';
+export const PROXY_URL = 'https://sore-plum-skunk-wig.cyclic.app/';
 
 interface Owner {
   username: string;
@@ -90,12 +86,26 @@ const getMinDate = (): string => {
   year.setFullYear(2020);
   return year.getTime().toString();
 };
-
-export const getRequestUrl = (text?: string): string => {
-  const url = new URL(LOCAL_URL);
+export const getRequestParams = (text?: string): string => {
   const params = new URLSearchParams();
   params.set('method', 'flickr.photos.search');
-  params.append('api_key', API_KEY);
+  params.append('format', 'json');
+  params.append('per_page', '10');
+  params.append('has_geo', 'true');
+  params.append('max_upload_date', getMinDate());
+  params.append('extras', ['owner_name'].join(','));
+  params.append('sort', 'date-posted-desc');
+  params.append('content_type', '1');
+  params.append('content_types', '0');
+  params.append('nojsoncallback', '1');
+
+  if (text) params.append('text', text);
+  return params.toString();
+};
+export const getRequestUrl = (text?: string): string => {
+  const url = new URL(PROXY_URL);
+  const params = new URLSearchParams();
+  params.set('method', 'flickr.photos.search');
   params.append('format', 'json');
   params.append('per_page', '10');
   params.append('has_geo', 'true');
@@ -113,11 +123,10 @@ export const getRequestUrl = (text?: string): string => {
 };
 
 export const getPhotoRequest = (id: string): string => {
-  const url = new URL(LOCAL_URL);
+  const url = new URL(PROXY_URL);
   const params = new URLSearchParams();
 
   params.set('method', 'flickr.photos.getInfo');
-  params.append('api_key', API_KEY);
   params.append('format', 'json');
   params.append('photo_id', id);
   params.append('nojsoncallback', '1');

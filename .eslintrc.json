@@ -53,7 +53,7 @@
       {
         "props": true,
         "ignorePropertyModificationsFor": [
-          "accum"
+          "accum", "state"
         ]
       }
     ],

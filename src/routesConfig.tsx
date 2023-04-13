@@ -22,8 +22,6 @@ export const routesConfig: RouteObject[] = [
       {
         path: RoutesInfo.MAIN.path,
         element: <MainPage />,
-        loader: photoLoader,
-        action: findPhotos,
       },
       {
         path: RoutesInfo.ABOUT.path,
