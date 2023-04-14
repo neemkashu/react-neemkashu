@@ -2,11 +2,13 @@ import { configureStore } from '@reduxjs/toolkit';
 import { setupListeners } from '@reduxjs/toolkit/query';
 import { flickrApi } from './api/flickrApi';
 import { photoSlice } from './photoSlice';
+import { formSlice } from './components/Form/formSlice';
 
 export const store = configureStore({
   reducer: {
     [flickrApi.reducerPath]: flickrApi.reducer,
     photo: photoSlice.reducer,
+    form: formSlice.reducer,
   },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(flickrApi.middleware),
 });
