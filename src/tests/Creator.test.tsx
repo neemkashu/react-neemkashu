@@ -5,11 +5,17 @@ import { Creator } from '../components/Creator';
 import { TEXT_CONTENT } from '../components/Form/PopMessage';
 import { PetCardTextContent } from '../components/Cards/PetCard';
 import { fillForm } from './PetForm.test';
+import { store } from '../store';
+import { Provider } from 'react-redux';
 
 describe('Creator component', () => {
   beforeEach(() => {
     URL.createObjectURL = vi.fn().mockReturnValue('mock-url');
-    render(<Creator />);
+    render(
+      <Provider store={store}>
+        <Creator />
+      </Provider>
+    );
   });
 
   it('Renders form', () => {

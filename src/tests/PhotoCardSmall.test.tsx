@@ -6,6 +6,9 @@ import { describe, expect, it } from 'vitest';
 import { PhotoCardSmall } from '../components/Cards/PhotoCardSmall';
 import { RoutesInfo } from '../utils/constants';
 import { handlers } from '../mocks/apiHandlers';
+import { store } from '../store';
+import { PetForm } from '../components/Form/PetForm';
+import { Provider } from 'react-redux';
 
 const server = setupServer(...handlers);
 
@@ -25,7 +28,12 @@ const photo = {
 const routesMock: RouteObject[] = [
   {
     path: RoutesInfo.MAIN.path,
-    element: <PhotoCardSmall {...photo} />,
+    element: (
+      <Provider store={store}>
+        {' '}
+        <PhotoCardSmall {...photo} />{' '}
+      </Provider>
+    ),
   },
 ];
 

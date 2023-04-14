@@ -7,13 +7,20 @@ import { handlers } from '../mocks/apiHandlers';
 import { SearchController } from '../components/Search/SearchController';
 import { LocalStorageMock } from '../utils/mocha';
 import { photoLoader } from '../router/loaders';
+import { store } from '../store';
+import { Provider } from 'react-redux';
 
 const server = setupServer(...handlers);
 
 const routesMock: RouteObject[] = [
   {
     path: RoutesInfo.MAIN.path,
-    element: <SearchController />,
+    element: (
+      <Provider store={store}>
+        {' '}
+        <SearchController />{' '}
+      </Provider>
+    ),
     loader: photoLoader,
   },
 ];
