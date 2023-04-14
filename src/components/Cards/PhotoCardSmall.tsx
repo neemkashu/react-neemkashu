@@ -1,10 +1,10 @@
 import { FC } from 'react';
 import { createPortal } from 'react-dom';
+import { useSelector } from 'react-redux';
 import { Photo } from '../../api/getCards';
 import { useCardModal } from './hooks';
 import { ModalCard } from '../Modal/ModalCard';
 import { ListItem } from '../Modal/ListItem';
-import { useSelector } from 'react-redux';
 import { selectSearchText } from '../../store';
 import { useGetPhotosByQuery } from '../../api/flickrApi';
 

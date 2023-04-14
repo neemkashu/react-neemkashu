@@ -1,6 +1,6 @@
+import { useSelector } from 'react-redux';
 import { PhotoCardSmall } from './PhotoCardSmall';
 import { useGetPhotosByQuery } from '../../api/flickrApi';
-import { useSelector } from 'react-redux';
 import { selectSearchText } from '../../store';
 
 export const PhotoCards = (): JSX.Element => {
