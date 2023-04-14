@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { PhotoDetailed } from '../../api/getCards';
+import { PhotoDetailed } from '../../api/types';
 import { Details } from './Details';
 
 export const ModalCard: FC<{ onClose: () => void; source: string; details: PhotoDetailed }> = ({

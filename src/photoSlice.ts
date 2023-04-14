@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { SEARCH_KEY } from './utils/constants';
-import { Photo } from './api/getCards';
+import { Photo } from './api/types';
 
 interface PhotoSliceState {
   searchText: string;

@@ -2,7 +2,8 @@ import { configureStore } from '@reduxjs/toolkit';
 import { setupListeners } from '@reduxjs/toolkit/query';
 import { flickrApi } from './api/flickrApi';
 import { photoSlice } from './photoSlice';
-import { CardData, formSlice } from './components/Form/formSlice';
+import { formSlice } from './components/Form/formSlice';
+import { SerializableCardData } from './components/Form/types';
 
 export const store = configureStore({
   reducer: {
@@ -16,7 +17,7 @@ export const store = configureStore({
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
 type SearchSelector = (state: RootState) => string;
-type FormCardsSelector = (state: RootState) => CardData[];
+type FormCardsSelector = (state: RootState) => SerializableCardData[];
 
 setupListeners(store.dispatch);
 

@@ -1,7 +1,8 @@
 import { useState, MouseEventHandler } from 'react';
 import { ButtonSubmit } from '../Buttons/Buttons';
 import { Spinner } from '../Spinner';
-import { PhotoDetailed, getCard } from '../../api/getCards';
+import { getCard } from '../../api/getCards';
+import { PhotoDetailed } from '../../api/types';
 
 export const useCardModal = ({
   id,

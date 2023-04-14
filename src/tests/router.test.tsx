@@ -1,10 +1,10 @@
 import { RouterProvider, createMemoryRouter } from 'react-router-dom';
 import { describe, expect, it } from 'vitest';
+import { Provider } from 'react-redux';
 import { render, screen } from '@testing-library/react';
 import { routesConfig } from '../routesConfig';
 import { RoutesInfo } from '../utils/constants';
 import { store } from '../store';
-import { Provider } from 'react-redux';
 
 describe('Router', () => {
   it('Renders about page', () => {

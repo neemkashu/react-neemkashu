@@ -1,12 +1,12 @@
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import { Provider } from 'react-redux';
 import { describe, expect, it, vi } from 'vitest';
 import { Creator } from '../components/Creator';
 import { TEXT_CONTENT } from '../components/Form/PopMessage';
 import { PetCardTextContent } from '../components/Cards/PetCard';
 import { fillForm } from './PetForm.test';
 import { store } from '../store';
-import { Provider } from 'react-redux';
 
 describe('Creator component', () => {
   beforeEach(() => {

@@ -1,5 +1,6 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { FlickrData, getRequestParams, PROXY_URL } from './getCards';
+import { getRequestParams, PROXY_URL } from './getCards';
+import { FlickrData } from './types';
 
 export const flickrApi = createApi({
   reducerPath: 'flickrApi',
