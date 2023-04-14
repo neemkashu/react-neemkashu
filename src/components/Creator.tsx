@@ -1,27 +1,32 @@
 import { FC, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { v4 } from 'uuid';
 import { CardGrid } from '../layouts/CardGrid';
 import { PetFormData } from './Form/formChecker';
 import { PetForm } from './Form/PetForm';
 import { PopMessage } from './Form/PopMessage';
 import { PetCard } from './Cards/PetCard';
+import { addFormCard } from './Form/formSlice';
+import { selectFormCards } from '../store';
+import { SerializableCardData } from './Form/types';
 
-type CardData = PetFormData & { id: string; imgSrc: string };
-const makeCard = (data: PetFormData): CardData => {
-  const nextCard: CardData = {
+export const makeCard = (data: PetFormData): SerializableCardData => {
+  const newCard: SerializableCardData = {
     ...data,
     imgSrc: (data.img && URL.createObjectURL(data.img[0])) ?? '',
     id: v4(),
   };
-  return nextCard;
+  delete newCard.img;
+  return newCard;
 };
-
 export const Creator: FC<Record<string, never>> = () => {
-  const [cards, setCards] = useState<CardData[]>([]);
+  const cards = useSelector(selectFormCards);
+  const dispatch = useDispatch();
   const [isPopShown, setIsPopShown] = useState(false);
 
   const getCardInfo = (data: PetFormData): void => {
-    setCards([makeCard(data), ...cards]);
+    const newCard = makeCard(data);
+    dispatch(addFormCard(newCard));
     setIsPopShown(true);
   };
   const hidePopup = (): void => setIsPopShown(false);

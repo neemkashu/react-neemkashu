@@ -1,8 +1,8 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { PetFormData } from './formChecker';
+import { SerializableCardData } from './types';
 
 interface PetCardsState {
-  cards: PetFormData[];
+  cards: SerializableCardData[];
 }
 
 const initialState: PetCardsState = {
@@ -12,7 +12,7 @@ export const formSlice = createSlice({
   name: 'formCards',
   initialState,
   reducers: {
-    addFormCard(state, action: PayloadAction<PetFormData>) {
+    addFormCard(state, action: PayloadAction<SerializableCardData>) {
       state.cards.push(action.payload);
     },
   },
