@@ -6,7 +6,6 @@ import { describe, expect, it } from 'vitest';
 import { RoutesInfo } from '../utils/constants';
 import { handlers } from '../mocks/apiHandlers';
 import { SearchController } from '../components/Search/SearchController';
-import { LocalStorageMock } from '../utils/mocha';
 import { store } from '../store';
 
 const server = setupServer(...handlers);
@@ -22,7 +21,6 @@ const routesMock: RouteObject[] = [
     ),
   },
 ];
-global.localStorage = new LocalStorageMock();
 
 describe('Search controller', () => {
   beforeAll(() => server.listen());

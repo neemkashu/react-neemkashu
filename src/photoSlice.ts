@@ -1,5 +1,4 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { SEARCH_KEY } from './utils/constants';
 import { Photo } from './api/types';
 
 interface PhotoSliceState {
@@ -8,7 +7,7 @@ interface PhotoSliceState {
 }
 
 const initialState: PhotoSliceState = {
-  searchText: localStorage.getItem(SEARCH_KEY) ?? '',
+  searchText: '',
   photos: [],
 };
 export const photoSlice = createSlice({
