@@ -1,14 +1,14 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { setupListeners } from '@reduxjs/toolkit/query';
 import { flickrApi } from '../api/flickrApi';
-import { photoSlice } from './photoSlice';
+import { searchSlice } from './searchSlice';
 import { formSlice } from './formSlice';
 import { SerializableCardData } from '../components/Form/types';
 
 export const store = configureStore({
   reducer: {
     [flickrApi.reducerPath]: flickrApi.reducer,
-    photo: photoSlice.reducer,
+    search: searchSlice.reducer,
     form: formSlice.reducer,
   },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(flickrApi.middleware),
@@ -21,5 +21,5 @@ type FormCardsSelector = (state: RootState) => SerializableCardData[];
 
 setupListeners(store.dispatch);
 
-export const selectSearchText: SearchSelector = (state) => state.photo.searchText;
+export const selectSearchText: SearchSelector = (state) => state.search.searchText;
 export const selectFormCards: FormCardsSelector = (state) => state.form.cards;

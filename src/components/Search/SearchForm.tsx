@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form';
 import { FORM_SEARCH_KEY, Search } from './Search';
 import { Spinner } from '../Spinner';
 import { ButtonSubmit } from '../Buttons/Buttons';
-import { updateSearchText } from '../../redux/photoSlice';
+import { updateSearchText } from '../../redux/searchSlice';
 import { useGetPhotosByQuery } from '../../api/flickrApi';
 import { selectSearchText } from '../../redux/store';
 

@@ -1,16 +1,14 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { Photo } from '../api/types';
 
-interface PhotoSliceState {
+interface SearchSliceState {
   searchText: string;
-  photos: Photo[];
 }
 
-const initialState: PhotoSliceState = {
+const initialState: SearchSliceState = {
   searchText: '',
-  photos: [],
 };
-export const photoSlice = createSlice({
+
+export const searchSlice = createSlice({
   name: 'photos',
   initialState,
   reducers: {
@@ -20,4 +18,4 @@ export const photoSlice = createSlice({
   },
 });
 
-export const { updateSearchText } = photoSlice.actions;
+export const { updateSearchText } = searchSlice.actions;
