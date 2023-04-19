@@ -4,7 +4,7 @@ import { Provider } from 'react-redux';
 import { render, screen } from '@testing-library/react';
 import { routesConfig } from '../routesConfig';
 import { RoutesInfo } from '../utils/constants';
-import { store } from '../store';
+import { store } from '../redux/store';
 
 describe('Router', () => {
   it('Renders about page', () => {

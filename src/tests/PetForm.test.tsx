@@ -5,7 +5,7 @@ import { Provider } from 'react-redux';
 import { ErrorMessages } from '../components/Form/formChecker';
 import { PetForm } from '../components/Form/PetForm';
 import { AnimalTypes } from '../components/Form/Select';
-import { store } from '../store';
+import { store } from '../redux/store';
 
 export async function submitForm(): Promise<void> {
   const submitButton = screen.getByRole('button');

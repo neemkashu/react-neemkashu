@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { Photo } from './api/types';
+import { Photo } from '../api/types';
 
 interface PhotoSliceState {
   searchText: string;

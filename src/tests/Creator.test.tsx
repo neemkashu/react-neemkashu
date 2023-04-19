@@ -6,7 +6,7 @@ import { Creator } from '../components/Creator';
 import { TEXT_CONTENT } from '../components/Form/PopMessage';
 import { PetCardTextContent } from '../components/Cards/PetCard';
 import { fillForm } from './PetForm.test';
-import { store } from '../store';
+import { store } from '../redux/store';
 
 describe('Creator component', () => {
   beforeEach(() => {

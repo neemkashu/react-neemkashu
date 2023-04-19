@@ -2,7 +2,7 @@ import { FC } from 'react';
 import { useSelector } from 'react-redux';
 import { UseFormRegisterReturn } from 'react-hook-form';
 import styles from '../../styles/Search.module.css';
-import { selectSearchText } from '../../store';
+import { selectSearchText } from '../../redux/store';
 
 export const FORM_SEARCH_KEY = 'searchText';
 

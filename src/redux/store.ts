@@ -1,9 +1,9 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { setupListeners } from '@reduxjs/toolkit/query';
-import { flickrApi } from './api/flickrApi';
+import { flickrApi } from '../api/flickrApi';
 import { photoSlice } from './photoSlice';
-import { formSlice } from './components/Form/formSlice';
-import { SerializableCardData } from './components/Form/types';
+import { formSlice } from './formSlice';
+import { SerializableCardData } from '../components/Form/types';
 
 export const store = configureStore({
   reducer: {

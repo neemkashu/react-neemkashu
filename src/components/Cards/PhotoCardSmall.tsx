@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import { useCardModal } from './hooks';
 import { ModalCard } from '../Modal/ModalCard';
 import { ListItem } from '../Modal/ListItem';
-import { selectSearchText } from '../../store';
+import { selectSearchText } from '../../redux/store';
 import { useGetPhotosByQuery } from '../../api/flickrApi';
 import { Photo } from '../../api/types';
 

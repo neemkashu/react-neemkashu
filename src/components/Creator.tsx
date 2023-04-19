@@ -6,8 +6,8 @@ import { PetFormData } from './Form/formChecker';
 import { PetForm } from './Form/PetForm';
 import { PopMessage } from './Form/PopMessage';
 import { PetCard } from './Cards/PetCard';
-import { addFormCard } from './Form/formSlice';
-import { selectFormCards } from '../store';
+import { addFormCard } from '../redux/formSlice';
+import { selectFormCards } from '../redux/store';
 import { SerializableCardData } from './Form/types';
 
 export const makeCard = (data: PetFormData): SerializableCardData => {

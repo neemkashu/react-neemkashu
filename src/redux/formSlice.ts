@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { SerializableCardData } from './types';
+import { SerializableCardData } from '../components/Form/types';
 
 interface PetCardsState {
   cards: SerializableCardData[];

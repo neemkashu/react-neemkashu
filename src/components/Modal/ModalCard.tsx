@@ -18,7 +18,7 @@ export const ModalCard: FC<{ onClose: () => void; source: string; details: Photo
         onClick={(event): void => {
           event.stopPropagation();
         }}
-        className="m-auto p-2 min-w-1/2 opacity-100 border-2 rounded-lg bg-white border-zinc-300 max-h-min"
+        className="m-auto p-2 w-full sm:w-[640px] xl:w-1/2  opacity-100 border-2 rounded-lg bg-white border-zinc-300 max-h-min"
       >
         <div className="flex flex-col flex-wrap justify-evenly gap-2">
           <button

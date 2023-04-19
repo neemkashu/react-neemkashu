@@ -7,7 +7,7 @@ import { describe, expect, it } from 'vitest';
 import { PhotoCardSmall } from '../components/Cards/PhotoCardSmall';
 import { RoutesInfo } from '../utils/constants';
 import { handlers } from '../mocks/apiHandlers';
-import { store } from '../store';
+import { store } from '../redux/store';
 
 const server = setupServer(...handlers);
 

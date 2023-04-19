@@ -4,9 +4,9 @@ import { useForm } from 'react-hook-form';
 import { FORM_SEARCH_KEY, Search } from './Search';
 import { Spinner } from '../Spinner';
 import { ButtonSubmit } from '../Buttons/Buttons';
-import { updateSearchText } from '../../photoSlice';
+import { updateSearchText } from '../../redux/photoSlice';
 import { useGetPhotosByQuery } from '../../api/flickrApi';
-import { selectSearchText } from '../../store';
+import { selectSearchText } from '../../redux/store';
 
 type SearchField = Record<typeof FORM_SEARCH_KEY, string>;
 

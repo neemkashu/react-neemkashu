@@ -5,7 +5,7 @@ import { CardGrid } from '../../layouts/CardGrid';
 import { SearchError } from './SearchError';
 import { PhotoCards } from '../Cards/PhotoCards';
 import { useGetPhotosByQuery } from '../../api/flickrApi';
-import { selectSearchText } from '../../store';
+import { selectSearchText } from '../../redux/store';
 
 export const SearchController: FC<Record<string, never>> = () => {
   const searchText = useSelector(selectSearchText);

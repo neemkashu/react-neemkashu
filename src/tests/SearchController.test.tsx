@@ -6,7 +6,7 @@ import { describe, expect, it } from 'vitest';
 import { RoutesInfo } from '../utils/constants';
 import { handlers } from '../mocks/apiHandlers';
 import { SearchController } from '../components/Search/SearchController';
-import { store } from '../store';
+import { store } from '../redux/store';
 
 const server = setupServer(...handlers);
 
@@ -15,8 +15,7 @@ const routesMock: RouteObject[] = [
     path: RoutesInfo.MAIN.path,
     element: (
       <Provider store={store}>
-        {' '}
-        <SearchController />{' '}
+        <SearchController />
       </Provider>
     ),
   },
