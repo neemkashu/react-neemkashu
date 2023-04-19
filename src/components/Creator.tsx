@@ -35,7 +35,7 @@ export const Creator: FC<Record<string, never>> = () => {
     <div className="grid grid-col-1 md:grid-cols-form w-auto justify-center gap-2 p-2">
       <div className=" relative">
         <PetForm backData={getCardInfo} />
-        {isPopShown ? <PopMessage hide={hidePopup} /> : null}
+        {isPopShown && <PopMessage hide={hidePopup} />}
       </div>
       <CardGrid>
         {cards.map((data) => {

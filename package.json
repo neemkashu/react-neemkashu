@@ -8,6 +8,7 @@
     "build": "npm run lint && tsc && vite build",
     "preview": "vite preview",
     "lint": "eslint . --ext .tsx --ext .ts",
+    "lint-all": "eslint .",
     "test": "vitest",
     "coverage": "vitest run --coverage",
     "deploy": "tsc && vite build && git stash && git checkout deploy && xcopy dist components\\ /E/Y && git add -A && git commit -m \"update deploy\" && git push && git checkout - && git stash pop"
