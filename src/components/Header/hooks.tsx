@@ -1,14 +1,10 @@
-import { useMatches } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { RoutesInfo } from '../../utils/constants';
 
-const PAGE_ROUTE_DEPTH = 1;
-
 export const useHeader = (): string => {
-  const matches = useMatches();
+  const matches = useLocation();
 
-  const title = Object.values(RoutesInfo).find(
-    ({ path }) => path === matches[PAGE_ROUTE_DEPTH].pathname
-  )?.header;
+  const title = Object.values(RoutesInfo).find(({ path }) => path === matches.pathname)?.header;
 
   return title ?? '';
 };
