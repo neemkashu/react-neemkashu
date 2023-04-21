@@ -1,11 +1,13 @@
 import { render, screen } from '@testing-library/react';
 import { createMemoryRouter, RouteObject, RouterProvider } from 'react-router-dom';
+import { Provider } from 'react-redux';
 import userEvent from '@testing-library/user-event';
 import { setupServer } from 'msw/node';
 import { describe, expect, it } from 'vitest';
 import { PhotoCardSmall } from '../components/Cards/PhotoCardSmall';
 import { RoutesInfo } from '../utils/constants';
 import { handlers } from '../mocks/apiHandlers';
+import { store } from '../redux/store';
 
 const server = setupServer(...handlers);
 
@@ -25,7 +27,12 @@ const photo = {
 const routesMock: RouteObject[] = [
   {
     path: RoutesInfo.MAIN.path,
-    element: <PhotoCardSmall {...photo} />,
+    element: (
+      <Provider store={store}>
+        {' '}
+        <PhotoCardSmall {...photo} />{' '}
+      </Provider>
+    ),
   },
 ];
 

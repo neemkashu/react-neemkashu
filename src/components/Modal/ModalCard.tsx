@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { PhotoDetailed } from '../../api/getCards';
+import { PhotoDetailed } from '../../api/types';
 import { Details } from './Details';
 
 export const ModalCard: FC<{ onClose: () => void; source: string; details: PhotoDetailed }> = ({
@@ -18,8 +18,7 @@ export const ModalCard: FC<{ onClose: () => void; source: string; details: Photo
         onClick={(event): void => {
           event.stopPropagation();
         }}
-        className="m-auto p-2 opacity-100 border-2 rounded-lg bg-white border-zinc-300 max-h-min"
-        style={{ minWidth: '50%' }}
+        className="m-auto p-2 w-full sm:w-[640px] xl:w-1/2  opacity-100 border-2 rounded-lg bg-white border-zinc-300 max-h-min"
       >
         <div className="flex flex-col flex-wrap justify-evenly gap-2">
           <button

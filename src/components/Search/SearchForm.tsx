@@ -1,9 +1,12 @@
 import { FC } from 'react';
-import { useNavigation, useSubmit } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import { FORM_SEARCH_KEY, Search } from './Search';
 import { Spinner } from '../Spinner';
-import { ButtonSubmit } from '../../Buttons/Buttons';
+import { ButtonSubmit } from '../Buttons/Buttons';
+import { updateSearchText } from '../../redux/searchSlice';
+import { useGetPhotosByQuery } from '../../api/flickrApi';
+import { selectSearchText } from '../../redux/store';
 
 type SearchField = Record<typeof FORM_SEARCH_KEY, string>;
 
@@ -11,11 +14,12 @@ export const SearchForm: FC<Record<string, never>> = () => {
   const { register, handleSubmit } = useForm<SearchField>({
     mode: 'onSubmit',
   });
-  const submit = useSubmit();
-  const isLoading = useNavigation().state !== 'idle';
+  const dispatch = useDispatch();
+  const searchText = useSelector(selectSearchText);
+  const { isFetching } = useGetPhotosByQuery(searchText);
 
   const onSubmit = (formData: SearchField): void => {
-    submit(formData, { method: 'post', action: '/' });
+    dispatch(updateSearchText(formData.searchText));
   };
 
   return (
@@ -27,9 +31,7 @@ export const SearchForm: FC<Record<string, never>> = () => {
          justify-self-center lg:self-start"
     >
       <Search register={register(FORM_SEARCH_KEY)} />
-      <ButtonSubmit disabled={isLoading}>
-        {isLoading ? <Spinner size="20px" /> : 'Search'}
-      </ButtonSubmit>
+      <ButtonSubmit disabled={isFetching}>{isFetching ? <Spinner /> : 'Search'}</ButtonSubmit>
     </form>
   );
 };

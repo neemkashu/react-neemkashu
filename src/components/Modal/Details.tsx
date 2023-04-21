@@ -1,7 +1,7 @@
 /* eslint-disable no-underscore-dangle */
 import { FC } from 'react';
-import { PhotoDetailed } from '../../api/getCards';
 import { ListItem } from './ListItem';
+import { PhotoDetailed } from '../../api/types';
 
 export const Details: FC<{ details: PhotoDetailed }> = ({ details }) => {
   const {

@@ -6,8 +6,6 @@ import { MainPage } from './pages/MainPage';
 import { NotFoundPage } from './pages/NotFoundPage';
 
 import { RoutesInfo } from './utils/constants';
-import { findPhotos } from './router/actions';
-import { photoLoader } from './router/loaders';
 
 export const routesConfig: RouteObject[] = [
   {
@@ -22,8 +20,6 @@ export const routesConfig: RouteObject[] = [
       {
         path: RoutesInfo.MAIN.path,
         element: <MainPage />,
-        loader: photoLoader,
-        action: findPhotos,
       },
       {
         path: RoutesInfo.ABOUT.path,

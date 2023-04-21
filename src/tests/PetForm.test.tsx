@@ -1,9 +1,11 @@
 import userEvent from '@testing-library/user-event';
 import { render, screen } from '@testing-library/react';
 import { vi } from 'vitest';
+import { Provider } from 'react-redux';
 import { ErrorMessages } from '../components/Form/formChecker';
 import { PetForm } from '../components/Form/PetForm';
 import { AnimalTypes } from '../components/Form/Select';
+import { store } from '../redux/store';
 
 export async function submitForm(): Promise<void> {
   const submitButton = screen.getByRole('button');
@@ -37,14 +39,22 @@ describe('Form component', () => {
   it('Renders form', () => {
     const backDataMock = vi.fn();
 
-    render(<PetForm backData={backDataMock} />);
+    render(
+      <Provider store={store}>
+        <PetForm backData={backDataMock} />
+      </Provider>
+    );
 
     expect(screen.getByRole('form')).toBeInTheDocument();
   });
   it('renders erros if submit is clicked when form is empty', async () => {
     const backDataMock = vi.fn();
 
-    render(<PetForm backData={backDataMock} />);
+    render(
+      <Provider store={store}>
+        <PetForm backData={backDataMock} />
+      </Provider>
+    );
 
     await submitForm();
 
@@ -60,7 +70,11 @@ describe('Form component', () => {
     const backDataMock = vi.fn();
     const user = userEvent.setup();
 
-    render(<PetForm backData={backDataMock} />);
+    render(
+      <Provider store={store}>
+        <PetForm backData={backDataMock} />
+      </Provider>
+    );
 
     await submitForm();
 
@@ -78,7 +92,11 @@ describe('Form component', () => {
   it('clears error if form data is valid', async () => {
     const backDataMock = vi.fn();
 
-    render(<PetForm backData={backDataMock} />);
+    render(
+      <Provider store={store}>
+        <PetForm backData={backDataMock} />
+      </Provider>
+    );
 
     await submitForm();
     await fillForm();
@@ -95,7 +113,11 @@ describe('Form component', () => {
   it('provides callback form data if is valid', async () => {
     const backDataMock = vi.fn((): void => {});
 
-    render(<PetForm backData={backDataMock} />);
+    render(
+      <Provider store={store}>
+        <PetForm backData={backDataMock} />
+      </Provider>
+    );
     await fillForm();
     await submitForm();
 

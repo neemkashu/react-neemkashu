@@ -1,15 +1,21 @@
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import { Provider } from 'react-redux';
 import { describe, expect, it, vi } from 'vitest';
 import { Creator } from '../components/Creator';
 import { TEXT_CONTENT } from '../components/Form/PopMessage';
 import { PetCardTextContent } from '../components/Cards/PetCard';
 import { fillForm } from './PetForm.test';
+import { store } from '../redux/store';
 
 describe('Creator component', () => {
   beforeEach(() => {
     URL.createObjectURL = vi.fn().mockReturnValue('mock-url');
-    render(<Creator />);
+    render(
+      <Provider store={store}>
+        <Creator />
+      </Provider>
+    );
   });
 
   it('Renders form', () => {

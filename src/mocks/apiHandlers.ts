@@ -1,5 +1,5 @@
 import { rest } from 'msw';
-import { getPhotoRequest, getRequestUrl } from '../api/getCards';
+import { PROXY_URL } from '../api/getCards';
 
 const photoResponse = {
   photo: {
@@ -404,14 +404,15 @@ const searchResponse = {
   stat: 'ok',
 };
 
-const pathPhotoDetail = getPhotoRequest(photoResponse.photo.id);
-const pathSearch = getRequestUrl('');
-
 export const handlers = [
-  rest.get(pathPhotoDetail, (req, res, ctx) => {
-    return res(ctx.status(200), ctx.json(photoResponse));
-  }),
-  rest.get(pathSearch, (req, res, ctx) => {
-    return res(ctx.status(200), ctx.json(searchResponse));
+  rest.get(PROXY_URL, (req, res, ctx) => {
+    const flickrMethod = req.url.searchParams.get('method');
+    if (flickrMethod === 'flickr.photos.search') {
+      return res(ctx.status(200), ctx.json(searchResponse));
+    }
+    if (flickrMethod === 'flickr.photos.getInfo') {
+      return res(ctx.status(200), ctx.json(photoResponse));
+    }
+    throw new Error('no such flickrMethod');
   }),
 ];
