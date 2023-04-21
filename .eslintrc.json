@@ -141,5 +141,13 @@
         ]
       }
     }
-  }
+  },
+  "overrides": [
+    {
+      "files": ["server.ts"],
+      "env": {
+        "node": true
+      }
+    }
+  ]
 }
