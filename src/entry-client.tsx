@@ -5,7 +5,7 @@ import { store } from './redux/store';
 import { routesConfig } from './routesConfig';
 import './index.css';
 
-const root = document.querySelector('#app') as HTMLElement;
+const root = document.querySelector('#root') as HTMLElement;
 
 // # mounts the app to a DOM element
 const router = createBrowserRouter(routesConfig);
