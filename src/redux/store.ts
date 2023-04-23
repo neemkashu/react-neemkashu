@@ -5,12 +5,13 @@ import { searchSlice } from './searchSlice';
 import { formSlice } from './formSlice';
 import { SerializableCardData } from '../components/Form/types';
 
+export const storeReducer = {
+  [flickrApi.reducerPath]: flickrApi.reducer,
+  search: searchSlice.reducer,
+  form: formSlice.reducer,
+};
 export const store = configureStore({
-  reducer: {
-    [flickrApi.reducerPath]: flickrApi.reducer,
-    search: searchSlice.reducer,
-    form: formSlice.reducer,
-  },
+  reducer: storeReducer,
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(flickrApi.middleware),
 });
 
