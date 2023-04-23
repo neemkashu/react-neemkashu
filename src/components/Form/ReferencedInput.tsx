@@ -1,6 +1,5 @@
 import { UseFormRegisterReturn } from 'react-hook-form';
 import { FC, HTMLInputTypeAttribute } from 'react';
-import { v4 } from 'uuid';
 import styles from '../../styles/ReferencedInput.module.css';
 
 type RefInputProps = {
@@ -20,7 +19,7 @@ export const ReferencedInput: FC<RefInputProps> = ({
 }) => {
   const inputStyle = inputType === 'radio' ? styles.radio : styles.nonradio;
   const fileStyle = inputType === 'file' ? 'flex-col' : 'flex-row';
-  const uniqueId = v4();
+  const uniqueId = `${inputType}-label`;
 
   return (
     <div className={`flex ${fileStyle}  ${inputStyle}`}>

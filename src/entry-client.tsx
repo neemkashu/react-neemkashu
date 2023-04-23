@@ -1,9 +1,9 @@
 import ReactDOM from 'react-dom/client';
-import { BrowserRouter, RouterProvider, createBrowserRouter } from 'react-router-dom';
+import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import { About } from './components/About';
 import { store } from './redux/store';
 import { routesConfig } from './routesConfig';
+import './index.css';
 
 const root = document.querySelector('#app') as HTMLElement;
 
