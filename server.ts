@@ -40,6 +40,7 @@ async function createServer(
 
     app.use('*', async (req, res, next) => {
       const url = req.originalUrl;
+      console.log('server: request url', url);
 
       try {
         // 1. Read index.html
@@ -74,17 +75,13 @@ async function createServer(
         next(error);
       }
     });
-
-    app.listen(5173);
+    if (!isTest) {
+      app.listen(5173);
+      console.log('listen to 5173');
+    }
     return { app, vite };
   }
   throw new Error('production mode is not implemented');
 }
 
-if (!isTest) {
-  createServer().then(({ app }) =>
-    app.listen(8080, () => {
-      console.log('http://localhost:5173');
-    })
-  );
-}
+createServer();
