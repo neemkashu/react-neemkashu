@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "ts-node --esm server.ts",
+    "build": "npm run build:client & npm run build:server",
     "build:client": "vite build --outDir dist/client",
     "build:server": "vite build --outDir dist/server --ssr src/entry-server.tsx",
     "preview": "vite preview",

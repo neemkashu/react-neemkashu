@@ -33,6 +33,7 @@ async function createProdServer(): Promise<void> {
       render(req, res, assetMap);
     } catch (error) {
       if (error instanceof Error) {
+        // eslint-disable-next-line no-console
         console.error(error.stack);
         res.status(500).end(error.stack);
       }
@@ -62,16 +63,12 @@ async function createDevServer(root = process.cwd()): Promise<void> {
   app.use(vite.middlewares);
 
   app.use('*', async (req, res, next) => {
-    const url = req.originalUrl;
-
     try {
-      // need to find: get parsed object from vite.transformIndexHtml
-      // let template = fs.readFileSync(path.resolve(dirname, 'index.html'), 'utf-8');
-      // template = await vite.transformIndexHtml(url, template);
+      // TODO: check if possible to get parsed object from vite.transformIndexHtml
 
       const { render } = await vite.ssrLoadModule('/src/entry-server.tsx');
       const assetMap = { script: 'src/entry-client.tsx', style: 'src/index.css' };
-      render(req, res, assetMap, url);
+      render(req, res, assetMap);
     } catch (error) {
       if (error instanceof Error) {
         vite.ssrFixStacktrace(error);
@@ -81,6 +78,7 @@ async function createDevServer(root = process.cwd()): Promise<void> {
   });
   if (!isTest) {
     app.listen(5173);
+    // eslint-disable-next-line no-console
     console.log('listen to http://localhost:5173');
   }
 }

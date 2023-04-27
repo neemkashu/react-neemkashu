@@ -1,6 +1,8 @@
 import { PreloadedState } from '@reduxjs/toolkit';
 import { FC, PropsWithChildren } from 'react';
 import { RootState } from '../redux/store';
+import { VITE_HEADER_SCRIPT } from './constants';
+import { getPreloadScript } from './helpers';
 
 type HtmlProps = PropsWithChildren & {
   preloadedState: PreloadedState<RootState>;
@@ -17,13 +19,7 @@ export const HtmlVite: FC<HtmlProps> = ({ style, preloadedState, children }) => 
             type="module"
             // eslint-disable-next-line react/no-danger
             dangerouslySetInnerHTML={{
-              __html: `
-import RefreshRuntime from "/@react-refresh"
-RefreshRuntime.injectIntoGlobalHook(window)
-window.$RefreshReg$ = () => {}
-window.$RefreshSig$ = () => (type) => type
-window.__vite_plugin_react_preamble_installed__ = true
-                  `,
+              __html: VITE_HEADER_SCRIPT,
             }}
           />
         )}
@@ -49,10 +45,7 @@ window.__vite_plugin_react_preamble_installed__ = true
         <script
           // eslint-disable-next-line react/no-danger
           dangerouslySetInnerHTML={{
-            __html: `window.__PRELOADED_STATE__ = ${JSON.stringify(preloadedState).replace(
-              /</g,
-              '\\u003c'
-            )}`,
+            __html: getPreloadScript(JSON.stringify(preloadedState)),
           }}
         />
       </body>
