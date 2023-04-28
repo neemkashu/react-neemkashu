@@ -31,7 +31,7 @@
     "src/*",
     "./src/**/*",
     "styled.d.ts",
-    "server.ts"
+    "server.ts",
   ],
   "references": [
     {

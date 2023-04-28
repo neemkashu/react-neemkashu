@@ -32,4 +32,3 @@ hydrateRoot(
     </Provider>
   </StrictMode>
 );
-console.log('hydrated');

@@ -25,7 +25,8 @@
     "ecmaVersion": "latest",
     "sourceType": "module",
     "project": [
-      "tsconfig.json"
+      "tsconfig.json",
+      "./cypress/tsconfig.json"
     ]
   },
   "plugins": [
