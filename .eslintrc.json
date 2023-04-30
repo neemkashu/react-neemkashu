@@ -25,7 +25,8 @@
     "ecmaVersion": "latest",
     "sourceType": "module",
     "project": [
-      "tsconfig.json"
+      "tsconfig.json",
+      "./cypress/tsconfig.json"
     ]
   },
   "plugins": [
@@ -58,7 +59,8 @@
         "props": true,
         "ignorePropertyModificationsFor": [
           "accum",
-          "state"
+          "state",
+          "res"
         ]
       }
     ],
@@ -141,5 +143,15 @@
         ]
       }
     }
-  }
+  },
+  "overrides": [
+    {
+      "files": [
+        "server.ts"
+      ],
+      "env": {
+        "node": true
+      }
+    }
+  ]
 }

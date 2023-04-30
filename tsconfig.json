@@ -30,7 +30,8 @@
   "include": [
     "src/*",
     "./src/**/*",
-    "styled.d.ts"
+    "styled.d.ts",
+    "server.ts",
   ],
   "references": [
     {

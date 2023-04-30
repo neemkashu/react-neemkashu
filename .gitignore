@@ -32,3 +32,6 @@ coverage/About.tsx.html
 coverage/clover.xml
 coverage/coverage-final.json
 coverage/index.html
+
+instrumented
+.nyc_output
